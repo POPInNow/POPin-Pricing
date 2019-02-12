@@ -1,0 +1,67 @@
+$pricing-plan-border: 1px solid $white-ter !default
+$pricing-plan-border-radius: $radius !default
+$pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
+$pricing-plan-active-transform: scale(1.05) !default
+$pricing-header-background: $white !default
+$pricing-item-background: $white-ter !default
+$pricing-item-border: .15rem solid $white !default
+$pricing-item-color: $grey !default
+$pricing-price-background: white !default
+
+.pricing-table
+  &.is-comparative
+    .pricing-plan
+      &:last-of-type
+        border-right: 1px solid initial
+      &.is-features
+        transform: none
+      &:not(.is-active),
+      &:not(.is-features)
+        transform: none
+        &:hover
+          border: 2px solid #fff
+          transform: $pricing-plan-active-transform
+          z-index: 1
+      &.is-features
+        &:hover
+          transform: unset
+      &.is-active
+        transform: $pricing-plan-active-transform
+      &.is-active,
+      &:hover
+        cursor: pointer
+        &.is-success
+          border-color: $success
+        &.is-popin-blue-af
+          border-color: $popin-blue-af
+        &.is-popin-blue-md
+          border-color: $popin-blue-md
+        &.is-mono-gray-1
+          border-color: $mono-gray-1
+        &.is-mono-gray-2
+          border-color: $mono-gray-2
+        &.is-mono-gray-3
+          border-color: $mono-gray-3
+        &.is-mono-gray-4
+          border-color: $mono-gray-4
+        &.is-mono-gray-5
+          border-color: $mono-gray-5
+        &.is-mono-gray-6
+          border-color: $mono-gray-6
+      // &:not(.is-active)
+      //   border-color: $success
+        
+        
+
+  .pricing-plan
+    border: 1px solid $mono-gray-2
+    &.is-features
+      border: transparent
+
+    .plan-price
+      .plan-price-amount
+        .plan-price-currency
+          margin-left: -1em
+
+.plan-toggle
+  cursor: pointer
