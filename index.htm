@@ -1,15 +1,34 @@
 <script type="text/javascript" async="" src="./dist/popin_bundle.js"></script>
 <script>
-  document.addEventListener('click', function (event) {
-    var ToggleBtn = event.target.getAttribute('data-toggle');
+  /**
+   * Relies on a global window popinPricing callback object
+   *
+   * window = {
+   *
+   *   popinPricing = {
+   *
+   *     onFirstButtonClicked = (isOneTime) => { ... }
+   *
+   *     onSecondButtonClicked = (isOneTime) => { ... }
+   *
+   *     onThirdButtonClicked = (isOneTime) => { ... }
+   *
+   *     onFourthButtonClicked = (isOneTime) => { ... }
+   *
+   *   }
+   *
+   * }
+   */
 
+  var onPlanToggleButtonClicked = function onPlanToggleButtonClicked (event) {
+    var ToggleBtn = event.target.getAttribute('data-toggle');
 
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.plan-toggle')) return;
 
     // Don't follow the link if it has one
     event.preventDefault();
-    
+
     // I'll clean this long-hand mess up later
     var el = document.getElementsByClassName('plan-toggle');
     var btnOnetime = el[0];
@@ -23,7 +42,6 @@
       priceplanAnnually.classList.add('is-hidden');
       btnOnetime.classList.add('is-active');
       priceplanOnetime.classList.remove('is-hidden')
-      console.log('ToggleBtn', ToggleBtn);
     } else if (ToggleBtn === 'annually') {
       btnOnetime.classList.remove('is-active');
       priceplanOnetime.classList.add('is-hidden');
@@ -31,12 +49,114 @@
       priceplanAnnually.classList.add('is-hidden');
       btnAnnually.classList.add('is-active');
       priceplanAnnually.classList.remove('is-hidden');
-      console.log('ToggleBtn', ToggleBtn);
     }
+
+    console.log('ToggleBtn', ToggleBtn);
+  };
+
+  var isPricePlanOneTime = function isPricePlanOneTime () {
+    var el = document.getElementsByClassName('is-active');
+
+    var isOneTime = false;
+    var element = null;
+    var i = 0;
+    var size = !!el ? el.length : 0;
+    for (i = 0; i < size; ++i) {
+      element = el[i];
+      if (element.hasAttribute('data-toggle')) {
+        if (element.getAttribute('data-toggle') == 'one-time') {
+          isOneTime = true;
+          break;
+        }
+      }
+    }
+
+    console.log('isOneTime', isOneTime);
+    return isOneTime;
+  };
+
+  var onFirstButtonClicked = function onFirstButtonClicked (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!event.target.matches('.first-button')) return;
+
+    // Don't follow the link if it has one
+    event.preventDefault();
+
+    // Super safe callback checking
+    if (!!window) {
+      if (!!window.popinPricing) {
+        if (!!window.popinPricing.onFirstButtonClicked) {
+          window.popinPricing.onFirstButtonClicked(isPricePlanOneTime());
+        }
+      }
+    }
+
+    console.log('FirstBtn', event.target);
+  };
+
+  var onSecondButtonClicked = function onSecondButtonClicked (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!event.target.matches('.second-button')) return;
+
+    // Don't follow the link if it has one
+    event.preventDefault();
+
+    // Super safe callback checking
+    if (!!window) {
+      if (!!window.popinPricing) {
+        if (!!window.popinPricing.onSecondButtonClicked) {
+          window.popinPricing.onSecondButtonClicked(isPricePlanOneTime());
+        }
+      }
+    }
+    console.log('SecondBtn', event.target);
+  };
+
+  var onThirdButtonClicked = function onThirdButtonClicked (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!event.target.matches('.third-button')) return;
+
+    // Don't follow the link if it has one
+    event.preventDefault();
+
+    // Super safe callback checking
+    if (!!window) {
+      if (!!window.popinPricing) {
+        if (!!window.popinPricing.onThirdButtonClicked) {
+          window.popinPricing.onThirdButtonClicked(isPricePlanOneTime());
+        }
+      }
+    }
+    console.log('ThirdBtn', event.target);
+  };
+
+  var onFourthButtonClicked = function onFourthButtonClicked (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!event.target.matches('.fourth-button')) return;
+
+    // Don't follow the link if it has one
+    event.preventDefault();
+
+    // Super safe callback checking
+    if (!!window) {
+      if (!!window.popinPricing) {
+        if (!!window.popinPricing.onFourthButtonClicked) {
+          window.popinPricing.onFourthButtonClicked(isPricePlanOneTime());
+        }
+      }
+    }
+    console.log('FourthBtn', event.target);
+  };
+
+  document.addEventListener('click', function (event) {
+    onPlanToggleButtonClicked(event);
+    onFirstButtonClicked(event);
+    onSecondButtonClicked(event);
+    onThirdButtonClicked(event);
+    onFourthButtonClicked(event);
 
     // Log the clicked element in the console
     console.log(event.target);
-
   }, false);
 </script>
 <link rel="stylesheet" id="style-css" href="./dist/popin_styles.css" type="text/css" media="all">
@@ -91,7 +211,7 @@
           <p class="plan-price-currency">&nbsp;</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Try Now</button>
+          <button class="button first-button">Try Now</button>
         </div>
         <div class="plan-items">
           <div class="plan-item" data-feature="QnA">1 per event</div>
@@ -120,7 +240,7 @@
           <p class="plan-price-currency">one-time</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Choose</button>
+          <button class="button second-button">Choose</button>
         </div>
         <div class="plan-items">
           <div class="plan-item" data-feature="QnA">unlimited</div>
@@ -149,7 +269,7 @@
           <p class="plan-price-currency">one-time</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Choose</button>
+          <button class="button third-button">Choose</button>
         </div>
         <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
@@ -204,7 +324,7 @@
           <div class="plan-item" data-feature="Single sign-on">Single sign-on</div>
           <div class="plan-item" data-feature="Guided onboarding">Guided onboarding</div>
           <div class="plan-item" data-feature="Customer success manager">Customer success manager</div>
-          <div class="plan-item" data-feature="Live chat support">Live chat support</div>          
+          <div class="plan-item" data-feature="Live chat support">Live chat support</div>
           <div class="plan-item" data-feature="Event participants">Event participants</div>
         </div>
         <div class="plan-footer">
@@ -220,7 +340,7 @@
           <p class="plan-price-currency">&nbsp;</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Try Now</button>
+          <button class="button first-button">Try Now</button>
         </div>
         <div class="plan-items">
           <div class="plan-item" data-feature="QnA">1 per event</div>
@@ -240,7 +360,7 @@
           <div class="plan-item" data-feature="Single sign-on">-</div>
           <div class="plan-item" data-feature="Guided onboarding">-</div>
           <div class="plan-item" data-feature="Customer success manager">-</div>
-          <div class="plan-item" data-feature="Live chat support">X</div>          
+          <div class="plan-item" data-feature="Live chat support">X</div>
           <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
         </div>
         <div class="plan-footer">
@@ -256,7 +376,7 @@
           <p class="plan-price-currency">annually</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Choose</button>
+          <button class="button second-button">Choose</button>
         </div>
         <div class="plan-items">
           <div class="plan-item" data-feature="QnA">unlimited</div>
@@ -276,7 +396,7 @@
           <div class="plan-item" data-feature="Single sign-on">-</div>
           <div class="plan-item" data-feature="Guided onboarding">-</div>
           <div class="plan-item" data-feature="Customer success manager">-</div>
-          <div class="plan-item" data-feature="Live chat support">X</div>          
+          <div class="plan-item" data-feature="Live chat support">X</div>
           <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
         </div>
         <div class="plan-footer">
@@ -292,7 +412,7 @@
           <p class="plan-price-currency">annually</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Choose</button>
+          <button class="button third-button">Choose</button>
         </div>
         <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
@@ -312,7 +432,7 @@
             <div class="plan-item" data-feature="Single sign-on">-</div>
             <div class="plan-item" data-feature="Guided onboarding">-</div>
             <div class="plan-item" data-feature="Customer success manager">-</div>
-            <div class="plan-item" data-feature="Live chat support">X</div>          
+            <div class="plan-item" data-feature="Live chat support">X</div>
             <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
         </div>
         <div class="plan-footer">
@@ -328,7 +448,7 @@
           <p class="plan-price-currency">annually</p>
         </div>
         <div class="plan-footer">
-          <button class="button">Choose</button>
+          <button class="button fourth-button">Choose</button>
         </div>
         <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
@@ -348,7 +468,7 @@
             <div class="plan-item" data-feature="Single sign-on">X</div>
             <div class="plan-item" data-feature="Guided onboarding">X</div>
             <div class="plan-item" data-feature="Customer success manager">X</div>
-            <div class="plan-item" data-feature="Live chat support">X</div>          
+            <div class="plan-item" data-feature="Live chat support">X</div>
             <div class="plan-item" data-feature="Event participants">up to 5000 / event</div>
         </div>
         <div class="plan-footer">
