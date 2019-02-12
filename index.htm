@@ -14,15 +14,23 @@
     var el = document.getElementsByClassName('plan-toggle');
     var btnOnetime = el[0];
     var btnAnnually = el[1];
+    var priceplanOnetime = document.getElementsByClassName('toggle-plan-onetime')[0];
+    var priceplanAnnually = document.getElementsByClassName('toggle-plan-annually')[0];
     if (ToggleBtn === 'one-time') {
       btnOnetime.classList.remove('is-active');
+      priceplanOnetime.classList.add('is-hidden');
       btnAnnually.classList.remove('is-active');
+      priceplanAnnually.classList.add('is-hidden');
       btnOnetime.classList.add('is-active');
+      priceplanOnetime.classList.remove('is-hidden')
       console.log('ToggleBtn', ToggleBtn);
     } else if (ToggleBtn === 'annually') {
       btnOnetime.classList.remove('is-active');
+      priceplanOnetime.classList.add('is-hidden');
       btnAnnually.classList.remove('is-active');
+      priceplanAnnually.classList.add('is-hidden');
       btnAnnually.classList.add('is-active');
+      priceplanAnnually.classList.remove('is-hidden');
       console.log('ToggleBtn', ToggleBtn);
     }
 
@@ -42,7 +50,7 @@
 </section>
 
 <!-- One Time -->
-<section data-module="section-pricetable" class="section">
+<section data-module="section-pricetable" class="section toggle-plan-onetime">
   <div class="container">
     <div class="pricing-table is-comparative">
       <div class="pricing-plan is-features">
@@ -163,7 +171,7 @@
     </div>
 </section>
 <!-- Annually -->
-<section data-module="section-pricetable" class="section is-hidden">
+<section data-module="section-pricetable" class="section toggle-plan-annually is-hidden">
   <div class="container">
     <div class="pricing-table is-comparative">
       <!-- FEATURES -->
