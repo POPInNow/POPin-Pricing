@@ -1,6 +1,7 @@
 {
   "name": "POPin-Pricing",
   "version": "0.0.1",
+  "license": "UNLICENSED",
   "description": "Universal Pricing for all",
   "main": "index.htm",
   "repository": "git@github.com:POPInNow/POPin-Pricing.git",
