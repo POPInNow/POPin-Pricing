@@ -8,10 +8,7 @@
   "scripts": {
     "build": "webpack --progress --hide-modules --plugin clean-webpack-plugin --config webpack.config.js",
     "start": "webpack --watch --config webpack.config.js",
-    "clean": "webpack --progress --hide-modules --plugin clean-webpack-plugin --config webpack.config.js",
-    "version:patch": "yarn version -patch -m \"theme version patch bump\" && git push --follow-tags",
-    "version:minor": "yarn version -minor -m \"theme version minor bump\" && git push --follow-tags",
-    "version:major": "yarn version -major -m \"theme version major bump\" && git push --follow-tags"
+    "clean": "webpack --progress --hide-modules --plugin clean-webpack-plugin --config webpack.config.js"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
@@ -32,6 +29,9 @@
   "dependencies": {
     "bulma": "^0.7.1",
     "bulma-pricingtable": "latest",
-    "node-sass": "^4.11.0"
+    "glob-all": "^3.1.0",
+    "node-sass": "^4.11.0",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0"
   }
 }

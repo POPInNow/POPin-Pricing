@@ -1,53 +1,77 @@
-$pricing-plan-border: 1px solid $white-ter !default
-$pricing-plan-border-radius: $radius !default
-$pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
-$pricing-plan-active-transform: scale(1.05) !default
-$pricing-header-background: $white !default
-$pricing-item-background: $white-ter !default
-$pricing-item-border: .15rem solid $white !default
-$pricing-item-color: $grey !default
-$pricing-price-background: white !default
+// $pricing-plan-border: 1px solid $white-ter !default
+// $pricing-plan-border-radius: $radius !default
+// $pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
+$pricing-plan-active-transform: scale(1.05)
+// $pricing-header-background: $white !default
+// $pricing-item-background: $white-ter !default
+$pricing-item-border: 2px solid $mono-gray-3
+// $pricing-item-color: $grey !default
+// $pricing-price-background: white !default
+
+
+.container-pricetable
+  display: flex
+  flex-direction: column
+  .toggle-plan-onetime,
+  .toggle-plan-annually
+    visibility: visible
+    opacity: 1
+    order: 1
+    transition: all .5s ease-in-out
+    &.is-hidden
+      display: block !important
+      visibility: hidden
+      opacity: 0
+      order: 2
+      transition: all .5s ease-in-out
+
+  
 
 .pricing-table
+  background: #ffffff
   &.is-comparative
     .pricing-plan
+      position: relative
+      border: $pricing-item-border
       &:last-of-type
-        border-right: 1px solid initial
-      &.is-features
-        transform: none
+        border-right: 2px solid initial
       &:not(.is-active),
       &:not(.is-features)
-        transform: none
+        z-index: 0
         &:hover
-          border: 2px solid #fff
+          border: 2px solid $success
           transform: $pricing-plan-active-transform
-          z-index: 1
+          z-index: 2
+          transition: transform .5s ease-in
       &.is-features
+        border: 2px solid transparent
         &:hover
-          transform: unset
+          transform: none
+          border-color: transparent
       &.is-active
         transform: $pricing-plan-active-transform
+        z-index: 1
       &.is-active,
       &:hover
         cursor: pointer
-        &.is-success
-          border-color: $success
-        &.is-popin-blue-af
-          border-color: $popin-blue-af
-        &.is-popin-blue-md
-          border-color: $popin-blue-md
-        &.is-mono-gray-1
-          border-color: $mono-gray-1
-        &.is-mono-gray-2
-          border-color: $mono-gray-2
-        &.is-mono-gray-3
-          border-color: $mono-gray-3
-        &.is-mono-gray-4
-          border-color: $mono-gray-4
-        &.is-mono-gray-5
-          border-color: $mono-gray-5
-        &.is-mono-gray-6
-          border-color: $mono-gray-6
+        // &.is-success
+        //   border-color: $success
+        // &.is-popin-blue-af
+        //   border-color: $popin-blue-af
+        // &.is-popin-blue-md
+        //   border-color: $popin-blue-md
+        // &.is-mono-gray-1
+        //   border-color: $mono-gray-1
+        // &.is-mono-gray-2
+        //   border-color: $mono-gray-2
+        // &.is-mono-gray-3
+        //   border-color: $mono-gray-3
+        // &.is-mono-gray-4
+        //   border-color: $mono-gray-4
+        // &.is-mono-gray-5
+        //   border-color: $mono-gray-5
+        // &.is-mono-gray-6
+        //   border-color: $mono-gray-6
       // &:not(.is-active)
       //   border-color: $success
         
