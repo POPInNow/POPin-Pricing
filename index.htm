@@ -1,4 +1,10 @@
-<script type="text/javascript" async="" src="./dist/popin_bundle.js"></script>
+<!-- 
+  Local
+  Instapage/Hubspot/Wordpress/Standalone
+  You'll need to copy and paste your own custom snippets
+-->
+
+<!-- Global -->
 <script>
   /**
    * Relies on a global window popinPricing callback object
@@ -158,6 +164,15 @@
     // Log the clicked element in the console
     console.log(event.target);
   }, false);
+
+  document.addEventListener('mouseover', function (event) {
+    
+    // If the clicked element doesn't have the right selector, bail
+    // if (!event.target.matches('.pricing-plan')) return;
+
+    // Log the clicked element in the console
+    console.log(event.target);
+  }, false);
 </script>
 <link rel="stylesheet" id="style-css" href="./dist/popin_styles.css" type="text/css" media="all">
 
@@ -169,109 +184,110 @@
   </div>
 </section>
 
-<!-- One Time -->
+<div class="container-pricetable">
+  <!-- One Time -->
 <section data-module="section-pricetable" class="section toggle-plan-onetime">
-  <div class="container">
-    <div class="pricing-table is-comparative">
-      <div class="pricing-plan is-features">
-        <div class="plan-header">&nbsp;</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">&nbsp;</span>&nbsp;
-          </p>
-          <p class="plan-price-currency">&nbsp;</p>
+    <div class="container">
+      <div class="pricing-table is-comparative">
+        <div class="pricing-plan is-features">
+          <div class="plan-header">&nbsp;</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">&nbsp;</span>&nbsp;
+            </p>
+            <p class="plan-price-currency">&nbsp;</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button is-invisible"></button>
+          </div>
+          <div class="plan-items">
+            <div class="plan-item" data-feature="QnA">Q&amp;A</div>
+            <div class="plan-item" data-feature="Knowledge-source">Knowledge-source</div>
+            <div class="plan-item" data-feature="Poll">Poll</div>
+            <div class="plan-item" data-feature="Survey">Survey</div>
+            <div class="plan-item" data-feature="Question Library">Question library</div>
+            <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
+            <div class="plan-item" data-feature="Real time results">Real time results</div>
+            <div class="plan-item" data-feature="Print and customize reports">Print &amp; customize reports</div>
+            <div class="plan-item" data-feature="Data exports">Data exports (CSV, PDF)</div>
+            <div class="plan-item" data-feature="Privacy settings">Privacy settings</div>
+            <div class="plan-item" data-feature="Live chat support">Live chat support</div>
+            <div class="plan-item" data-feature="Event participants">Event participants</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-footer">
-          <button class="button is-invisible"></button>
+  
+        <div class="pricing-plan is-mono-gray-3">
+          <div class="plan-header">Free</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">&nbsp;</span>Free
+            </p>
+            <p class="plan-price-currency">&nbsp;</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button first-button">Try Now</button>
+          </div>
+          <div class="plan-items">
+            <div class="plan-item" data-feature="QnA">1 per event</div>
+            <div class="plan-item" data-feature="Knowledge-source">1 per event</div>
+            <div class="plan-item" data-feature="Poll">3 per event</div>
+            <div class="plan-item" data-feature="Survey">up to 5 questions</div>
+            <div class="plan-item" data-feature="Question Library">X</div>
+            <div class="plan-item" data-feature="Basic analytics">-</div>
+            <div class="plan-item" data-feature="Real time results">X</div>
+            <div class="plan-item" data-feature="Print and customize reports">-</div>
+            <div class="plan-item" data-feature="Data exports">-</div>
+            <div class="plan-item" data-feature="Privacy settings">-</div>
+            <div class="plan-item" data-feature="Live chat support">X</div>
+            <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-items">
-          <div class="plan-item" data-feature="QnA">Q&amp;A</div>
-          <div class="plan-item" data-feature="Knowledge-source">Knowledge-source</div>
-          <div class="plan-item" data-feature="Poll">Poll</div>
-          <div class="plan-item" data-feature="Survey">Survey</div>
-          <div class="plan-item" data-feature="Question Library">Question library</div>
-          <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
-          <div class="plan-item" data-feature="Real time results">Real time results</div>
-          <div class="plan-item" data-feature="Print and customize reports">Print &amp; customize reports</div>
-          <div class="plan-item" data-feature="Data exports">Data exports (CSV, PDF)</div>
-          <div class="plan-item" data-feature="Privacy settings">Privacy settings</div>
-          <div class="plan-item" data-feature="Live chat support">Live chat support</div>
-          <div class="plan-item" data-feature="Event participants">Event participants</div>
+  
+        <div class="pricing-plan is-popin-blue-af">
+          <div class="plan-header">Department</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">$</span>149
+            </p>
+            <p class="plan-price-currency">one-time</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button second-button">Choose</button>
+          </div>
+          <div class="plan-items">
+            <div class="plan-item" data-feature="QnA">unlimited</div>
+            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
+            <div class="plan-item" data-feature="Poll">unlimited</div>
+            <div class="plan-item" data-feature="Survey">unlimited</div>
+            <div class="plan-item" data-feature="Question Library">X</div>
+            <div class="plan-item" data-feature="Basic analytics">X</div>
+            <div class="plan-item" data-feature="Real time results">X</div>
+            <div class="plan-item" data-feature="Print and customize reports">X</div>
+            <div class="plan-item" data-feature="Data exports">X</div>
+            <div class="plan-item" data-feature="Privacy settings">X</div>
+            <div class="plan-item" data-feature="Live chat support">X</div>
+            <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-
-      <div class="pricing-plan is-mono-gray-3">
-        <div class="plan-header">Free</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">&nbsp;</span>Free
-          </p>
-          <p class="plan-price-currency">&nbsp;</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button first-button">Try Now</button>
-        </div>
-        <div class="plan-items">
-          <div class="plan-item" data-feature="QnA">1 per event</div>
-          <div class="plan-item" data-feature="Knowledge-source">1 per event</div>
-          <div class="plan-item" data-feature="Poll">3 per event</div>
-          <div class="plan-item" data-feature="Survey">up to 5 questions</div>
-          <div class="plan-item" data-feature="Question Library">X</div>
-          <div class="plan-item" data-feature="Basic analytics">-</div>
-          <div class="plan-item" data-feature="Real time results">X</div>
-          <div class="plan-item" data-feature="Print and customize reports">-</div>
-          <div class="plan-item" data-feature="Data exports">-</div>
-          <div class="plan-item" data-feature="Privacy settings">-</div>
-          <div class="plan-item" data-feature="Live chat support">X</div>
-          <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
-        </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-
-      <div class="pricing-plan is-popin-blue-af is-active">
-        <div class="plan-header">Department</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">$</span>149
-          </p>
-          <p class="plan-price-currency">one-time</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button second-button">Choose</button>
-        </div>
-        <div class="plan-items">
-          <div class="plan-item" data-feature="QnA">unlimited</div>
-          <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
-          <div class="plan-item" data-feature="Poll">unlimited</div>
-          <div class="plan-item" data-feature="Survey">unlimited</div>
-          <div class="plan-item" data-feature="Question Library">X</div>
-          <div class="plan-item" data-feature="Basic analytics">X</div>
-          <div class="plan-item" data-feature="Real time results">X</div>
-          <div class="plan-item" data-feature="Print and customize reports">X</div>
-          <div class="plan-item" data-feature="Data exports">X</div>
-          <div class="plan-item" data-feature="Privacy settings">X</div>
-          <div class="plan-item" data-feature="Live chat support">X</div>
-          <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
-        </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-
-      <div class="pricing-plan is-success">
-        <div class="plan-header">Corp</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">$</span>299
-          </p>
-          <p class="plan-price-currency">one-time</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button third-button">Choose</button>
-        </div>
-        <div class="plan-items">
+  
+        <div class="pricing-plan is-success">
+          <div class="plan-header">Corp</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">$</span>299
+            </p>
+            <p class="plan-price-currency">one-time</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button third-button">Choose</button>
+          </div>
+          <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
             <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
@@ -284,137 +300,137 @@
             <div class="plan-item" data-feature="Privacy settings">X</div>
             <div class="plan-item" data-feature="Live chat support">X</div>
             <div class="plan-item" data-feature="Event participants">up to 5000 / event</div>
-        </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-    </div>
-</section>
-<!-- Annually -->
-<section data-module="section-pricetable" class="section toggle-plan-annually is-hidden">
-  <div class="container">
-    <div class="pricing-table is-comparative">
-      <!-- FEATURES -->
-      <div class="pricing-plan is-features">
-        <div class="plan-header">&nbsp;</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">&nbsp;</span>&nbsp;
-          </p>
-          <p class="plan-price-currency">&nbsp;</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button is-invisible"></button>
-        </div>
-        <div class="plan-items">
-          <div class="plan-item" data-feature="QnA">Q&amp;A</div>
-          <div class="plan-item" data-feature="Knowledge-source">Knowledge-source</div>
-          <div class="plan-item" data-feature="Poll">Poll</div>
-          <div class="plan-item" data-feature="Survey">Survey</div>
-          <div class="plan-item" data-feature="Question Library">Question library</div>
-          <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
-          <div class="plan-item" data-feature="Basic analAdvanced">X</div>
-          <div class="plan-item" data-feature="Real time results">Real time results</div>
-          <div class="plan-item" data-feature="Print and customize reports">Print and customize reports</div>
-          <div class="plan-item" data-feature="Data exports">Data exports</div>
-          <div class="plan-item" data-feature="Privacy settings">Privacy settings</div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">Enterprise Dashboard</div>
-          <div class="plan-item" data-feature="Administrative Controls">Administrative Controls</div>
-          <div class="plan-item" data-feature="Additional organizers">Additional organizers</div>
-          <div class="plan-item" data-feature="Single sign-on">Single sign-on</div>
-          <div class="plan-item" data-feature="Guided onboarding">Guided onboarding</div>
-          <div class="plan-item" data-feature="Customer success manager">Customer success manager</div>
-          <div class="plan-item" data-feature="Live chat support">Live chat support</div>
-          <div class="plan-item" data-feature="Event participants">Event participants</div>
-        </div>
-        <div class="plan-footer">
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
       </div>
-      <!-- FREE -->
-      <div class="pricing-plan is-mono-gray-3">
-        <div class="plan-header">Free</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">&nbsp;</span>Free
-          </p>
-          <p class="plan-price-currency">&nbsp;</p>
+  </section>
+  <!-- Annually -->
+  <section data-module="section-pricetable" class="section toggle-plan-annually is-hidden">
+    <div class="container">
+      <div class="pricing-table is-comparative">
+        <!-- FEATURES -->
+        <div class="pricing-plan is-features">
+          <div class="plan-header">&nbsp;</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">&nbsp;</span>&nbsp;
+            </p>
+            <p class="plan-price-currency">&nbsp;</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button is-invisible"></button>
+          </div>
+          <div class="plan-items">
+            <div class="plan-item" data-feature="QnA">Q&amp;A</div>
+            <div class="plan-item" data-feature="Knowledge-source">Knowledge-source</div>
+            <div class="plan-item" data-feature="Poll">Poll</div>
+            <div class="plan-item" data-feature="Survey">Survey</div>
+            <div class="plan-item" data-feature="Question Library">Question library</div>
+            <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
+            <div class="plan-item" data-feature="Basic analAdvanced">X</div>
+            <div class="plan-item" data-feature="Real time results">Real time results</div>
+            <div class="plan-item" data-feature="Print and customize reports">Print and customize reports</div>
+            <div class="plan-item" data-feature="Data exports">Data exports</div>
+            <div class="plan-item" data-feature="Privacy settings">Privacy settings</div>
+            <div class="plan-item" data-feature="Enterprise Dashboard">Enterprise Dashboard</div>
+            <div class="plan-item" data-feature="Administrative Controls">Administrative Controls</div>
+            <div class="plan-item" data-feature="Additional organizers">Additional organizers</div>
+            <div class="plan-item" data-feature="Single sign-on">Single sign-on</div>
+            <div class="plan-item" data-feature="Guided onboarding">Guided onboarding</div>
+            <div class="plan-item" data-feature="Customer success manager">Customer success manager</div>
+            <div class="plan-item" data-feature="Live chat support">Live chat support</div>
+            <div class="plan-item" data-feature="Event participants">Event participants</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-footer">
-          <button class="button first-button">Try Now</button>
+        <!-- FREE -->
+        <div class="pricing-plan is-mono-gray-3">
+          <div class="plan-header">&nbsp;<br>Free</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">&nbsp;</span>Free
+            </p>
+            <p class="plan-price-currency">&nbsp;</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button first-button">Try Now</button>
+          </div>
+          <div class="plan-items">
+            <div class="plan-item" data-feature="QnA">1 per event</div>
+            <div class="plan-item" data-feature="Knowledge-source">1 per event</div>
+            <div class="plan-item" data-feature="Poll">3 per event</div>
+            <div class="plan-item" data-feature="Survey">up to 5 questions</div>
+            <div class="plan-item" data-feature="Question Library">X</div>
+            <div class="plan-item" data-feature="Basic analytics">-</div>
+            <div class="plan-item" data-feature="Advanced analytics">-</div>
+            <div class="plan-item" data-feature="Real time results">-</div>
+            <div class="plan-item" data-feature="Print and customize reports">-</div>
+            <div class="plan-item" data-feature="Data exports">-</div>
+            <div class="plan-item" data-feature="Privacy settings">-</div>
+            <div class="plan-item" data-feature="Enterprise Dashboard">-</div>
+            <div class="plan-item" data-feature="Administrative Controls">-</div>
+            <div class="plan-item" data-feature="Additional organizers">-</div>
+            <div class="plan-item" data-feature="Single sign-on">-</div>
+            <div class="plan-item" data-feature="Guided onboarding">-</div>
+            <div class="plan-item" data-feature="Customer success manager">-</div>
+            <div class="plan-item" data-feature="Live chat support">X</div>
+            <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-items">
-          <div class="plan-item" data-feature="QnA">1 per event</div>
-          <div class="plan-item" data-feature="Knowledge-source">1 per event</div>
-          <div class="plan-item" data-feature="Poll">3 per event</div>
-          <div class="plan-item" data-feature="Survey">up to 5 questions</div>
-          <div class="plan-item" data-feature="Question Library">X</div>
-          <div class="plan-item" data-feature="Basic analytics">-</div>
-          <div class="plan-item" data-feature="Advanced analytics">-</div>
-          <div class="plan-item" data-feature="Real time results">-</div>
-          <div class="plan-item" data-feature="Print and customize reports">-</div>
-          <div class="plan-item" data-feature="Data exports">-</div>
-          <div class="plan-item" data-feature="Privacy settings">-</div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">-</div>
-          <div class="plan-item" data-feature="Administrative Controls">-</div>
-          <div class="plan-item" data-feature="Additional organizers">-</div>
-          <div class="plan-item" data-feature="Single sign-on">-</div>
-          <div class="plan-item" data-feature="Guided onboarding">-</div>
-          <div class="plan-item" data-feature="Customer success manager">-</div>
-          <div class="plan-item" data-feature="Live chat support">X</div>
-          <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
+        <!-- STARTER -->
+        <div class="pricing-plan is-popin-blue-af">
+          <div class="plan-header"><span style="font-weight:lighter">Signature</span><br>Starter</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">$</span>699
+            </p>
+            <p class="plan-price-currency">annually</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button second-button">Choose</button>
+          </div>
+          <div class="plan-items">
+            <div class="plan-item" data-feature="QnA">unlimited</div>
+            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
+            <div class="plan-item" data-feature="Poll">unlimited</div>
+            <div class="plan-item" data-feature="Survey">unlimited</div>
+            <div class="plan-item" data-feature="Question Library">X</div>
+            <div class="plan-item" data-feature="Basic analytics">X</div>
+            <div class="plan-item" data-feature="Advanced analytics">-</div>
+            <div class="plan-item" data-feature="Real time results">X</div>
+            <div class="plan-item" data-feature="Print and customize reports">-</div>
+            <div class="plan-item" data-feature="Data exports">-</div>
+            <div class="plan-item" data-feature="Privacy settings">X</div>
+            <div class="plan-item" data-feature="Enterprise Dashboard">-</div>
+            <div class="plan-item" data-feature="Administrative Controls">-</div>
+            <div class="plan-item" data-feature="Additional organizers">$299 / organizer</div>
+            <div class="plan-item" data-feature="Single sign-on">-</div>
+            <div class="plan-item" data-feature="Guided onboarding">-</div>
+            <div class="plan-item" data-feature="Customer success manager">-</div>
+            <div class="plan-item" data-feature="Live chat support">X</div>
+            <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-      <!-- STARTER -->
-      <div class="pricing-plan is-popin-blue-af is-active">
-        <div class="plan-header">Signature<br>Starter</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">$</span>699
-          </p>
-          <p class="plan-price-currency">annually</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button second-button">Choose</button>
-        </div>
-        <div class="plan-items">
-          <div class="plan-item" data-feature="QnA">unlimited</div>
-          <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
-          <div class="plan-item" data-feature="Poll">unlimited</div>
-          <div class="plan-item" data-feature="Survey">unlimited</div>
-          <div class="plan-item" data-feature="Question Library">X</div>
-          <div class="plan-item" data-feature="Basic analytics">X</div>
-          <div class="plan-item" data-feature="Advanced analytics">-</div>
-          <div class="plan-item" data-feature="Real time results">X</div>
-          <div class="plan-item" data-feature="Print and customize reports">-</div>
-          <div class="plan-item" data-feature="Data exports">-</div>
-          <div class="plan-item" data-feature="Privacy settings">X</div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">-</div>
-          <div class="plan-item" data-feature="Administrative Controls">-</div>
-          <div class="plan-item" data-feature="Additional organizers">$299 / organizer</div>
-          <div class="plan-item" data-feature="Single sign-on">-</div>
-          <div class="plan-item" data-feature="Guided onboarding">-</div>
-          <div class="plan-item" data-feature="Customer success manager">-</div>
-          <div class="plan-item" data-feature="Live chat support">X</div>
-          <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
-        </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-
-      <div class="pricing-plan is-success">
-        <div class="plan-header">Premium<br>Professional</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">$</span>1,999
-          </p>
-          <p class="plan-price-currency">annually</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button third-button">Choose</button>
-        </div>
-        <div class="plan-items">
+  
+        <div class="pricing-plan is-success">
+          <div class="plan-header"><span style="font-weight:lighter">Premium</span><br>Professional</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">$</span>1,999
+            </p>
+            <p class="plan-price-currency">annually</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button third-button">Choose</button>
+          </div>
+          <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
             <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
@@ -434,23 +450,23 @@
             <div class="plan-item" data-feature="Customer success manager">-</div>
             <div class="plan-item" data-feature="Live chat support">X</div>
             <div class="plan-item" data-feature="Event participants">up to 1000 / event</div>
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
-        <div class="plan-footer">
-        </div>
-      </div>
-
-      <div class="pricing-plan is-success">
-        <div class="plan-header">&nbsp;<br>Enterprise</div>
-        <div class="plan-price">
-          <p class="plan-price-amount">
-            <span class="plan-price-currency">&nbsp;</span>Call Us
-          </p>
-          <p class="plan-price-currency">annually</p>
-        </div>
-        <div class="plan-footer">
-          <button class="button fourth-button">Choose</button>
-        </div>
-        <div class="plan-items">
+  
+        <div class="pricing-plan is-success">
+          <div class="plan-header">&nbsp;<br>Enterprise</div>
+          <div class="plan-price">
+            <p class="plan-price-amount">
+              <span class="plan-price-currency">&nbsp;</span>Call Us
+            </p>
+            <p class="plan-price-currency">annually</p>
+          </div>
+          <div class="plan-footer">
+            <button class="button fourth-button">Choose</button>
+          </div>
+          <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
             <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
@@ -470,9 +486,10 @@
             <div class="plan-item" data-feature="Customer success manager">X</div>
             <div class="plan-item" data-feature="Live chat support">X</div>
             <div class="plan-item" data-feature="Event participants">up to 5000 / event</div>
-        </div>
-        <div class="plan-footer">
+          </div>
+          <div class="plan-footer">
+          </div>
         </div>
       </div>
-    </div>
-</section>
+  </section>
+</div>
