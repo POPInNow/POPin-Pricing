@@ -1,18 +1,22 @@
 const path = require('path');
+const glob = require('glob-all');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const PurifyCSSPlugin = require('purifycss-webpack');
 
 module.exports = {
 	entry: {
-    popin_bundle: ['./assets/js/bundle.js', './assets/sass/styles.scss' ]
+    popin_bundle: ['./assets/js/bundle.js'],
+    popin_styles: ['./assets/sass/styles.scss' ]
 	},
 	output: {
 		filename: './dist/[name].js',
-		sourceMapFilename: './assets/[name].map',
-	},
+    sourceMapFilename: './assets/[name].map',
+    library: 'popPricingLibrary'
+  },
   module: {
     rules: [
       {
@@ -34,15 +38,13 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 minimize: true,
-                sourceMap: true,
-                sourceMapFilename: 'style.css.map'
+                sourceMap: true
               }
             },
             {
               loader: 'postcss-loader',
               options: {
                 sourceMap: true,
-                sourceMapFilename: 'style.css.map',
                 plugins: () => [autoprefixer]
               }
             },
@@ -50,23 +52,21 @@ module.exports = {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-
               }
             },
           ],
           fallback: 'style-loader',
-          publicPath: '/assets'
+          publicPath: '/assets/'
         })
       },
     ]
   },
-  devtool: 'source-map',
   plugins: [
     // Destroy/Cleans ./dist folder
     new CleanWebpackPlugin('./dist/'),
     // Create/Compiles CSS file
     new ExtractTextPlugin({
-      filename: './dist/popin_styles.css',
+      filename: './dist/[name].css',
       allChunks: true
     }),
     // Uglify
@@ -77,6 +77,17 @@ module.exports = {
           drop_console: true
         }
       }
+    }),
+    // Purify My Body Please
+    new PurifyCSSPlugin({
+      paths: glob.sync([
+        path.join(__dirname, '*.htm')
+      ]),
+      minimize: true,
+      purifyOptions: {
+          whitelist: []
+      }
     })
-  ]
+  ],
+  devtool: 'source-map'
 }
