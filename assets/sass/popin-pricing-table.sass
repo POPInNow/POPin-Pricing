@@ -45,15 +45,18 @@ $pricing-item-border: 2px solid $mono-gray-3
           transition: transform .5s ease-in
       &.is-features
         border: 2px solid transparent
+        width: min-content
         &:hover
           transform: none
           border-color: transparent
+        .plan-item
+          text-align: left !important
       &.is-active
         transform: $pricing-plan-active-transform
         z-index: 1
       &.is-active,
       &:hover
-        cursor: pointer
+        // cursor: pointer
         // &.is-success
         //   border-color: $success
         // &.is-popin-blue-af

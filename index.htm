@@ -3,6 +3,8 @@
   Instapage/Hubspot/Wordpress/Standalone
   You'll need to copy and paste your own custom snippets
 -->
+<!-- <script src="./dist/popin_bundle.js"></script> -->
+
 
 <!-- Global -->
 <script>
@@ -25,6 +27,7 @@
    *
    * }
    */
+
 
   var onPlanToggleButtonClicked = function onPlanToggleButtonClicked (event) {
     var ToggleBtn = event.target.getAttribute('data-toggle');
@@ -174,6 +177,8 @@
     console.log(event.target);
   }, false);
 </script>
+
+<!-- Copy and Paste the contents of the file into instapage and comment out-->
 <link rel="stylesheet" id="style-css" href="./dist/popin_styles.css" type="text/css" media="all">
 
 <!-- Toggle -->
@@ -202,9 +207,7 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">Q&amp;A</div>
-            <div class="plan-item" data-feature="Knowledge-source">Knowledge-source</div>
             <div class="plan-item" data-feature="Poll">Poll</div>
-            <div class="plan-item" data-feature="Survey">Survey</div>
             <div class="plan-item" data-feature="Question Library">Question library</div>
             <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
             <div class="plan-item" data-feature="Real time results">Real time results</div>
@@ -218,7 +221,7 @@
           </div>
         </div>
   
-        <div class="pricing-plan is-mono-gray-3">
+        <div class="pricing-plan pricing-plan-free is-mono-gray-3">
           <div class="plan-header">Free</div>
           <div class="plan-price">
             <p class="plan-price-amount">
@@ -230,10 +233,8 @@
             <button class="button first-button">Try Now</button>
           </div>
           <div class="plan-items">
-            <div class="plan-item" data-feature="QnA">1 per event</div>
-            <div class="plan-item" data-feature="Knowledge-source">1 per event</div>
-            <div class="plan-item" data-feature="Poll">3 per event</div>
-            <div class="plan-item" data-feature="Survey">up to 5 questions</div>
+            <div class="plan-item" data-feature="QnA">5 per event</div>
+            <div class="plan-item" data-feature="Poll">5 per event</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">-</div>
             <div class="plan-item" data-feature="Real time results">X</div>
@@ -248,7 +249,7 @@
         </div>
   
         <div class="pricing-plan is-popin-blue-af">
-          <div class="plan-header">Department</div>
+          <div class="plan-header">Signature</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>149
@@ -260,9 +261,7 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
-            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
-            <div class="plan-item" data-feature="Survey">unlimited</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">X</div>
             <div class="plan-item" data-feature="Real time results">X</div>
@@ -277,7 +276,7 @@
         </div>
   
         <div class="pricing-plan is-success">
-          <div class="plan-header">Corp</div>
+          <div class="plan-header">Premium</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>299
@@ -289,9 +288,7 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
-            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
-            <div class="plan-item" data-feature="Survey">unlimited</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">X</div>
             <div class="plan-item" data-feature="Real time results">X</div>
@@ -324,12 +321,10 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">Q&amp;A</div>
-            <div class="plan-item" data-feature="Knowledge-source">Knowledge-source</div>
             <div class="plan-item" data-feature="Poll">Poll</div>
-            <div class="plan-item" data-feature="Survey">Survey</div>
             <div class="plan-item" data-feature="Question Library">Question library</div>
             <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
-            <div class="plan-item" data-feature="Basic analAdvanced">X</div>
+            <div class="plan-item" data-feature="Advanced analytics">Advanced analytics</div>
             <div class="plan-item" data-feature="Real time results">Real time results</div>
             <div class="plan-item" data-feature="Print and customize reports">Print and customize reports</div>
             <div class="plan-item" data-feature="Data exports">Data exports</div>
@@ -347,8 +342,8 @@
           </div>
         </div>
         <!-- FREE -->
-        <div class="pricing-plan is-mono-gray-3">
-          <div class="plan-header">&nbsp;<br>Free</div>
+        <div class="pricing-plan pricing-plan-free is-mono-gray-3">
+          <div class="plan-header">Free</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">&nbsp;</span>Free
@@ -359,14 +354,12 @@
             <button class="button first-button">Try Now</button>
           </div>
           <div class="plan-items">
-            <div class="plan-item" data-feature="QnA">1 per event</div>
-            <div class="plan-item" data-feature="Knowledge-source">1 per event</div>
-            <div class="plan-item" data-feature="Poll">3 per event</div>
-            <div class="plan-item" data-feature="Survey">up to 5 questions</div>
+            <div class="plan-item" data-feature="QnA">5 per event</div>
+            <div class="plan-item" data-feature="Poll">5 per event</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">-</div>
             <div class="plan-item" data-feature="Advanced analytics">-</div>
-            <div class="plan-item" data-feature="Real time results">-</div>
+            <div class="plan-item" data-feature="Real time results">X</div>
             <div class="plan-item" data-feature="Print and customize reports">-</div>
             <div class="plan-item" data-feature="Data exports">-</div>
             <div class="plan-item" data-feature="Privacy settings">-</div>
@@ -384,7 +377,7 @@
         </div>
         <!-- STARTER -->
         <div class="pricing-plan is-popin-blue-af">
-          <div class="plan-header"><span style="font-weight:lighter">Signature</span><br>Starter</div>
+          <div class="plan-header">Department</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>699
@@ -396,9 +389,7 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
-            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
-            <div class="plan-item" data-feature="Survey">unlimited</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">X</div>
             <div class="plan-item" data-feature="Advanced analytics">-</div>
@@ -420,7 +411,7 @@
         </div>
   
         <div class="pricing-plan is-success">
-          <div class="plan-header"><span style="font-weight:lighter">Premium</span><br>Professional</div>
+          <div class="plan-header">Corp</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>1,999
@@ -432,9 +423,7 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
-            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
-            <div class="plan-item" data-feature="Survey">unlimited</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">X</div>
             <div class="plan-item" data-feature="Advanced analytics">-</div>
@@ -468,9 +457,7 @@
           </div>
           <div class="plan-items">
             <div class="plan-item" data-feature="QnA">unlimited</div>
-            <div class="plan-item" data-feature="Knowledge-source">unlimited</div>
             <div class="plan-item" data-feature="Poll">unlimited</div>
-            <div class="plan-item" data-feature="Survey">unlimited</div>
             <div class="plan-item" data-feature="Question Library">X</div>
             <div class="plan-item" data-feature="Basic analytics">X</div>
             <div class="plan-item" data-feature="Advanced analytics">X</div>
@@ -479,7 +466,7 @@
             <div class="plan-item" data-feature="Data exports">X</div>
             <div class="plan-item" data-feature="Privacy settings">X</div>
             <div class="plan-item" data-feature="Enterprise Dashboard">X</div>
-            <div class="plan-item" data-feature="Administrative Controls">X</div>
+            <div class="plan-item" data-feature="Administrative Controls">-</div>
             <div class="plan-item" data-feature="Additional organizers">unlimited</div>
             <div class="plan-item" data-feature="Single sign-on">X</div>
             <div class="plan-item" data-feature="Guided onboarding">X</div>
