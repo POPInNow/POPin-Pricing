@@ -3,7 +3,7 @@
   Instapage/Hubspot/Wordpress/Standalone
   You'll need to copy and paste your own custom snippets
 -->
-<!-- <script src="./dist/popin_bundle.js"></script> -->
+<script src="./dist/popin_bundle.js"></script>
 
 
 <!-- Global -->
@@ -163,18 +163,12 @@
     onSecondButtonClicked(event);
     onThirdButtonClicked(event);
     onFourthButtonClicked(event);
-
-    // Log the clicked element in the console
-    console.log(event.target);
   }, false);
 
   document.addEventListener('mouseover', function (event) {
     
     // If the clicked element doesn't have the right selector, bail
     // if (!event.target.matches('.pricing-plan')) return;
-
-    // Log the clicked element in the console
-    console.log(event.target);
   }, false);
 </script>
 
@@ -192,7 +186,7 @@
 <div class="container-pricetable">
   <!-- One Time -->
 <section data-module="section-pricetable" class="section toggle-plan-onetime">
-    <div class="container">
+    <div class="container-pricetable">
       <div class="pricing-table is-comparative">
         <div class="pricing-plan is-features">
           <div class="plan-header">&nbsp;</div>
@@ -248,13 +242,13 @@
           </div>
         </div>
   
-        <div class="pricing-plan is-popin-blue-md">
+        <div class="pricing-plan is-success is-active">
           <div class="plan-header">Signature</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>149
             </p>
-            <p class="plan-price-currency">one-time</p>
+            <p class="plan-price-currency">per event</p>
           </div>
           <div class="plan-footer">
             <button class="button second-button">Choose</button>
@@ -281,7 +275,7 @@
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>299
             </p>
-            <p class="plan-price-currency">one-time</p>
+            <p class="plan-price-currency">per event</p>
           </div>
           <div class="plan-footer">
             <button class="button third-button">Choose</button>
@@ -305,7 +299,7 @@
   </section>
   <!-- Annually -->
   <section data-module="section-pricetable" class="section toggle-plan-annually is-hidden">
-    <div class="container">
+    <div class="container-pricetable">
       <div class="pricing-table is-comparative">
         <!-- FEATURES -->
         <div class="pricing-plan is-features">
@@ -382,7 +376,7 @@
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>699
             </p>
-            <p class="plan-price-currency">annually</p>
+            <p class="plan-price-currency">per year</p>
           </div>
           <div class="plan-footer">
             <button class="button second-button">Choose</button>
@@ -410,13 +404,13 @@
           </div>
         </div>
   
-        <div class="pricing-plan is-popin-blue-af">
+        <div class="pricing-plan is-success is-active">
           <div class="plan-header">Corp</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>1,999
             </p>
-            <p class="plan-price-currency">annually</p>
+            <p class="plan-price-currency">per year</p>
           </div>
           <div class="plan-footer">
             <button class="button third-button">Choose</button>
@@ -450,7 +444,7 @@
             <p class="plan-price-amount">
               <span class="plan-price-currency">&nbsp;</span>Call Us
             </p>
-            <p class="plan-price-currency">annually</p>
+            <p class="plan-price-currency">per year</p>
           </div>
           <div class="plan-footer">
             <button class="button fourth-button">Choose</button>

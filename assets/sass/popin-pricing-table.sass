@@ -1,12 +1,16 @@
 // $pricing-plan-border: 1px solid $white-ter !default
 // $pricing-plan-border-radius: $radius !default
 // $pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
-$pricing-plan-active-transform: scale(1.05)
+$pricing-plan-active-transform: scale(1.02)
 // $pricing-header-background: $white !default
 // $pricing-item-background: $white-ter !default
 $pricing-item-border: 2px solid $mono-gray-3
 // $pricing-item-color: $grey !default
 // $pricing-price-background: white !default
+
+.container-pricetable
+  .section
+    padding: 2rem 1.5rem !important
 
 .plan-toggle-container
   display: inline-block
@@ -35,20 +39,20 @@ $pricing-item-border: 2px solid $mono-gray-3
       border-bottom-right-radius: 10px
 
 .container-pricetable
-  display: flex
+  // display: flex
   flex-direction: column
   .toggle-plan-onetime,
   .toggle-plan-annually
-    visibility: visible
-    opacity: 1
-    order: 1
-    transition: all .5s ease-in-out
+    // visibility: visible
+    // opacity: 1
+    // order: 1
+    // transition: all .5s ease-in-out
     &.is-hidden
-      display: block !important
-      visibility: hidden
-      opacity: 0
-      order: 2
-      transition: all .5s ease-in-out  
+      display: none !important
+      // visibility: hidden
+      // opacity: 0
+      // order: 2
+      // transition: all .5s ease-in-out  
 
 .pricing-table
   background: #ffffff
@@ -66,9 +70,17 @@ $pricing-item-border: 2px solid $mono-gray-3
           transform: $pricing-plan-active-transform
           z-index: 2
           transition: transform .5s ease-in
+          &.is-mono-gray-3
+            border-color: $mono-gray-3
+          &.is-popin-blue-af
+            border-color: $popin-blue-af         
+          &.is-popin-blue-md
+            border-color: $popin-blue-md
+          &.is-popin-med-af
+            border-color: $popin-med-af
       &.is-features
         border: 2px solid transparent
-        width: min-content
+        width: max-content
         &:hover
           transform: none
           border-color: transparent
@@ -77,6 +89,8 @@ $pricing-item-border: 2px solid $mono-gray-3
       &.is-active
         transform: $pricing-plan-active-transform
         z-index: 1
+        &.is-success
+          border-color: $success
         
 
   .pricing-plan
@@ -84,8 +98,13 @@ $pricing-item-border: 2px solid $mono-gray-3
     &.is-features
       border: transparent
 
+    .plan-item
+      padding-top: .25em
+      padding-bottom: .25em
+
     .plan-price
       .plan-price-amount
+        font-size: 2rem
         .plan-price-currency
           margin-left: -1em
 
