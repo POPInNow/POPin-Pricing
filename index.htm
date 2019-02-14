@@ -59,8 +59,6 @@
       btnAnnually.classList.add('is-active');
       priceplanAnnually.classList.remove('is-hidden');
     }
-
-    console.log('ToggleBtn', ToggleBtn);
   };
 
   var isPricePlanOneTime = function isPricePlanOneTime () {
@@ -79,18 +77,14 @@
         }
       }
     }
-
-    console.log('isOneTime', isOneTime);
     return isOneTime;
   };
 
   var onFirstButtonClicked = function onFirstButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.first-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -99,17 +93,13 @@
         }
       }
     }
-
-    console.log('FirstBtn', event.target);
   };
 
   var onSecondButtonClicked = function onSecondButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.second-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -118,16 +108,13 @@
         }
       }
     }
-    console.log('SecondBtn', event.target);
   };
 
   var onThirdButtonClicked = function onThirdButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.third-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -142,10 +129,8 @@
   var onFourthButtonClicked = function onFourthButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.fourth-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -165,11 +150,6 @@
     onFourthButtonClicked(event);
   }, false);
 
-  document.addEventListener('mouseover', function (event) {
-    
-    // If the clicked element doesn't have the right selector, bail
-    // if (!event.target.matches('.pricing-plan')) return;
-  }, false);
 </script>
 
 <!-- Copy and Paste the contents of the file into instapage and comment out-->
