@@ -3,7 +3,7 @@
   Instapage/Hubspot/Wordpress/Standalone
   You'll need to copy and paste your own custom snippets
 -->
-<!-- <script src="./dist/popin_bundle.js"></script> -->
+<script src="./dist/popin_bundle.js"></script>
 
 
 <!-- Global -->
@@ -59,8 +59,6 @@
       btnAnnually.classList.add('is-active');
       priceplanAnnually.classList.remove('is-hidden');
     }
-
-    console.log('ToggleBtn', ToggleBtn);
   };
 
   var isPricePlanOneTime = function isPricePlanOneTime () {
@@ -79,18 +77,14 @@
         }
       }
     }
-
-    console.log('isOneTime', isOneTime);
     return isOneTime;
   };
 
   var onFirstButtonClicked = function onFirstButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.first-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -99,17 +93,13 @@
         }
       }
     }
-
-    console.log('FirstBtn', event.target);
   };
 
   var onSecondButtonClicked = function onSecondButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.second-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -118,16 +108,13 @@
         }
       }
     }
-    console.log('SecondBtn', event.target);
   };
 
   var onThirdButtonClicked = function onThirdButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.third-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -142,10 +129,8 @@
   var onFourthButtonClicked = function onFourthButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!event.target.matches('.fourth-button')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // Super safe callback checking
     if (!!window) {
       if (!!window.popinPricing) {
@@ -163,19 +148,8 @@
     onSecondButtonClicked(event);
     onThirdButtonClicked(event);
     onFourthButtonClicked(event);
-
-    // Log the clicked element in the console
-    console.log(event.target);
   }, false);
 
-  document.addEventListener('mouseover', function (event) {
-    
-    // If the clicked element doesn't have the right selector, bail
-    // if (!event.target.matches('.pricing-plan')) return;
-
-    // Log the clicked element in the console
-    console.log(event.target);
-  }, false);
 </script>
 
 <!-- Copy and Paste the contents of the file into instapage and comment out-->
@@ -192,7 +166,7 @@
 <div class="container-pricetable">
   <!-- One Time -->
 <section data-module="section-pricetable" class="section toggle-plan-onetime">
-    <div class="container">
+    <div class="container-pricetable">
       <div class="pricing-table is-comparative">
         <div class="pricing-plan is-features">
           <div class="plan-header">&nbsp;</div>
@@ -206,7 +180,9 @@
             <button class="button is-invisible"></button>
           </div>
           <div class="plan-items">
-            <div class="plan-item" data-feature="QnA">Q&amp;A</div>
+            <div class="plan-item" data-feature="QnA">
+              Q&amp;A
+            </div>
             <div class="plan-item" data-feature="Poll">Poll</div>
             <div class="plan-item" data-feature="Question Library">Question library</div>
             <div class="plan-item" data-feature="Basic analytics">Basic analytics</div>
@@ -248,13 +224,13 @@
           </div>
         </div>
   
-        <div class="pricing-plan is-popin-blue-md">
+        <div class="pricing-plan is-success is-active">
           <div class="plan-header">Signature</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>149
             </p>
-            <p class="plan-price-currency">one-time</p>
+            <p class="plan-price-currency">per event</p>
           </div>
           <div class="plan-footer">
             <button class="button second-button">Choose</button>
@@ -281,7 +257,7 @@
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>299
             </p>
-            <p class="plan-price-currency">one-time</p>
+            <p class="plan-price-currency">per event</p>
           </div>
           <div class="plan-footer">
             <button class="button third-button">Choose</button>
@@ -305,7 +281,7 @@
   </section>
   <!-- Annually -->
   <section data-module="section-pricetable" class="section toggle-plan-annually is-hidden">
-    <div class="container">
+    <div class="container-pricetable">
       <div class="pricing-table is-comparative">
         <!-- FEATURES -->
         <div class="pricing-plan is-features">
@@ -382,7 +358,7 @@
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>699
             </p>
-            <p class="plan-price-currency">annually</p>
+            <p class="plan-price-currency">per year</p>
           </div>
           <div class="plan-footer">
             <button class="button second-button">Choose</button>
@@ -410,13 +386,13 @@
           </div>
         </div>
   
-        <div class="pricing-plan is-popin-blue-af">
+        <div class="pricing-plan is-success is-active">
           <div class="plan-header">Corp</div>
           <div class="plan-price">
             <p class="plan-price-amount">
               <span class="plan-price-currency">$</span>1,999
             </p>
-            <p class="plan-price-currency">annually</p>
+            <p class="plan-price-currency">per year</p>
           </div>
           <div class="plan-footer">
             <button class="button third-button">Choose</button>
@@ -450,7 +426,7 @@
             <p class="plan-price-amount">
               <span class="plan-price-currency">&nbsp;</span>Call Us
             </p>
-            <p class="plan-price-currency">annually</p>
+            <p class="plan-price-currency">per year</p>
           </div>
           <div class="plan-footer">
             <button class="button fourth-button">Choose</button>
