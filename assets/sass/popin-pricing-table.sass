@@ -96,12 +96,19 @@ $pricing-item-border: 1px solid $mono-gray-3
           border-top: 1px solid #ffffff
           border-bottom: 1px solid #ffffff
           // border-color: transparent
-        .plan-item
-          text-align: left !important
-          background-color: $mono-gray-2
-          color: $mono-gray-5
-          &:last-of-type
-            border: none
+        .plan-items
+          .plan-item
+            text-align: left !important
+            background-color: $mono-gray-2
+            color: $mono-gray-5
+            &.last-item,
+            &:last-of-type
+              border-bottom-color: transparent !important
+        .plan-footer
+          &:last-child
+            background-color: $mono-gray-2
+            border-bottom: 1px solid $mono-gray-3
+            border-radius: 0 !important
       &.is-active
         transform: none !important // $pricing-plan-active-transform
         box-shadow: none !important
@@ -140,20 +147,23 @@ $pricing-item-border: 1px solid $mono-gray-3
       .first-button
         background: transparent !important
         color: $mono-gray-5 !important
-    &:not(.is-features)
-      .plan-items
-        border-top: 1px solid $mono-gray-4
+    .plan-items
+      border-top: 1px solid $mono-gray-4
+      &.is-features
+        border-color: transparent
     .plan-item
       padding-top: .25em
       padding-bottom: .25em
+      height: 30px
       background: #ffffff
       border-bottom: 1px solid $mono-gray-3
       &:last-of-type
-        border-bottom: none
+        border-bottom: 0 !important
       .material-icons
         &.checked
           font-size: 20px !important
           color: $accent-teal-af
+          display: inherit
       .plan-title-info
         display:inline
         position:relative
