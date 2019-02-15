@@ -86,7 +86,7 @@ window.popinPricing = {
     if (isOneTime) {
       console.log('N/A');
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popin.live/contact/?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
