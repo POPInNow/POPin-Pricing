@@ -1,36 +1,84 @@
+wp_env = null;
+is_page = null;
 var domainEnv = 'dev';
 var paramAdSource = getUrlParameter('utm_source');
 var paramAdMedium = getUrlParameter('utm_medium');
 var paramAdGclid = getUrlParameter('gclid');
+var pricePlanLabel = '';
+var pricePlanHref = '';
 
 window.popinPricing = {
   onFirstButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      // href
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'free',
+        'pricePlanHref': pricePlanHref
+      });
     } else {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      // href
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'free',
+        'pricePlanHref': pricePlanHref
+      });
     }
   },
 
   onSecondButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'one_time_signature',
+        'pricePlanHref': pricePlanHref
+      });
     } else {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'annual_dept',
+        'pricePlanHref': pricePlanHref
+      });
     }
   },
 
   onThirdButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'one_time_premium',
+        'pricePlanHref': pricePlanHref
+      });
     } else {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'annual_corp',
+        'pricePlanHref': pricePlanHref
+      });
     }
   },
 
@@ -38,8 +86,15 @@ window.popinPricing = {
     if (isOneTime) {
       console.log('N/A');
     } else {
-      console.log('https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_ela&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
-      window.location.replace('https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_ela&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid);
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_ela&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      // change window location
+      window.location.replace(pricePlanHref);
+      // push href to gtm
+      dataLayer.push({
+        'event': 'pricePlanClicked',
+        'pricePlanLabel': 'annual_ela',
+        'pricePlanHref': pricePlanHref
+      });
     }
   }
 
