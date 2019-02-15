@@ -1,10 +1,10 @@
 // $pricing-plan-border: 1px solid $white-ter !default
 // $pricing-plan-border-radius: $radius !default
 // $pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
-$pricing-plan-active-transform: scale(1.05)
+$pricing-plan-active-transform: scale(1)
 // $pricing-header-background: $white !default
 // $pricing-item-background: $white-ter !default
-$pricing-item-border: 1px solid $mono-gray-3
+$pricing-item-border: 2px solid $mono-gray-2
 // $pricing-item-color: $grey !default
 // $pricing-price-background: white !default
 
@@ -70,21 +70,21 @@ $pricing-item-border: 1px solid $mono-gray-3
       &:not(.is-features)
         z-index: 0
         &:hover
-          border: 2px solid $success
-          transform: $pricing-plan-active-transform
-          z-index: 4
-          transition: transform .5s ease-in
-          &.is-mono-gray-3
-            border-color: $mono-gray-3
-          &.is-popin-blue-af
-            border-color: $popin-blue-af         
-          &.is-popin-blue-md
-            border-color: $popin-blue-md
-          &.is-popin-med-af
-            border-color: $popin-med-af
+          // border: 2px solid $success
+          // transform: $pricing-plan-active-transform
+          // z-index: 4
+          // transition: transform .5s ease-in
+          // &.is-mono-gray-3
+          //   border-color: $mono-gray-3
+          // &.is-popin-blue-af
+          //   border-color: $popin-blue-af         
+          // &.is-popin-blue-md
+          //   border-color: $popin-blue-md
+          // &.is-popin-med-af
+          //   border-color: $popin-med-af
       &.is-features
-        border-top: 1px solid #fff
-        border-bottom: 1px solid #fff
+        border-top: 2px solid #fff
+        border-bottom: 2px solid #fff
         width: auto
         min-width: min-content
         max-width: max-content
@@ -116,7 +116,7 @@ $pricing-item-border: 1px solid $mono-gray-3
         border-right-width: 2px !important
         &:hover
           transform: $pricing-plan-active-transform !important
-        border-width: 1px
+        border-width: 2px
         z-index: 1
         &.is-accent-teal-af
           border-radius: 0
