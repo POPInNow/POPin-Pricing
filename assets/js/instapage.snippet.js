@@ -13,7 +13,7 @@ window.popinPricing = {
       // href
       pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
@@ -24,7 +24,7 @@ window.popinPricing = {
       // href
       pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
@@ -38,7 +38,7 @@ window.popinPricing = {
     if (isOneTime) {
       pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&sadsurce='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
@@ -48,7 +48,7 @@ window.popinPricing = {
     } else {
       pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
@@ -60,9 +60,9 @@ window.popinPricing = {
 
   onThirdButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&sadsurce='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
@@ -72,7 +72,7 @@ window.popinPricing = {
     } else {
       pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
@@ -88,7 +88,7 @@ window.popinPricing = {
     } else {
       pricePlanHref = 'https://'+domainEnv+'.popin.live/contact/?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
-      window.location.replace(pricePlanHref);
+      window.open(pricePlanHref, '_self');
       // push href to gtm
       dataLayer.push({
         'event': 'pricePlanClicked',
