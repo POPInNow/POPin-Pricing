@@ -1,9 +1,9 @@
 wp_env = null;
 is_page = null;
 var domainEnv = 'dev';
-var paramAdSource = getUrlParameter('utm_source');
-var paramAdMedium = getUrlParameter('utm_medium');
-var paramAdGclid = getUrlParameter('gclid');
+var paramAdSource = getUrlParameter('utm_source') || undefined;
+var paramAdMedium = getUrlParameter('utm_medium') || undefined;
+var paramAdGclid = getUrlParameter('gclid') || undefined;
 var pricePlanLabel = '';
 var pricePlanHref = '';
 
@@ -11,7 +11,7 @@ window.popinPricing = {
   onFirstButtonClicked: function (isOneTime) {
     if (isOneTime) {
       // href
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
@@ -22,7 +22,7 @@ window.popinPricing = {
       });
     } else {
       // href
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
@@ -36,7 +36,7 @@ window.popinPricing = {
 
   onSecondButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&sadsurce='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
@@ -46,7 +46,7 @@ window.popinPricing = {
         'pricePlanHref': pricePlanHref
       });
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
@@ -60,7 +60,7 @@ window.popinPricing = {
 
   onThirdButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&sadsurce='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
@@ -70,7 +70,7 @@ window.popinPricing = {
         'pricePlanHref': pricePlanHref
       });
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
@@ -86,7 +86,7 @@ window.popinPricing = {
     if (isOneTime) {
       console.log('N/A');
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_ela&c=live&t=dashboard&source='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.location.replace(pricePlanHref);
       // push href to gtm
