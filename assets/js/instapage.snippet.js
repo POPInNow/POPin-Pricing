@@ -1,5 +1,5 @@
-wp_env = null;
-is_page = null;
+var wp_env = null;
+var is_page = null;
 var domainEnv = 'dev';
 var paramAdSource = getUrlParameter('utm_source') || undefined;
 var paramAdMedium = getUrlParameter('utm_medium') || undefined;
@@ -86,7 +86,7 @@ window.popinPricing = {
     if (isOneTime) {
       console.log('N/A');
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popin.live/contact/?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
+      pricePlanHref = 'https://www.popin.live/contact?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
       // change window location
       window.open(pricePlanHref, '_self');
       // push href to gtm
