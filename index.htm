@@ -34,12 +34,34 @@
    * }
    */
 
+// Handling Element Matches
+if (!Element.prototype.matches) {
+  let ep = Element.prototype;
+  let matches = ep.matchesSelector ||
+    ep.mozMatchesSelector ||
+    ep.msMatchesSelector ||
+    ep.oMatchesSelector ||
+    ep.webkitMatchesSelector ||
+    function(s) {
+      var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+      i = matches.length;
+      while (--i >= 0 && matches.item(i) !== this) {}
+      return i > -1;
+    };
+}
+
+// Match Handler
+function MatchHandler(el, selector) {
+  console.log('MatchHandler()', el.matches(selector));
+	return el.matches(selector);
+}
+
 
   var onPlanToggleButtonClicked = function onPlanToggleButtonClicked (event) {
     var ToggleBtn = event.target.getAttribute('data-toggle');
 
     // If the clicked element doesn't have the right selector, bail
-    if (!event.target.matches('.plan-toggle')) return;
+    if (!MatchHandler(event.target,'.plan-toggle')) return;
 
     // Don't follow the link if it has one
     event.preventDefault();
@@ -88,7 +110,7 @@
 
   var onFirstButtonClicked = function onFirstButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
-    if (!event.target.matches('.first-button')) return;
+    if (!MatchHandler(event.target,'.first-button')) return;
     // Don't follow the link if it has one
     event.preventDefault();
     // Super safe callback checking
@@ -103,7 +125,7 @@
 
   var onSecondButtonClicked = function onSecondButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
-    if (!event.target.matches('.second-button')) return;
+    if (!MatchHandler(event.target,'.second-button')) return;
     // Don't follow the link if it has one
     event.preventDefault();
     // Super safe callback checking
@@ -118,7 +140,7 @@
 
   var onThirdButtonClicked = function onThirdButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
-    if (!event.target.matches('.third-button')) return;
+    if (!MatchHandler(event.target,'.third-button')) return;
     // Don't follow the link if it has one
     event.preventDefault();
     // Super safe callback checking
@@ -133,7 +155,7 @@
 
   var onFourthButtonClicked = function onFourthButtonClicked (event) {
     // If the clicked element doesn't have the right selector, bail
-    if (!event.target.matches('.fourth-button')) return;
+    if (!MatchHandler(event.target,'.fourth-button')) return;
     // Don't follow the link if it has one
     event.preventDefault();
     // Super safe callback checking
@@ -579,7 +601,7 @@
           <div class="plan-header">Corp</div>
           <div class="plan-price">
             <p class="plan-price-amount">
-              <span class="plan-price-currency">$</span>1,999
+              <span class="plan-price-currency">$</span>999
             </p>
           </div>
           <div class="plan-footer">
