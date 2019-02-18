@@ -10,7 +10,7 @@ var paramAdMedium = getUrlParameter('utm_medium') || 'none';
 var paramAdGclid = getUrlParameter('gclid') || 'none';
 var pricePlanLabel = '';
 
-let pp = {
+var pp = {
   env: 'dev',
   payment: {
     oneTime: ['free', 'one_time_signature', 'one_time_premium'],
