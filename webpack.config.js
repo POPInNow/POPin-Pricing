@@ -79,15 +79,15 @@ module.exports = {
       }
     }),
     // Purify My Body Please
-    new PurifyCSSPlugin({
-      paths: glob.sync([
-        path.join(__dirname, '*.htm')
-      ]),
-      minimize: true,
-      purifyOptions: {
-          whitelist: []
-      }
-    })
+    // new PurifyCSSPlugin({
+    //   paths: glob.sync([
+    //     path.join(__dirname, '*.htm')
+    //   ]),
+    //   minimize: true,
+    //   purifyOptions: {
+    //       whitelist: []
+    //   }
+    // })
   ],
   devtool: 'source-map'
 }
