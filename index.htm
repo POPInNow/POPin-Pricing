@@ -63,12 +63,9 @@
   
   var onPlanToggleButtonClicked = function onPlanToggleButtonClicked (event) {
     var ToggleBtn = event.target.getAttribute('data-toggle');
-
     if (!MatchHandler(event.target,'.plan-toggle')) return;
-
     // Don't follow the link if it has one
     event.preventDefault();
-
     // I'll clean this long-hand mess up later
     var el = document.getElementsByClassName('plan-toggle');
     var btnOnetime = el[0];
@@ -92,8 +89,6 @@
         removeClass(priceplanAnnually[i],'is-hidden');
       }
     }
-    
-    
   };
 
   var isPricePlanOneTime = function isPricePlanOneTime () {
