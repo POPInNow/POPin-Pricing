@@ -4,7 +4,7 @@ var paramAdMedium = getUrlParameter('utm_medium') || 'none';
 var paramAdGclid = getUrlParameter('gclid') || 'none';
 
 var pp = {
-  env: 'dev',
+  env: 'stg',
   payment: {
     oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
     annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela']
