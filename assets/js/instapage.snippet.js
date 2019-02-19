@@ -1,84 +1,50 @@
-wp_env = null;
-is_page = null;
+// var wp_env = 'production';
+// var is_single = null;
+// var is_page = null;
+// var is_blog = null;
+// var is_category = null;
+// var is_tag = null;
 var domainEnv = 'dev';
-var paramAdSource = getUrlParameter('utm_source') || undefined;
-var paramAdMedium = getUrlParameter('utm_medium') || undefined;
-var paramAdGclid = getUrlParameter('gclid') || undefined;
+var paramAdSource = getUrlParameter('utm_source') || 'none';
+var paramAdMedium = getUrlParameter('utm_medium') || 'none';
+var paramAdGclid = getUrlParameter('gclid') || 'none';
 var pricePlanLabel = '';
-var pricePlanHref = '';
+
+var pp = {
+  env: 'dev',
+  payment: {
+    oneTime: ['free', 'one_time_signature', 'one_time_premium'],
+    annual: ['free', 'annual_dept', 'annual_corp', 'annual_ela']
+  },
+  campaign: 'live',
+  target: 'dashboard',
+  adSource: paramAdSource,
+  adMedium: paramAdMedium,
+  gclid: paramAdGclid
+}
 
 window.popinPricing = {
   onFirstButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      // href
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'free',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.oneTime[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     } else {
-      // href
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=free&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'free',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.annual[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
   onSecondButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_signature&c=live&t=dashboard&sadsurce='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'one_time_signature',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.oneTime[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_dept&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'annual_dept',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.annaul[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
   onThirdButtonClicked: function (isOneTime) {
     if (isOneTime) {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=one_time_premium&c=live&t=dashboard&sadsurce='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'one_time_premium',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.oneTime[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popinnow.com/#/account/create?payment=annual_corp&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'annual_corp',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.annual[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
@@ -86,20 +52,29 @@ window.popinPricing = {
     if (isOneTime) {
       console.log('N/A');
     } else {
-      pricePlanHref = 'https://'+domainEnv+'.popin.live/contact/?payment=annual_ela&c=live&t=dashboard&adSource='+paramAdSource+'&medium='+paramAdMedium+'&gclid='+paramAdGclid;
-      // change window location
-      window.location.replace(pricePlanHref);
-      // push href to gtm
-      dataLayer.push({
-        'event': 'pricePlanClicked',
-        'pricePlanLabel': 'annual_ela',
-        'pricePlanHref': pricePlanHref
-      });
+      pricePlanHandler(pp.payment.annual[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, true);
     }
   }
-
 }
 
+function pricePlanHandler(payment, campaign, target, adSource, adMedium, gclid, isEla) {
+  if(isEla) {
+    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_blank');
+  } else {
+    // Open Href
+    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_blank');
+    // Push Data Layer to GTM
+    dataLayer.push({
+      'event': 'pricePlanClicked',
+      'payment': payment,
+      'campaign': campaign,
+      'target': target,
+      'adSource': adSource,
+      'adMedium': adMedium,
+      'gclid': gclid
+    });
+  }
+}
 function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1),
 			sURLVariables = sPageURL.split('&'),
@@ -114,6 +89,3 @@ function getUrlParameter(sParam) {
 			}
 	}
 }
-// Example: https://www.popinlive.com/pricing?foosgonewild=hella
-// Usage: getUrlParameter('foosgonewild');
-// Results: 'hella'

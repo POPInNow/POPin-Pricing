@@ -1,11 +1,11 @@
 const path = require('path');
 const glob = require('glob-all');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const PurifyCSSPlugin = require('purifycss-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -87,7 +87,27 @@ module.exports = {
       purifyOptions: {
           whitelist: []
       }
-    })
+    }),
+    new HtmlWebpackPlugin({
+      template : path.join(__dirname, 'index.htm'),
+      filename : 'index.min.htm',
+      inject   : 'body',
+      minify   : {
+        html5                          : true,
+        minifyCSS                      : true,
+        minifyJS                       : true,
+        collapseWhitespace             : true,
+        minifyURLs                     : false,
+        removeAttributeQuotes          : true,
+        removeComments                 : true,
+        removeEmptyAttributes          : true,
+        removeOptionalTags             : true,
+        removeRedundantAttributes      : true,
+        removeScriptTypeAttributes     : true,
+        removeStyleLinkTypeAttributese : true,
+        useShortDoctype                : true
+      }
+    }),
   ],
   devtool: 'source-map'
 }

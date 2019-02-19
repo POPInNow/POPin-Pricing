@@ -1,12 +1,5 @@
-// $pricing-plan-border: 1px solid $white-ter !default
-// $pricing-plan-border-radius: $radius !default
-// $pricing-plan-active-shadow: 0 8px 12px 0 rgba($grey, 0.2) !default
 $pricing-plan-active-transform: scale(1)
-// $pricing-header-background: $white !default
-// $pricing-item-background: $white-ter !default
 $pricing-item-border: 2px solid $mono-gray-2
-// $pricing-item-color: $grey !default
-// $pricing-price-background: white !default
 
 .container-pricetable
   max-width: 980px;
@@ -47,10 +40,6 @@ $pricing-item-border: 2px solid $mono-gray-2
   flex-direction: column
   .toggle-plan-onetime,
   .toggle-plan-annually
-    // visibility: visible
-    // opacity: 1
-    // order: 1
-    // transition: all .5s ease-in-out
     &.is-hidden
       display: none !important
       // visibility: hidden
@@ -69,19 +58,7 @@ $pricing-item-border: 2px solid $mono-gray-2
       &:not(.is-active),
       &:not(.is-features)
         z-index: 0
-        &:hover
-          // border: 2px solid $success
-          // transform: $pricing-plan-active-transform
-          // z-index: 4
-          // transition: transform .5s ease-in
-          // &.is-mono-gray-3
-          //   border-color: $mono-gray-3
-          // &.is-popin-blue-af
-          //   border-color: $popin-blue-af         
-          // &.is-popin-blue-md
-          //   border-color: $popin-blue-md
-          // &.is-popin-med-af
-          //   border-color: $popin-med-af
+
       &.is-features
         border-top: 2px solid #fff
         border-bottom: 2px solid #fff
@@ -95,7 +72,7 @@ $pricing-item-border: 2px solid $mono-gray-2
           border-right: none
           border-top: 1px solid #ffffff
           border-bottom: 1px solid #ffffff
-          // border-color: transparent
+          box-shadow: none
         .plan-items
           .plan-item
             text-align: left !important
@@ -110,17 +87,22 @@ $pricing-item-border: 2px solid $mono-gray-2
             border-bottom: 1px solid $mono-gray-3
             border-radius: 0 !important
       &.is-active
-        transform: none !important // $pricing-plan-active-transform
+        transform: none !important
         box-shadow: none !important
         border-left-width: 2px !important
         border-right-width: 2px !important
+        margin-top: -30px
+        padding-top: 30px
         &:hover
           transform: $pricing-plan-active-transform !important
+          border-color: $accent-teal-af
         border-width: 2px
         z-index: 1
         &.is-accent-teal-af
           border-radius: 0
           border-color: $accent-teal-af
+        +touch
+          margin: 0
         
 
   .pricing-plan
@@ -134,21 +116,36 @@ $pricing-item-border: 2px solid $mono-gray-2
         border-left: 2px
     &.is-features
       border: transparent
+      .plan-items
+        background: $mono-gray-2
+        border-bottom: 1px solid $mono-gray-3
+        .plan-item
+          &.last-item
+            border: 0
+      .plan-footer
+        &:last-child
+          border-color: transparent !important
+
     .plan-header,
     .plan-footer,
     .plan-price
       background: #ffffff
+      padding: 0
+      // Plan Header
+      &:first-child
+        padding-top: 20px
+      // Select Button  
+      &:nth-child(3)
+        padding-bottom: 20px
       .special
         margin: 12px 0
     .plan-header
       text-transform: uppercase
     .plan-footer
       margin-top: 0
-      .first-button
-        background: transparent !important
-        color: $mono-gray-5 !important
     .plan-items
       border-top: 1px solid $mono-gray-4
+      padding-bottom: 20px !important
       &.is-features
         border-color: transparent
     .plan-item
@@ -163,7 +160,7 @@ $pricing-item-border: 2px solid $mono-gray-2
         &.checked
           font-size: 20px !important
           color: $accent-teal-af
-          display: inherit
+          display: inline-block
       .plan-title-info
         display:inline
         position:relative
@@ -219,6 +216,41 @@ $pricing-item-border: 2px solid $mono-gray-2
         .plan-price-currency
           vertical-align: unset
           font-size: 2.5rem !important
+
++touch
+  .section
+    padding: 0
+  .pricing-table
+    flex-flow: column wrap
+    .pricing-plan
+      .plan-header,
+      .plan-price,
+      .plan-footer
+        background: $mono-gray-1
+      width: 100%
+      min-width: 400px
+      max-width: max-content
+      margin-left: auto !important
+      margin-right: auto !important
+    
+      &:not(:first-child)
+        margin-top: 30px 
+      &:not(:last-child)
+        margin-bottom: 30px
+      &:not(.is-active)
+        border-left: 2px solid $mono-gray-2 !important
+        border-right: 2px solid $mono-gray-2 !important
+        border-width: 4px !important
+      &.is-active
+        padding-top: 0 !important
+      &.is-features
+          display: none
+      .plan-items
+        // border-top-color: transparent
+        .plan-item
+          border-color: transparent
+      
+      
 
 .plan-toggle
   cursor: pointer
