@@ -4,10 +4,10 @@ var paramAdMedium = getUrlParameter('utm_medium') || 'none';
 var paramAdGclid = getUrlParameter('gclid') || 'none';
 
 var pp = {
-  env: 'stg',
+  env: 'dev',
   payment: {
-    oneTime: ['free', 'one_time_signature', 'one_time_premium'],
-    annual: ['free', 'annual_dept', 'annual_corp', 'annual_ela']
+    oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
+    annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela']
   },
   campaign: 'live',
   target: 'dashboard',
