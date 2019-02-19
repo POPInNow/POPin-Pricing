@@ -73,23 +73,27 @@
     var el = document.getElementsByClassName('plan-toggle');
     var btnOnetime = el[0];
     var btnAnnually = el[1];
-    var priceplanOnetime = document.getElementsByClassName('toggle-plan-onetime')[0];
-    var priceplanAnnually = document.getElementsByClassName('toggle-plan-annually')[0];
-    if (ToggleBtn === 'one-time') {
-      removeClass(btnOnetime,'is-active');
-      addClass(priceplanOnetime,'is-hidden');
-      removeClass(btnAnnually,'is-active');
-      addClass(priceplanAnnually,'is-hidden');
-      addClass(btnOnetime,'is-active');
-      removeClass(priceplanOnetime,'is-hidden');
-    } else if (ToggleBtn === 'annually') {
-      removeClass(btnOnetime,'is-active');
-      addClass(priceplanOnetime,'is-hidden');
-      removeClass(btnAnnually,'is-active');
-      addClass(priceplanAnnually,'is-hidden');
-      addClass(btnAnnually,'is-active');
-      removeClass(priceplanAnnually,'is-hidden');
+    var priceplanOnetime = document.getElementsByClassName('toggle-plan-onetime');
+    var priceplanAnnually = document.getElementsByClassName('toggle-plan-annually');
+    for (i=0; i<2; i++) {
+      if (ToggleBtn === 'one-time') {
+        removeClass(btnOnetime,'is-active');
+        addClass(priceplanOnetime[i],'is-hidden');
+        removeClass(btnAnnually,'is-active');
+        addClass(priceplanAnnually[i],'is-hidden');
+        addClass(btnOnetime,'is-active');
+        removeClass(priceplanOnetime[i],'is-hidden');
+      } else if (ToggleBtn === 'annually') {
+        removeClass(btnOnetime,'is-active');
+        addClass(priceplanOnetime[i],'is-hidden');
+        removeClass(btnAnnually,'is-active');
+        addClass(priceplanAnnually[i],'is-hidden');
+        addClass(btnAnnually,'is-active');
+        removeClass(priceplanAnnually[i],'is-hidden');
+      }
     }
+    
+    
   };
 
   var isPricePlanOneTime = function isPricePlanOneTime () {
@@ -186,9 +190,13 @@
 <body>
 <!-- Toggle -->
 <section data-module="section-toggle" class="section" style="text-align:center;padding-bottom:0;">
-  <div class="plan-toggle-container" style="text-align:center;">
+  <div class="plan-toggle-container" style="text-align:center; margin-bottom:.5rem;">
     <span data-toggle="one-time" class="plan-toggle is-active">One-Time</span>
     <span data-toggle="annually" class="plan-toggle">Annual</span>
+  </div>
+  <div class="plan-desc-container" style="margin-top:1rem; margin-bottom:1rem; color:#7D7D7D;">
+    <span class="toggle-plan-onetime">Use POPin LIVE at a single event.</span>
+    <span class="toggle-plan-annually is-hidden">Use POPin LIVE at an unlimited number of events throughout the year.</span>
   </div>
 </section>
 
