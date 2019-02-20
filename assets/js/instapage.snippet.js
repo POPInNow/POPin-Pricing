@@ -52,10 +52,10 @@ window.popinPricing = {
 
 function pricePlanHandler(payment, campaign, target, adSource, adMedium, gclid, isEla) {
   if(isEla) {
-    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_blank');
+    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_self');
   } else {
     // Open Href
-    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_blank');
+    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_self');
   }
   // Push Data Layer to GTM
   dataLayer.push({
