@@ -4,7 +4,7 @@ var paramAdMedium = getUrlParameter('utm_medium') || 'none';
 var paramAdGclid = getUrlParameter('gclid') || 'none';
 
 var pp = {
-  env: 'stg',
+  env: 'app',
   payment: {
     oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
     annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela']
@@ -29,7 +29,7 @@ window.popinPricing = {
     if (isOneTime) {
       pricePlanHandler(pp.payment.oneTime[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     } else {
-      pricePlanHandler(pp.payment.annaul[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+      pricePlanHandler(pp.payment.annual[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
@@ -56,17 +56,17 @@ function pricePlanHandler(payment, campaign, target, adSource, adMedium, gclid, 
   } else {
     // Open Href
     window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_blank');
-    // Push Data Layer to GTM
-    dataLayer.push({
-      'event': 'pricePlanClicked',
-      'payment': payment,
-      'campaign': campaign,
-      'target': target,
-      'adSource': adSource,
-      'adMedium': adMedium,
-      'gclid': gclid
-    });
   }
+  // Push Data Layer to GTM
+  dataLayer.push({
+    'event': 'pricePlanClicked',
+    'payment': payment,
+    'campaign': campaign,
+    'target': target,
+    'adSource': adSource,
+    'adMedium': adMedium,
+    'gclid': gclid
+  });
 }
 function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1),
