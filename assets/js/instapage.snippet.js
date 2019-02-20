@@ -1,20 +1,13 @@
-// var wp_env = 'production';
-// var is_single = null;
-// var is_page = null;
-// var is_blog = null;
-// var is_category = null;
-// var is_tag = null;
-var domainEnv = 'dev';
+
 var paramAdSource = getUrlParameter('utm_source') || 'none';
 var paramAdMedium = getUrlParameter('utm_medium') || 'none';
 var paramAdGclid = getUrlParameter('gclid') || 'none';
-var pricePlanLabel = '';
 
 var pp = {
-  env: 'dev',
+  env: 'stg',
   payment: {
-    oneTime: ['free', 'one_time_signature', 'one_time_premium'],
-    annual: ['free', 'annual_dept', 'annual_corp', 'annual_ela']
+    oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
+    annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela']
   },
   campaign: 'live',
   target: 'dashboard',

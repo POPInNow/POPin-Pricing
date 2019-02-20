@@ -1,14 +1,6 @@
 $pricing-plan-active-transform: scale(1)
 $pricing-item-border: 2px solid $mono-gray-2
 
-.container-pricetable
-  max-width: 980px;
-  min-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  .section
-    padding: 2rem 1.5rem !important
-
 .plan-toggle-container
   display: inline-block
   border: 1px solid $mono-gray-2
@@ -34,18 +26,6 @@ $pricing-item-border: 2px solid $mono-gray-2
     &:last-child
       border-top-right-radius: 10px
       border-bottom-right-radius: 10px
-
-.container-pricetable
-  // display: flex
-  flex-direction: column
-  .toggle-plan-onetime,
-  .toggle-plan-annually
-    &.is-hidden
-      display: none !important
-      // visibility: hidden
-      // opacity: 0
-      // order: 2
-      // transition: all .5s ease-in-out  
 
 .pricing-table
   background: #ffffff
@@ -118,7 +98,8 @@ $pricing-item-border: 2px solid $mono-gray-2
       border: transparent
       .plan-items
         background: $mono-gray-2
-        border-bottom: 1px solid $mono-gray-3
+        border-bottom: 1px solid $mono-gray-4
+        border-left: 1px solid $mono-gray-4
         .plan-item
           &.last-item
             border: 0
@@ -214,7 +195,7 @@ $pricing-item-border: 2px solid $mono-gray-2
       .plan-price-amount
         color: $mono-gray-6 !important
         .plan-price-currency
-          vertical-align: unset
+          vertical-align: baseline !important
           font-size: 2.5rem !important
 
 +touch
@@ -228,7 +209,7 @@ $pricing-item-border: 2px solid $mono-gray-2
       .plan-footer
         background: $mono-gray-1
       width: 100%
-      min-width: 400px
+      min-width: 200px
       max-width: max-content
       margin-left: auto !important
       margin-right: auto !important
@@ -246,9 +227,11 @@ $pricing-item-border: 2px solid $mono-gray-2
       &.is-features
           display: none
       .plan-items
-        // border-top-color: transparent
+        // border-left: 1px solid $mono-gray-2 !important
         .plan-item
           border-color: transparent
+          &:before
+            content: '';
       
       
 
