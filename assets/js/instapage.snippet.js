@@ -1,6 +1,9 @@
 
 var paramAdSource = getUrlParameter('utm_source') || 'none';
 var paramAdMedium = getUrlParameter('utm_medium') || 'none';
+var paramAdCampaign = getUrlParameter('utm_campaign') || 'none';
+var paramAdTerm = getUrlParameter('utm_term') || 'none';
+var paramAdContent = getUrlParameter('utm_content') || 'none';
 var paramAdGclid = getUrlParameter('gclid') || 'none';
 
 var pp = {
@@ -13,6 +16,9 @@ var pp = {
   target: 'dashboard',
   adSource: paramAdSource,
   adMedium: paramAdMedium,
+  adCampaign: paramAdCampaign,
+  adTerm: paramAdTerm,
+  adContent: paramAdContent,
   gclid: paramAdGclid
 }
 
@@ -50,12 +56,25 @@ window.popinPricing = {
   }
 }
 
-function pricePlanHandler(payment, campaign, target, adSource, adMedium, gclid, isEla) {
+var allParams = '&c='+pp.campaign+'&t='+pp.target+'&medium='+pp.adMedium+'&adSource='+pp.adSource+'&utm_campaign='+pp.adCampaign+'&utm_term='+pp.adTerm+'&utm_content='+pp.adContent+'&gclid='+pp.gclid;
+
+$(document).ready(function(){
+  function addHrefParams(params, target) {
+    $('a[href]').filter(function(){
+      var currentLink =  $(this).attr('href');
+      console.log('newLink', $(this).attr('href',currentLink+params));
+      return $(this).attr('href',currentLink+params);
+    });
+  }
+  addHrefParams(allParams,'_blank');
+});
+
+function pricePlanHandler(payment, campaign, target, adSource, adMedium, adCampaign, adTerm, adContent, gclid, isEla) {
   if(isEla) {
-    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_self');
+    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid,'_blank');
   } else {
     // Open Href
-    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&adSource='+adSource+'&medium='+adMedium+'&gclid='+gclid,'_self');
+    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid,'_blank');
   }
   // Push Data Layer to GTM
   dataLayer.push({
@@ -65,6 +84,9 @@ function pricePlanHandler(payment, campaign, target, adSource, adMedium, gclid, 
     'target': target,
     'adSource': adSource,
     'adMedium': adMedium,
+    'adCampaign': adCampaign,
+    'adTerm': adTerm,
+    'adContent': adContent,
     'gclid': gclid
   });
 }
