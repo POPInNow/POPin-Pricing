@@ -69,7 +69,7 @@ window.popinPricing = {
     } else if (hasPricePlan === 'education') { 
       pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, true);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, true);
     }
   }
 }
