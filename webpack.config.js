@@ -91,11 +91,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template : path.join(__dirname, 'index.htm'),
       filename : 'index.min.htm',
-      inject   : 'body',
+      inject   : false,
       minify   : {
         html5                          : true,
-        // minifyCSS                      : true,
-        // minifyJS                       : true,
+        minifyCSS                      : true,
+        minifyJS                       : true,
         collapseWhitespace             : true,
         minifyURLs                     : false,
         removeAttributeQuotes          : true,
