@@ -10,7 +10,9 @@ var pp = {
   env: 'app',
   payment: {
     oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
-    annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela']
+    annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela'],
+    education: ['trial', 'edu_teacher', 'edu_department', 'edu_institution'],
+    conference: ['trial', 'conf_basic', 'conf_presentation', 'conf_convention']
   },
   campaign: 'live',
   target: 'dashboard',
@@ -23,35 +25,51 @@ var pp = {
 }
 
 window.popinPricing = {
-  onFirstButtonClicked: function (isOneTime) {
-    if (isOneTime) {
+  onFirstButtonClicked: function (hasPricePlan) {
+    if (hasPricePlan === 'one-time') {
       pricePlanHandler(pp.payment.oneTime[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
-    } else {
+    } else if (hasPricePlan === 'annual') {
       pricePlanHandler(pp.payment.annual[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+    } else if (hasPricePlan === 'education') { 
+      pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+    } else if (hasPricePlan === 'conference') {
+      pricePlanHandler(pp.payment.conference[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
-  onSecondButtonClicked: function (isOneTime) {
-    if (isOneTime) {
+  onSecondButtonClicked: function (hasPricePlan) {
+    if (hasPricePlan === 'one-time') {
       pricePlanHandler(pp.payment.oneTime[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
-    } else {
+    } else if (hasPricePlan === 'annual') {
       pricePlanHandler(pp.payment.annual[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+    } else if (hasPricePlan === 'education') { 
+      pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+    } else if (hasPricePlan === 'conference') {
+      pricePlanHandler(pp.payment.conference[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
-  onThirdButtonClicked: function (isOneTime) {
-    if (isOneTime) {
+  onThirdButtonClicked: function (hasPricePlan) {
+    if (hasPricePlan === 'one-time') {
       pricePlanHandler(pp.payment.oneTime[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
-    } else {
+    } else if (hasPricePlan === 'annual') {
       pricePlanHandler(pp.payment.annual[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+    } else if (hasPricePlan === 'education') { 
+      pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
+    } else if (hasPricePlan === 'conference') {
+      pricePlanHandler(pp.payment.conference[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   },
 
-  onFourthButtonClicked: function (isOneTime) {
-    if (isOneTime) {
+  onFourthButtonClicked: function (hasPricePlan) {
+    if (hasPricePlan === 'one-time') {
       console.log('N/A');
-    } else {
+    } else if (hasPricePlan === 'annual') {
       pricePlanHandler(pp.payment.annual[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, true);
+    } else if (hasPricePlan === 'education') { 
+      pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, true);
+    } else if (hasPricePlan === 'conference') {
+      pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.gclid, false);
     }
   }
 }
@@ -69,8 +87,8 @@ $(document).ready(function(){
   addHrefParams(allParams,'_blank');
 });
 
-function pricePlanHandler(payment, campaign, target, adSource, adMedium, adCampaign, adTerm, adContent, gclid, isEla) {
-  if(isEla) {
+function pricePlanHandler(payment, campaign, target, adSource, adMedium, adCampaign, adTerm, adContent, gclid, isContactUs) {
+  if(isContactUs) {
     window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid,'_blank');
   } else {
     // Open Href

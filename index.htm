@@ -3,7 +3,6 @@
   Instapage/Hubspot/Wordpress/Standalone
   You'll need to copy and paste your own custom snippets
 -->
-<!-- <script src="./dist/popin_bundle.js"></script> -->
 <script src="./assets/js/instapage.snippet.js"></script>
 
 <!-- Copy and Paste the contents of the file into instapage and comment out-->
@@ -129,10 +128,15 @@
     }
   };
 
-  var isPricePlanOneTime = function isPricePlanOneTime () {
+  var hasPricePlan = function hasPricePlan () {
     var el = document.getElementsByClassName('is-active');
-
-    var isOneTime = false;
+    var hasPlan = undefined;
+    var isPlan = {
+      ONE_TIME: 'one-time',
+      ANNUAL: 'annual',
+      EDUCATION: 'education',
+      CONFERENCE: 'conference'
+    };
     var element = null;
     var i = 0;
     var size = !!el ? el.length : 0;
@@ -140,12 +144,21 @@
       element = el[i];
       if (element.hasAttribute('data-toggle')) {
         if (element.getAttribute('data-toggle') == 'one-time') {
-          isOneTime = true;
+          hasPlan = isPlan.ONE_TIME;
+          break;
+        } else if (element.getAttribute('data-toggle') == 'annual') {
+          hasPlan = isPlan.ANNUAL;
+          break;
+        } else if (element.getAttribute('data-toggle') == 'education') {
+          hasPlan = isPlan.EDUCATION;
+          break;
+        } else if (element.getAttribute('data-toggle') == 'conference') {
+          hasPlan = isPlan.CONFERENCE;
           break;
         }
       }
     }
-    return isOneTime;
+    return hasPlan;
   };
 
   var onFirstButtonClicked = function onFirstButtonClicked (event) {
@@ -157,7 +170,7 @@
     if (!!window) {
       if (!!window.popinPricing) {
         if (!!window.popinPricing.onFirstButtonClicked) {
-          window.popinPricing.onFirstButtonClicked(isPricePlanOneTime());
+          window.popinPricing.onFirstButtonClicked(hasPricePlan());
         }
       }
     }
@@ -172,7 +185,7 @@
     if (!!window) {
       if (!!window.popinPricing) {
         if (!!window.popinPricing.onSecondButtonClicked) {
-          window.popinPricing.onSecondButtonClicked(isPricePlanOneTime());
+          window.popinPricing.onSecondButtonClicked(hasPricePlan());
         }
       }
     }
@@ -187,7 +200,7 @@
     if (!!window) {
       if (!!window.popinPricing) {
         if (!!window.popinPricing.onThirdButtonClicked) {
-          window.popinPricing.onThirdButtonClicked(isPricePlanOneTime());
+          window.popinPricing.onThirdButtonClicked(hasPricePlan());
         }
       }
     }
@@ -202,7 +215,7 @@
     if (!!window) {
       if (!!window.popinPricing) {
         if (!!window.popinPricing.onFourthButtonClicked) {
-          window.popinPricing.onFourthButtonClicked(isPricePlanOneTime());
+          window.popinPricing.onFourthButtonClicked(hasPricePlan());
         }
       }
     }
@@ -233,7 +246,7 @@
     <span class="toggle-plan-onetime">Use POPin LIVE at a single event.</span>
     <span class="toggle-plan-annually is-hidden">Use POPin LIVE at an unlimited number of events throughout the year.</span>
     <span class="toggle-plan-education is-hidden">Use POPin LIVE in the classroom FREE for teachers, Departments, and Institutions.</span>
-    <span class="toggle-plan-conference is-hidden">Use POPin LIVE at conferences FREE for presentations and conventions.</span>
+    <span class="toggle-plan-conference is-hidden">Use POPin LIVE at conferences FREE for presentations and conferences.</span>
   </div>
 </section>
 
@@ -856,7 +869,7 @@
       <div class="plan-header">Free</div>
       <div class="plan-price">
         <p class="plan-price-amount">
-          <span class="plan-price-currency">$</span>0
+          Free
         </p>
       </div>
       <div class="plan-footer">
@@ -1696,7 +1709,7 @@
       <div class="plan-header">Free</div>
       <div class="plan-price">
         <p class="plan-price-amount">
-          <span class="plan-price-currency">$</span>0
+          Free
         </p>
       </div>
       <div class="plan-footer">
@@ -1980,7 +1993,7 @@
                 </span>
               </span>
             </span>
-            Free
+            free
           </div>
           <div class="plan-item" data-feature="Single sign-on">
             <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
@@ -2150,7 +2163,7 @@
               </span>
             </span>
           </span>
-          Free
+          free
         </div>
         <div class="plan-item" data-feature="Single sign-on">
           <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
@@ -2205,12 +2218,12 @@
     <div class="pricing-plan is-popin-blue-md">
       <div class="plan-header">Institution</div>
       <div class="plan-price">
-        <p class="plan-price-amount" style="position:relative">
-          Free
+        <p class="plan-price-amount" style="position:relative"><span class="plan-price-currency">&nbsp;</span>&nbsp;
+          <span style="position:absolute;font-size:12px;font-weight:400;width:100%;left:0;top:50%;transform:translateY(-50%)">Powerful features and analytics for your institution</span>
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button fourth-button">Select</button>
+        <button class="button fourth-button">Contact Us</button>
       </div>
       <div class="plan-items">
         <div class="plan-item" data-feature="Q&A">
@@ -2819,7 +2832,7 @@
                 </span>
               </span>
             </span>
-            Free
+            free
           </div>
           <div class="plan-item" data-feature="Single sign-on">
             <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
@@ -2989,7 +3002,7 @@
               </span>
             </span>
           </span>
-          Free
+          free
         </div>
         <div class="plan-item" data-feature="Single sign-on">
           <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
@@ -3042,7 +3055,7 @@
     </div>
 
     <div class="pricing-plan is-popin-blue-md">
-      <div class="plan-header">Convention</div>
+      <div class="plan-header">Conference</div>
       <div class="plan-price">
         <p class="plan-price-amount" style="position:relative">
           Free
