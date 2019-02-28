@@ -63,7 +63,7 @@ $(document).ready(function(){
     $('a[href]').filter(function(){
       var currentLink =  $(this).attr('href');
       console.log('newLink', $(this).attr('href',currentLink+params));
-      return $(this).attr('href',currentLink+params);
+      return $(this).attr({'href':currentLink+params,'target':target});
     });
   }
   addHrefParams(allParams,'_blank');

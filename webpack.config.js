@@ -94,8 +94,8 @@ module.exports = {
       inject   : 'body',
       minify   : {
         html5                          : true,
-        // minifyCSS                      : true,
-        // minifyJS                       : true,
+        minifyCSS                      : true,
+        minifyJS                       : true,
         collapseWhitespace             : true,
         minifyURLs                     : false,
         removeAttributeQuotes          : true,
