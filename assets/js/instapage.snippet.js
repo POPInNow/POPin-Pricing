@@ -12,7 +12,7 @@ var pp = {
     oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
     annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela'],
     education: ['trial', 'edu_teacher', 'edu_department', 'edu_institution'],
-    conference: ['trial', 'conf_basic', 'conf_presentation', 'conf_conference']
+    conference: ['trial', 'conf_basic', 'conf_presentation', 'conf_keynote']
   },
   campaign: 'live',
   target: 'dashboard',
