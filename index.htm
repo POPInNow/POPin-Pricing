@@ -48,7 +48,7 @@
       ele.className=ele.className.replace(reg,' ');
     }
   }
-  
+
   var onPlanToggleButtonClicked = function onPlanToggleButtonClicked (event) {
     var ToggleBtn = event.target.getAttribute('data-toggle');
     if (!MatchHandler(event.target,'.plan-toggle')) return;
@@ -69,12 +69,16 @@
     for (i=0; i<2; i++) {
       if (ToggleBtn === 'one-time') {
         // Enable Button (is-active)
-        !hasClass(btnOnetime, 'is-active') ? addClass(btnOnetime, 'is-active') : '';
+        if (!hasClass(btnOnetime, 'is-active')) {
+          addClass(btnOnetime, 'is-active');
+        }
         removeClass(btnAnnually, 'is-active');
         removeClass(btnEducation, 'is-active');
         removeClass(btnConference, 'is-active');
         // Enable Plan (is-hidden)
-        hasClass(priceplanOnetime[i], 'is-hidden') ? removeClass(priceplanOnetime[i], 'is-hidden') : '';
+        if (hasClass(priceplanOnetime[i], 'is-hidden')) {
+          removeClass(priceplanOnetime[i], 'is-hidden');
+        }
         addClass(priceplanAnnually[i], 'is-hidden');
         addClass(priceplanEducation[i], 'is-hidden');
         addClass(priceplanConference[i], 'is-hidden');
@@ -82,12 +86,16 @@
       } else if (ToggleBtn === 'annually') {
         // btn
         removeClass(btnOnetime, 'is-active');
-        !hasClass(btnAnnually, 'is-active') ? addClass(btnAnnually, 'is-active') : '';
+        if (!hasClass(btnAnnually, 'is-active')) {
+          addClass(btnAnnually, 'is-active');
+        }
         removeClass(btnEducation, 'is-active');
         removeClass(btnConference, 'is-active');
         // plans
         addClass(priceplanOnetime[i], 'is-hidden');
-        hasClass(priceplanAnnually[i], 'is-hidden') ? removeClass(priceplanAnnually[i], 'is-hidden') : '';
+        if (hasClass(priceplanAnnually[i], 'is-hidden')) {
+          removeClass(priceplanAnnually[i], 'is-hidden');
+        }
         addClass(priceplanEducation[i], 'is-hidden');
         addClass(priceplanConference[i], 'is-hidden');
 
@@ -95,12 +103,16 @@
         // btn
         removeClass(btnOnetime, 'is-active');
         removeClass(btnAnnually, 'is-active');
-        !hasClass(btnEducation, 'is-active') ? addClass(btnEducation, 'is-active') : '';
+        if (!hasClass(btnEducation, 'is-active')) {
+          addClass(btnEducation, 'is-active');
+        }
         removeClass(btnConference, 'is-active');
         // plans
         addClass(priceplanOnetime[i], 'is-hidden');
         addClass(priceplanAnnually[i], 'is-hidden');
-        hasClass(priceplanEducation[i], 'is-hidden') ? removeClass(priceplanEducation[i], 'is-hidden') : '';
+        if (hasClass(priceplanEducation[i], 'is-hidden')) {
+          removeClass(priceplanEducation[i], 'is-hidden');
+        }
         addClass(priceplanConference[i], 'is-hidden');
 
       } else if (ToggleBtn === 'conference') {
@@ -108,12 +120,16 @@
         removeClass(btnOnetime, 'is-active');
         removeClass(btnAnnually, 'is-active');
         removeClass(btnEducation, 'is-active');
-        !hasClass(btnConference, 'is-active') ? addClass(btnConference, 'is-active') : '';
+        if (!hasClass(btnConference, 'is-active')) {
+          addClass(btnConference, 'is-active');
+        }
         // plans
         addClass(priceplanOnetime[i], 'is-hidden');
         addClass(priceplanAnnually[i], 'is-hidden');
         addClass(priceplanEducation[i], 'is-hidden');
-        hasClass(priceplanConference[i], 'is-hidden') ? removeClass(priceplanConference[i], 'is-hidden') : '';
+        if (hasClass(priceplanConference[i], 'is-hidden')) {
+          removeClass(priceplanConference[i], 'is-hidden');
+        }
 
       } else {
         console.log('N/A');
@@ -136,16 +152,16 @@
     for (i = 0; i < size; ++i) {
       element = el[i];
       if (element.hasAttribute('data-toggle')) {
-        if (element.getAttribute('data-toggle') == 'one-time') {
+        if (element.getAttribute('data-toggle') === 'one-time') {
           hasPlan = isPlan.ONE_TIME;
           break;
-        } else if (element.getAttribute('data-toggle') == 'annually') {
+        } else if (element.getAttribute('data-toggle') === 'annually') {
           hasPlan = isPlan.ANNUAL;
           break;
-        } else if (element.getAttribute('data-toggle') == 'education') {
+        } else if (element.getAttribute('data-toggle') === 'education') {
           hasPlan = isPlan.EDUCATION;
           break;
-        } else if (element.getAttribute('data-toggle') == 'conference') {
+        } else if (element.getAttribute('data-toggle') === 'conference') {
           hasPlan = isPlan.CONFERENCE;
           break;
         }
@@ -222,7 +238,7 @@
     onThirdButtonClicked(event);
     onFourthButtonClicked(event);
   }, false);
-  
+
 
 </script>
 </head>
@@ -365,7 +381,7 @@
         <button class="button first-button">Select</button>
       </div>
       <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A"><span class="has-text-weight-bold is-hidden-desktop">Q&amp;A</span> 
+        <div class="plan-item" data-feature="Q&A"><span class="has-text-weight-bold is-hidden-desktop">Q&amp;A</span>
           <span class="plan-title-info is-hidden-desktop">
             <span class="plan-icon-info material-icons is-hidden-desktop">info_outline
               <span class="plan-info">Gather questions / topics from your audience before or during your event
@@ -481,7 +497,7 @@
         <button class="button second-button">Select</button>
       </div>
       <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A"><span class="has-text-weight-bold is-hidden-desktop">Q&amp;A</span> 
+        <div class="plan-item" data-feature="Q&A"><span class="has-text-weight-bold is-hidden-desktop">Q&amp;A</span>
           <span class="plan-title-info is-hidden-desktop">
             <span class="plan-icon-info material-icons is-hidden-desktop">info_outline
               <span class="plan-info">Gather questions / topics from your audience before or during your event
@@ -596,7 +612,7 @@
         <button class="button third-button">Select</button>
       </div>
       <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A"><span class="has-text-weight-bold is-hidden-desktop">Q&amp;A</span> 
+        <div class="plan-item" data-feature="Q&A"><span class="has-text-weight-bold is-hidden-desktop">Q&amp;A</span>
           <span class="plan-title-info is-hidden-desktop">
             <span class="plan-icon-info material-icons is-hidden-desktop">info_outline
               <span class="plan-info">Gather questions / topics from your audience before or during your event
@@ -1535,7 +1551,7 @@
             </span>
             up to 5000 / event
           </div>
-        </div>        
+        </div>
       <div class="plan-footer">
       </div>
     </div>
@@ -2373,7 +2389,7 @@
             </span>
             up to 5000 / event
           </div>
-        </div>        
+        </div>
       <div class="plan-footer">
       </div>
     </div>
@@ -3212,11 +3228,11 @@
             </span>
             up to 5000 / event
           </div>
-        </div>        
+        </div>
       <div class="plan-footer">
       </div>
     </div>
   </div>
-  
+
 </section>
 <!-- </div> -->
