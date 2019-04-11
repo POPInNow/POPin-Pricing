@@ -33,7 +33,7 @@ window.popinPricing = {
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[0], 'conf_' + pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
     }
   },
 
@@ -45,7 +45,7 @@ window.popinPricing = {
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[1], 'conf_' + pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
     }
   },
 
@@ -57,7 +57,7 @@ window.popinPricing = {
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[2], 'conf_' + pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
     }
   },
 
@@ -69,7 +69,7 @@ window.popinPricing = {
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[3], 'conf_' + pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true);
+      pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true);
     }
   }
 }
