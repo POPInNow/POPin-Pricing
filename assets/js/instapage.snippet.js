@@ -27,37 +27,37 @@ var pp = {
 window.popinPricing = {
   onFirstButtonClicked: function (hasPricePlan) {
     if (hasPricePlan === 'one-time') {
-      pricePlanHandler(pp.payment.oneTime[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.oneTime[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.annual[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'conference');
     }
   },
 
   onSecondButtonClicked: function (hasPricePlan) {
     if (hasPricePlan === 'one-time') {
-      pricePlanHandler(pp.payment.oneTime[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.oneTime[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.annual[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'conference');
     }
   },
 
   onThirdButtonClicked: function (hasPricePlan) {
     if (hasPricePlan === 'one-time') {
-      pricePlanHandler(pp.payment.oneTime[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.oneTime[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.annual[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false);
+      pricePlanHandler(pp.payment.conference[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'conference');
     }
   },
 
@@ -65,11 +65,11 @@ window.popinPricing = {
     if (hasPricePlan === 'one-time') {
       console.log('N/A');
     } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true);
+      pricePlanHandler(pp.payment.annual[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true);
+      pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
     } else if (hasPricePlan === 'conference') {
-      pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true);
+      pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, 'conference');
     }
   }
 }
@@ -87,12 +87,12 @@ $(document).ready(function(){
   addHrefParams(allParams,'_blank');
 });
 
-function pricePlanHandler(payment, campaign, target, adSource, adMedium, adCampaign, adTerm, adContent, gclid, isContactUs) {
+function pricePlanHandler(payment, campaign, target, adSource, adMedium, adCampaign, adTerm, adContent, gclid, isContactUs, campaignUseCase) {
   if(isContactUs) {
-    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid,'_blank');
+    window.open('https://www.popin.live/contact?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid+'&cuc='+campaignUseCase,'_blank');
   } else {
     // Open Href
-    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid,'_blank');
+    window.open('https://'+pp.env+'.popinnow.com/#/account/create?payment='+payment+'&c='+campaign+'&t='+target+'&medium='+adMedium+'&adSource='+adSource+'&utm_campaign='+adCampaign+'&utm_term='+adTerm+'&utm_content='+adContent+'&gclid='+gclid+'&cuc='+campaignUseCase,'_blank');
   }
   // Push Data Layer to GTM
   dataLayer.push({
