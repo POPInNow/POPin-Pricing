@@ -118,3 +118,4 @@ $colors: map-merge($colors, $addColors);
 
 /*--  7. Import Custom Overwrite Styles --*/
 @import './popin-pricing-table.sass';
+@import './popin-pricing-summary.sass';

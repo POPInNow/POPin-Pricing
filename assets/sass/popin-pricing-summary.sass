@@ -1,0 +1,94 @@
+.pricing-summary
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  margin-top: 35px
+
+.flex-container
+  display: flex
+  padding: 1em
+
+.flex-item
+  flex: 1
+  width: 0
+  &:not(:last-child)
+    margin-right: 1em
+
+.package
+  border-radius: 10px
+  list-style-type: none
+  margin: 0
+  padding: 0
+  transition: 0.25s
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15), 0 1px 20px rgba(0, 0, 0, 0.1)
+  &.highlight
+    border: 1px solid #1DADB3
+    margin-top: -20px
+  &.secondary
+    background-color: #36a4db
+    border: 1px solid #36a4db
+  &:hover
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2)
+    transform: scale(1.025)
+  .header
+    border-radius: 10px 10px 0 0
+    background-color: #999
+    color: #fff
+    font-size: 1.5em
+  .highlight
+    background-color: #1DADB3
+
+.secondary .header
+  background-color: #36a4db
+
+.package
+  li
+    background-color: #fff
+    border-bottom: 1px solid #fff
+    padding: 0.6em
+    text-align: center
+  .gray
+    background-color: #eee
+    font-size: 1em
+  .desc
+    font-weight: bold
+
+.highlight .gray
+  font-size: 1.25em
+
+.package .footer
+  border-radius: 0 0 10px 10px
+  background-color: #eee
+
+button
+  border: none
+  border-radius: 5px
+  background-color: #1DADB3
+  color: #fff
+  cursor: pointer
+  padding: .75em 1.5em
+  font-size: 1em
+  &.disabled
+    color: #333
+    background-color: #eee
+
+.secondary button
+  background-color: #36a4db
+
+@media only screen and (max-width: 700px)
+  button
+    padding: .75em
+
+@media only screen and (max-width: 600px)
+  .flex-container
+    flex-wrap: wrap
+  .flex-item
+    flex: 0 0 100%
+    margin-bottom: 1em
+    width: 100%
+  .package:hover
+    box-shadow: none
+    transform: none
+  button
+    padding: .75em 1.5em
+

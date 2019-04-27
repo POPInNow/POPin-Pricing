@@ -1,9 +1,9 @@
 $pricing-plan-active-transform: scale(1)
-$pricing-item-border: 2px solid $mono-gray-2
+$pricing-item-border: 2px solid $mono-gray-1
 
 .plan-toggle-container
   display: inline-block
-  border: 1px solid $mono-gray-2
+  border: 1px solid $mono-gray-1
   border-radius: 10px
   padding: 0
   .plan-toggle
@@ -55,14 +55,14 @@ $pricing-item-border: 2px solid $mono-gray-2
         .plan-items
           .plan-item
             text-align: left !important
-            background-color: $mono-gray-2
-            color: $mono-gray-5
+            background-color: $mono-gray-1
+            color: $mono-gray-6
             &.last-item,
             &:last-of-type
               border-bottom-color: transparent !important
         .plan-footer
           &:last-child
-            background-color: $mono-gray-2
+            background-color: $mono-gray-1
             border-bottom: 1px solid $mono-gray-3
             border-radius: 0 !important
       &.is-active
@@ -96,7 +96,7 @@ $pricing-item-border: 2px solid $mono-gray-2
     &.is-features
       border: transparent
       .plan-items
-        background: $mono-gray-2
+        background: $mono-gray-1
         border-bottom: 1px solid $mono-gray-4
         border-left: 1px solid $mono-gray-4
         .plan-item
@@ -223,19 +223,21 @@ $pricing-item-border: 2px solid $mono-gray-2
       &:not(:last-child)
         margin-bottom: 30px
       &:not(.is-active)
-        border-left: 2px solid $mono-gray-2 !important
-        border-right: 2px solid $mono-gray-2 !important
+        border-left: 2px solid $mono-gray-1 !important
+        border-right: 2px solid $mono-gray-1 !important
         border-width: 4px !important
       &.is-active
         padding-top: 0 !important
       &.is-features
           display: none
       .plan-items
-        // border-left: 1px solid $mono-gray-2 !important
+        // border-left: 1px solid $mono-gray-1 !important
         .plan-item
           border-color: transparent
           &:before
             content: '';
+          &.hide-mobile
+            display: none
       
       
 

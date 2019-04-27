@@ -202,12 +202,31 @@
     }
   };
 
+  var onCompareButtonClicked = function (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!MatchHandler(event.target,'.compare-button')) return;
+    // Don't follow the link if it has one
+    event.preventDefault();
+    var elmnt = document.getElementById("compare");
+    elmnt.scrollIntoView();
+  };
+
+  var onContactButtonClicked = function (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!MatchHandler(event.target,'.contact-button')) return;
+    // Don't follow the link if it has one
+    event.preventDefault();
+    var elmnt = document.getElementById("compare");
+    elmnt.scrollIntoView();
+  };
+  
   document.addEventListener('click', function (event) {
     onPlanToggleButtonClicked(event);
     onFirstButtonClicked(event);
     onSecondButtonClicked(event);
     onThirdButtonClicked(event);
     onFourthButtonClicked(event);
+    onCompareButtonClicked(event);
   }, false);
 
   var features = [
@@ -215,54 +234,54 @@
       label: 'Crowdsource Q&amp;A',
       desc: 'Let your audience submit questions and upvote the most relevant',
       plans: {
-        free: 'unlimited',
-        premium: 'unlimited',
-        enterprise: 'unlimited'
+        free: 'yes',
+        premium: 'yes',
+        enterprise: 'yes'
       }
     },
     {
       label: 'Polls',
       desc: 'Get a pulse of the room by running a Yes/No, Scale (1-5) or Multiple Choice poll',
       plans: {
-        free: 'unlimited',
-        premium: 'unlimited',
-        enterprise: 'unlimited'
+        free: 'yes',
+        premium: 'yes',
+        enterprise: 'yes'
       }
     },
     {
       label: 'Surveys',
       desc: 'Group several questions into a single POPin',
       plans: {
-        free: 'unlimited',
-        premium: 'unlimited',
-        enterprise: 'unlimited'
+        free: 'yes',
+        premium: 'yes',
+        enterprise: 'yes'
       }
     },
     {
       label: 'Brainstorm',
       desc: 'Live brainstorming gives every person in the room a voice',
       plans: {
-        free: 'unlimited',
-        premium: 'unlimited',
-        enterprise: 'unlimited'
+        free: 'yes',
+        premium: 'yes',
+        enterprise: 'yes'
       }
     },
     {
       label: 'Audience size',
       desc: 'No limits to how many people can contribute',
       plans: {
-        free: 'unlimited',
-        premium: 'unlimited',
-        enterprise: 'unlimited'
+        free: 'yes',
+        premium: 'yes',
+        enterprise: 'yes'
       }
     },
     {
       label: 'Responses limit',
       desc: 'No limit on number of responses people can submit',
       plans: {
-        free: 'unlimited',
-        premium: 'unlimited',
-        enterprise: 'unlimited'
+        free: 'yes',
+        premium: 'yes',
+        enterprise: 'yes'
       }
     },
     {
@@ -423,7 +442,7 @@
   ];
 
   var getItem = function getItem (f, section) {
-    var item = '<div class="plan-item" data-feature="' + f.label + '">';
+    var item = '<div class="plan-item ' + (section !== 'header' && f.plans && !f.plans[section] ? 'hide-mobile' : '' ) + '" data-feature="' + f.label + '">';
 
     if (f.heading) {
       if (section === 'header') {
@@ -460,7 +479,7 @@
     return item;
   };
 
-  var sections = [ "header", "premium", "enterprise" ];
+  var sections = [ "header", "free", "premium", "enterprise" ];
   for (var i = 0; i < sections.length; i++) {
     var section = document.getElementById(sections[i]);
     var items = '';
@@ -471,6 +490,7 @@
   }
 
 </script>
+
 </head>
 <body>
 <!-- Toggle -->
@@ -486,6 +506,67 @@
     <span class="toggle-plan-conference is-hidden">Use POPin at conferences FREE for presentations and conferences.</span>
   </div>
 </section>
+
+<section class="pricing-summary">
+  <div class="flex-container">
+      <div class="flex-item">
+        <ul class="package">
+          <li class="header">Basic</li>
+          <li class="gray"><strong>$0</strong></li>
+          <li>Crowdsource Q&amp;A</li>
+          <li>Polls</li>
+          <li>Survey</li>
+          <li>Brainstorm</li>
+          <li>Unlimited Response</li>
+          <li>3 POPins</li>
+          <li>Question Templates</li>
+          <li>Enterprise-grade Security</li>
+          <li class="footer">
+            <button disabled class="disabled">Current plan</button>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <ul class="package highlight">
+          <li class="header highlight">Premium</li>  
+          <li class="gray">
+            <strong>$19</strong><small>/ month</small>
+            <br>per creator
+          </li>
+          <li class="desc">All Basic plus:</li>
+          <li>Unlimited POPins</li>
+          <li>Restricted Access</li>
+          <li>Private Sessions</li>
+          <li>Moderation</li>
+          <li>Images &amp; Videos</li>
+          <li>PDFs</li>
+          <li>Data Export</li>
+          <li class="footer">
+            <button class="first-button">Upgrade</button>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <ul class="package secondary">
+          <li class="header">Enterprise</li>
+          <li class="gray">Contact us for pricing</li>
+          <li class="desc">All Premium plus:</li>
+          <li>Crowdsourcing in polls</li>
+          <li>Enterprise Dashboard</li>
+          <li>Deduplication</li>
+          <li>Results Theming</li>
+          <li>Sentiment Analysis</li>
+          <li>Segmentation</li>
+          <li>SSO and more</li>
+          <li class="footer">
+            <button class="subtle">Contact us</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+</section>
+
+<h2 id="compare" style="text-align: center; width: 100%;"><a class="compare-button">Compare Plans</a></h2>
 
 <!-- Monthly -->
 <section data-module="section-pricetable" class="section toggle-plan-monthly">
@@ -510,22 +591,23 @@
     </div>
 
     <!-- Free -->
-    <!-- <div class="pricing-plan">
+    <div class="pricing-plan">
       <div class="plan-header">Free</div>
       <div class="plan-price">
         <p class="plan-price-amount">
           <span class="plan-price-currency">$</span>0
           <span style="font-size:12px; font-weight:normal;"> / month</span>
         </p>
+        <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">&nbsp;</p>
       </div>
       <div class="plan-footer">
-        <div style="height: 2.25em;"></div>
+          <button class="button first-button" disabled>Current plan</button>
       </div>
       <div id="free" class="plan-items">
       </div>
       <div class="plan-footer">
       </div>
-    </div> -->
+    </div>
 
     <!-- Premium -->
     <div class="pricing-plan is-accent-teal-af is-active">
@@ -538,7 +620,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">Per creator</p>
       </div>
       <div class="plan-footer">
-        <button class="button first-button">Select</button>
+        <button class="button first-button">Upgrade</button>
       </div>
       <div id="premium" class="plan-items">
       </div>
@@ -582,156 +664,12 @@
       <div class="plan-footer">
         <button class="button is-invisible"></button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-          <span class="plan-title-info">Q&amp;A
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Gather questions / topics from your audience before or during your event
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Poll">
-          <span class="plan-title-info">Poll
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                No polls
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Moderation">
-          <span class="plan-title-info">Moderation<sup class="new">New</sup>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Question Library">
-          <span class="plan-title-info">Question library
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Browse from our pre-made POPin library questions
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Basic analytics">
-          <span class="plan-title-info">Basic analytics
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the results from your event
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Advanced analytics">
-          <span class="plan-title-info">Advanced analytics
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See what themes surfaced from the results
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Real time results">
-          <span class="plan-title-info">Real time results
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See your participant results collected in real-time
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Customize reports">
-          <span class="plan-title-info">Customize reports
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control what's visible in your report by toggling sections on / off
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Data exports">
-          <span class="plan-title-info">Data exports
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Export the results as a CSV or PDF
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Privacy settings">
-          <span class="plan-title-info">Privacy settings
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control who can access your event
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Enterprise Dashboard">
-          <span class="plan-title-info">Enterprise Dashboard
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the POPin usage in your organization
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Administrative controls">
-          <span class="plan-title-info">Administrative controls
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add and manage POPin administrators and creators in your organization
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Additional organizers">
-          <span class="plan-title-info">Additional organizers
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add organizers to your plan for an additional fee
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Single sign-on">
-          <span class="plan-title-info">Single sign-on
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Streamline the experience for your audience with single sign-on
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Guided onboarding">
-          <span class="plan-title-info">Guided onboarding
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Customer success manager">
-          <span class="plan-title-info">Customer success manager
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a dedicated Customer Success Manager for your account
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Live chat support">
-          <span class="plan-title-info">Live chat support
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Chat with our support team to get your questions answered
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item last-item" data-feature="Event participants">
-          <span class="plan-title-info">Event participants
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Max number of participants that can use POPin at your event
-              </span>
-            </span>
-          </span>
-        </div>
+      <div id="header-edu" class="plan-items">
       </div>
       <div class="plan-footer">
       </div>
     </div>
+
     <!-- FREE -->
     <div class="pricing-plan pricing-plan-free is-popin-blue-md">
       <div class="plan-header">Student</div>
@@ -743,174 +681,12 @@
       <div class="plan-footer">
         <button class="button first-button">Select</button>
       </div>
-      <div class="plan-items">
-          <div class="plan-item" data-feature="Q&A">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Gather questions / topics from your audience before or during your event
-                  </span>
-                </span>
-              </span>
-              5 per event
-            </div>
-            <div class="plan-item" data-feature="Poll">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                    No polls
-                  </span>
-                </span>
-              </span>
-              5 per event
-            </div>
-            <div class="plan-item" data-feature="Moderation">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Question Library">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Browse from our pre-made POPin library questions
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Basic analytics">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">View and analyze the results from your event
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Advanced analytics">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">See what themes surfaced from the results
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Real time results">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">See your participant results collected in real-time
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Customize reports">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Control what's visible in your report by toggling sections on / off
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Data exports">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Export the results as a CSV or PDF
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Privacy settings">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Control who can access your event
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Enterprise Dashboard">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">View and analyze the POPin usage in your organization
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Administrative controls">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Add and manage POPin administrators and creators in your organization
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Additional organizers">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Add organizers to your plan for an additional fee
-                  </span>
-                </span>
-              </span>
-              &nbsp;
-            </div>
-            <div class="plan-item" data-feature="Single sign-on">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Streamline the experience for your audience with single sign-on
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Guided onboarding">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Customer success manager">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Get a dedicated Customer Success Manager for your account
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Live chat support">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Chat with our support team to get your questions answered
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item last-item" data-feature="Event participants">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Max number of participants that can use POPin at your event
-                  </span>
-                </span>
-              </span>
-              up to 1000 / event
-            </div>
-          </div>
+      <div id="student-edu" class="plan-items">
+      </div>
       <div class="plan-footer">
       </div>
     </div>
+
     <!-- TEACHER -->
     <div class="pricing-plan is-popin-blue-af">
       <div class="plan-header">Teacher</div>
@@ -922,171 +698,8 @@
       <div class="plan-footer">
         <button class="button second-button">Select</button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Gather questions / topics from your audience before or during your event
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Poll">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                  No polls
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Moderation">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Question Library">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Browse from our pre-made POPin library questions
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Basic analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the results from your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Advanced analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See what themes surfaced from the results
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Real time results">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See your participant results collected in real-time
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customize reports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control what's visible in your report by toggling sections on / off
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Data exports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Export the results as a CSV or PDF
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Privacy settings">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control who can access your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the POPin usage in your organization
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Administrative controls">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add and manage POPin administrators and creators in your organization
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Additional organizers">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add organizers to your plan for an additional fee
-                </span>
-              </span>
-            </span>
-            free
-          </div>
-          <div class="plan-item" data-feature="Single sign-on">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Streamline the experience for your audience with single sign-on
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Guided onboarding">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customer success manager">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a dedicated Customer Success Manager for your account
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Live chat support">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Chat with our support team to get your questions answered
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item last-item" data-feature="Event participants">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Max number of participants that can use POPin at your event
-                </span>
-              </span>
-            </span>
-            up to 1000 / event
-          </div>
-        </div>
+      <div class="plan-items free">
+      </div>
       <div class="plan-footer">
       </div>
     </div>
@@ -1101,170 +714,7 @@
       <div class="plan-footer">
         <button class="button third-button">Select</button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Gather questions / topics from your audience before or during your event
-              </span>
-            </span>
-          </span>
-          unlimited
-        </div>
-        <div class="plan-item" data-feature="Poll">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                No polls
-              </span>
-            </span>
-          </span>
-          unlimited
-        </div>
-        <div class="plan-item" data-feature="Moderation">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Question Library">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Browse from our pre-made POPin library questions
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Basic analytics">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the results from your event
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Advanced analytics">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See what themes surfaced from the results
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Real time results">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See your participant results collected in real-time
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Customize reports">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control what's visible in your report by toggling sections on / off
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Data exports">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Export the results as a CSV or PDF
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Privacy settings">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control who can access your event
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Enterprise Dashboard">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the POPin usage in your organization
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Administrative controls">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add and manage POPin administrators and creators in your organization
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Additional organizers">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add organizers to your plan for an additional fee
-              </span>
-            </span>
-          </span>
-          free
-        </div>
-        <div class="plan-item" data-feature="Single sign-on">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Streamline the experience for your audience with single sign-on
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Guided onboarding">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Customer success manager">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a dedicated Customer Success Manager for your account
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Live chat support">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Chat with our support team to get your questions answered
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item last-item" data-feature="Event participants">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Max number of participants that can use POPin at your event
-              </span>
-            </span>
-          </span>
-          up to 1000 / event
-        </div>
+      <div class="plan-items premium">
       </div>
       <div class="plan-footer">
       </div>
@@ -1280,177 +730,15 @@
       <div class="plan-footer">
         <button class="button fourth-button">Contact Us</button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Gather questions / topics from your audience before or during your event
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Poll">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                  No polls
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Moderation">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Question Library">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Browse from our pre-made POPin library questions
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Basic analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the results from your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Advanced analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See what themes surfaced from the results
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Real time results">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See your participant results collected in real-time
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customize reports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control what's visible in your report by toggling sections on / off
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Data exports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Export the results as a CSV or PDF
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Privacy settings">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control who can access your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the POPin usage in your organization
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Administrative controls">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add and manage POPin administrators and creators in your organization
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Additional organizers">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add organizers to your plan for an additional fee
-                </span>
-              </span>
-            </span>
-            free
-          </div>
-          <div class="plan-item" data-feature="Single sign-on">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Streamline the experience for your audience with single sign-on
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Guided onboarding">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customer success manager">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a dedicated Customer Success Manager for your account
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Live chat support">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Chat with our support team to get your questions answered
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item last-item" data-feature="Event participants">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Max number of participants that can use POPin at your event
-                </span>
-              </span>
-            </span>
-            up to 5000 / event
-          </div>
-        </div>
+      <div class="plan-items enterprise">
+      </div>
       <div class="plan-footer">
       </div>
     </div>
   </div>
 
 </section>
+
 <!-- Conference -->
 <section data-module="section-pricetable" class="section toggle-plan-conference pricing-plan-free is-hidden">
   <div class="pricing-table is-comparative">
@@ -1466,334 +754,11 @@
         <button class="button is-invisible"></button>
       </div>
       <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-          <span class="plan-title-info">Q&amp;A
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Gather questions / topics from your audience before or during your event
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Poll">
-          <span class="plan-title-info">Poll
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                No polls
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Moderation">
-          <span class="plan-title-info">Moderation<sup class="new">New</sup>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Question Library">
-          <span class="plan-title-info">Question library
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Browse from our pre-made POPin library questions
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Basic analytics">
-          <span class="plan-title-info">Basic analytics
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the results from your event
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Advanced analytics">
-          <span class="plan-title-info">Advanced analytics
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See what themes surfaced from the results
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Real time results">
-          <span class="plan-title-info">Real time results
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See your participant results collected in real-time
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Customize reports">
-          <span class="plan-title-info">Customize reports
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control what's visible in your report by toggling sections on / off
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Data exports">
-          <span class="plan-title-info">Data exports
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Export the results as a CSV or PDF
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Privacy settings">
-          <span class="plan-title-info">Privacy settings
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control who can access your event
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Enterprise Dashboard">
-          <span class="plan-title-info">Enterprise Dashboard
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the POPin usage in your organization
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Administrative controls">
-          <span class="plan-title-info">Administrative controls
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add and manage POPin administrators and creators in your organization
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Additional organizers">
-          <span class="plan-title-info">Additional organizers
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add organizers to your plan for an additional fee
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Single sign-on">
-          <span class="plan-title-info">Single sign-on
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Streamline the experience for your audience with single sign-on
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Guided onboarding">
-          <span class="plan-title-info">Guided onboarding
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Customer success manager">
-          <span class="plan-title-info">Customer success manager
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a dedicated Customer Success Manager for your account
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item" data-feature="Live chat support">
-          <span class="plan-title-info">Live chat support
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Chat with our support team to get your questions answered
-              </span>
-            </span>
-          </span>
-        </div>
-        <div class="plan-item last-item" data-feature="Event participants">
-          <span class="plan-title-info">Event participants
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Max number of participants that can use POPin at your event
-              </span>
-            </span>
-          </span>
-        </div>
       </div>
       <div class="plan-footer">
       </div>
     </div>
-    <!-- FREE -->
-    <div class="pricing-plan pricing-plan-free is-popin-blue-md">
-      <div class="plan-header">Free</div>
-      <div class="plan-price">
-        <p class="plan-price-amount">
-          Free
-        </p>
-      </div>
-      <div class="plan-footer">
-        <button class="button first-button">Select</button>
-      </div>
-      <div class="plan-items">
-          <div class="plan-item" data-feature="Q&A">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Gather questions / topics from your audience before or during your event
-                  </span>
-                </span>
-              </span>
-              5 per event
-            </div>
-            <div class="plan-item" data-feature="Poll">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                    No polls
-                  </span>
-                </span>
-              </span>
-              5 per event
-            </div>
-            <div class="plan-item" data-feature="Moderation">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Question Library">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Browse from our pre-made POPin library questions
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Basic analytics">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">View and analyze the results from your event
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Advanced analytics">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">See what themes surfaced from the results
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Real time results">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">See your participant results collected in real-time
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Customize reports">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Control what's visible in your report by toggling sections on / off
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Data exports">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Export the results as a CSV or PDF
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Privacy settings">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Control who can access your event
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Enterprise Dashboard">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">View and analyze the POPin usage in your organization
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item is-hidden-touch" data-feature="Administrative controls">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Add and manage POPin administrators and creators in your organization
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Additional organizers">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Add organizers to your plan for an additional fee
-                  </span>
-                </span>
-              </span>
-              &nbsp;
-            </div>
-            <div class="plan-item" data-feature="Single sign-on">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Streamline the experience for your audience with single sign-on
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Guided onboarding">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Customer success manager">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Get a dedicated Customer Success Manager for your account
-                  </span>
-                </span>
-              </span>
-              <i class="is-hidden material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item" data-feature="Live chat support">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Chat with our support team to get your questions answered
-                  </span>
-                </span>
-              </span>
-              <i class="material-icons checked">check_circle</i>
-            </div>
-            <div class="plan-item last-item" data-feature="Event participants">
-              <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-                <span class="plan-icon-info material-icons">info_outline
-                  <span class="plan-info">Max number of participants that can use POPin at your event
-                  </span>
-                </span>
-              </span>
-              up to 1000 / event
-            </div>
-          </div>
-      <div class="plan-footer">
-      </div>
-    </div>
+
     <!-- Basic -->
     <div class="pricing-plan is-popin-blue-af">
       <div class="plan-header">Basic</div>
@@ -1805,171 +770,8 @@
       <div class="plan-footer">
         <button class="button second-button">Select</button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Gather questions / topics from your audience before or during your event
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Poll">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                  No polls
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Moderation">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Question Library">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Browse from our pre-made POPin library questions
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Basic analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the results from your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Advanced analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See what themes surfaced from the results
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Real time results">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See your participant results collected in real-time
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customize reports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control what's visible in your report by toggling sections on / off
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Data exports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Export the results as a CSV or PDF
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Privacy settings">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control who can access your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the POPin usage in your organization
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Administrative controls">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add and manage POPin administrators and creators in your organization
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Additional organizers">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add organizers to your plan for an additional fee
-                </span>
-              </span>
-            </span>
-            free
-          </div>
-          <div class="plan-item" data-feature="Single sign-on">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Streamline the experience for your audience with single sign-on
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Guided onboarding">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customer success manager">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a dedicated Customer Success Manager for your account
-                </span>
-              </span>
-            </span>
-            <i class="is-hidden material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Live chat support">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Chat with our support team to get your questions answered
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item last-item" data-feature="Event participants">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Max number of participants that can use POPin at your event
-                </span>
-              </span>
-            </span>
-            up to 1000 / event
-          </div>
-        </div>
+      <div class="plan-items free">
+      </div>
       <div class="plan-footer">
       </div>
     </div>
@@ -1984,170 +786,7 @@
       <div class="plan-footer">
         <button class="button third-button">Select</button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Gather questions / topics from your audience before or during your event
-              </span>
-            </span>
-          </span>
-          unlimited
-        </div>
-        <div class="plan-item" data-feature="Poll">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                No polls
-              </span>
-            </span>
-          </span>
-          unlimited
-        </div>
-        <div class="plan-item" data-feature="Moderation">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Question Library">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Browse from our pre-made POPin library questions
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Basic analytics">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the results from your event
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Advanced analytics">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See what themes surfaced from the results
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Real time results">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">See your participant results collected in real-time
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Customize reports">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control what's visible in your report by toggling sections on / off
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Data exports">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Export the results as a CSV or PDF
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Privacy settings">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Control who can access your event
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Enterprise Dashboard">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">View and analyze the POPin usage in your organization
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Administrative controls">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add and manage POPin administrators and creators in your organization
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Additional organizers">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Add organizers to your plan for an additional fee
-              </span>
-            </span>
-          </span>
-          free
-        </div>
-        <div class="plan-item" data-feature="Single sign-on">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Streamline the experience for your audience with single sign-on
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Guided onboarding">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Customer success manager">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Get a dedicated Customer Success Manager for your account
-              </span>
-            </span>
-          </span>
-          <i class="is-hidden material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item" data-feature="Live chat support">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Chat with our support team to get your questions answered
-              </span>
-            </span>
-          </span>
-          <i class="material-icons checked">check_circle</i>
-        </div>
-        <div class="plan-item last-item" data-feature="Event participants">
-          <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-            <span class="plan-icon-info material-icons">info_outline
-              <span class="plan-info">Max number of participants that can use POPin at your event
-              </span>
-            </span>
-          </span>
-          up to 1000 / event
-        </div>
+      <div class="plan-items premium">
       </div>
       <div class="plan-footer">
       </div>
@@ -2163,171 +802,8 @@
       <div class="plan-footer">
         <button class="button fourth-button">Contact Us</button>
       </div>
-      <div class="plan-items">
-        <div class="plan-item" data-feature="Q&A">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Q&amp;A</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Gather questions / topics from your audience before or during your event
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Poll">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Poll</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a pulse on your audience with Multiple Choice, Rating Scale (1-5), or Yes /
-                  No polls
-                </span>
-              </span>
-            </span>
-            unlimited
-          </div>
-          <div class="plan-item" data-feature="Moderation">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Moderation<sup class="new">New</sup></span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Allows creators to archive content that they want to remove in a POPin
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>            
-          <div class="plan-item" data-feature="Question Library">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Question library</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Browse from our pre-made POPin library questions
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Basic analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Basic analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the results from your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Advanced analytics">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Advanced analytics</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See what themes surfaced from the results
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Real time results">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Real time results</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">See your participant results collected in real-time
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customize reports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customize reports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control what's visible in your report by toggling sections on / off
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Data exports">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Data exports</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Export the results as a CSV or PDF
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Privacy settings">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Privacy settings</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Control who can access your event
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Enterprise Dashboard">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Enterprise Dashboard</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">View and analyze the POPin usage in your organization
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Administrative controls">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Administrative controls</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add and manage POPin administrators and creators in your organization
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Additional organizers">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Additional organizers</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Add organizers to your plan for an additional fee
-                </span>
-              </span>
-            </span>
-            free
-          </div>
-          <div class="plan-item" data-feature="Single sign-on">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Single sign-on</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Streamline the experience for your audience with single sign-on
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Guided onboarding">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Guided onboarding</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Partner with our Customer Success Team to ensure your rollout is a success
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Customer success manager">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Customer success manager</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Get a dedicated Customer Success Manager for your account
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item" data-feature="Live chat support">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Live chat support</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Chat with our support team to get your questions answered
-                </span>
-              </span>
-            </span>
-            <i class="material-icons checked">check_circle</i>
-          </div>
-          <div class="plan-item last-item" data-feature="Event participants">
-            <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">Event participants</span>
-              <span class="plan-icon-info material-icons">info_outline
-                <span class="plan-info">Max number of participants that can use POPin at your event
-                </span>
-              </span>
-            </span>
-            up to 5000 / event
-          </div>
-        </div>
+      <div class="plan-items enterprise">
+      </div>
       <div class="plan-footer">
       </div>
     </div>
