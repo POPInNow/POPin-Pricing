@@ -208,7 +208,9 @@
     // Don't follow the link if it has one
     event.preventDefault();
     var elmnt = document.getElementById("compare");
-    elmnt.scrollIntoView();
+    elmnt.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
 
   var onContactButtonClicked = function (event) {
@@ -217,7 +219,9 @@
     // Don't follow the link if it has one
     event.preventDefault();
     var elmnt = document.getElementById("compare");
-    elmnt.scrollIntoView();
+    elmnt.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
 
   document.addEventListener('click', function (event) {
