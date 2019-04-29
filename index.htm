@@ -63,9 +63,18 @@
     var priceplanMonthly = document.getElementsByClassName('toggle-plan-monthly');
     var priceplanEducation = document.getElementsByClassName('toggle-plan-education');
     var priceplanConference = document.getElementsByClassName('toggle-plan-conference');
+    var priceplanSummary = document.getElementsByClassName('pricing-summary');
+    var compare = document.getElementById('compare');
     var i = 0;
     for (i=0; i<2; i++) {
+      var summary = priceplanSummary[0];
       if (ToggleBtn === 'monthly') {
+        if (hasClass(summary, 'is-hidden')) {
+          removeClass(summary, 'is-hidden');
+        }
+        if (hasClass(compare, 'is-hidden')) {
+          removeClass(compare, 'is-hidden');
+        }
         // btn
         if (!hasClass(btnMonthly, 'is-active')) {
           addClass(btnMonthly, 'is-active');
@@ -80,6 +89,12 @@
         addClass(priceplanConference[i], 'is-hidden');
 
       } else if (ToggleBtn === 'education') {
+        if (!hasClass(summary, 'is-hidden')) {
+          addClass(summary, 'is-hidden');
+        }
+        if (!hasClass(compare, 'is-hidden')) {
+          addClass(compare, 'is-hidden');
+        }
         // btn
         removeClass(btnMonthly, 'is-active');
         if (!hasClass(btnEducation, 'is-active')) {
@@ -94,6 +109,12 @@
         addClass(priceplanConference[i], 'is-hidden');
 
       } else if (ToggleBtn === 'conference') {
+        if (!hasClass(summary, 'is-hidden')) {
+          addClass(summary, 'is-hidden');
+        }
+        if (!hasClass(compare, 'is-hidden')) {
+          addClass(compare, 'is-hidden');
+        }
         // btn
         removeClass(btnMonthly, 'is-active');
         removeClass(btnEducation, 'is-active');
@@ -737,7 +758,7 @@
         <li>PDFs</li>
         <li>Data Export</li>
         <li class="footer">
-          <button class="first-button">Upgrade</button>
+          <button class="second-button">Upgrade</button>
         </li>
       </ul>
     </div>
@@ -754,7 +775,7 @@
         <li>Segmentation</li>
         <li>SSO and more</li>
         <li class="footer">
-          <button class="subtle">Contact us</button>
+          <button class="subtle third-button">Contact us</button>
         </li>
       </ul>
     </div>
@@ -815,7 +836,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">Per creator</p>
       </div>
       <div class="plan-footer">
-        <button class="button first-button">Upgrade</button>
+        <button class="button second-button">Upgrade</button>
       </div>
       <div id="premium" class="plan-items">
       </div>
@@ -834,7 +855,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">&nbsp;</p>
       </div>
       <div class="plan-footer">
-        <button class="button second-button">Contact Us</button>
+        <button class="button third-button">Contact Us</button>
       </div>
       <div id="enterprise" class="plan-items">
       </div>
@@ -963,7 +984,7 @@
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button second-button">Select</button>
+        <button class="button first-button">Select</button>
       </div>
       <div id="basic-conf" class="plan-items free">
       </div>
@@ -979,7 +1000,7 @@
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button third-button">Select</button>
+        <button class="button second-button">Select</button>
       </div>
       <div id="presentation-conf" class="plan-items premium">
       </div>
@@ -995,7 +1016,7 @@
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button fourth-button">Contact Us</button>
+        <button class="button third-button">Contact Us</button>
       </div>
       <div id="keynote-conf" class="plan-items enterprise">
       </div>
