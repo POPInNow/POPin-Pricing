@@ -11,6 +11,7 @@
    *
    * window = {
    *   popinPricing = {
+  *      getPricingPlan = () => boolean
    *     onFirstButtonClicked = (isOneTime) => { ... }
    *     onSecondButtonClicked = (isOneTime) => { ... }
    *     onThirdButtonClicked = (isOneTime) => { ... }
@@ -49,6 +50,88 @@
     }
   }
 
+  function getPricingPlan () {
+    if (!!window.popinPricing && !!window.popinPricing.getPricingPlan) {
+      return window.popinPricing.getPricingPlan();
+    } else {
+      return null;
+    }
+  }
+
+  var modifyPageBasedOnCurrentPlan = function modifyPageBasedOnCurrentPlan () {
+    var setCurrent = function setCurrent (elem) {
+      elem.innerHTML = 'Current Plan';
+      elem.setAttribute('disabled', '');
+      if (hasClass(elem, 'first-button')) {
+        removeClass(elem, 'first-button');
+      }
+      if (!hasClass(elem, 'disabled')) {
+        addClass(elem, 'disabled');
+      }
+    };
+
+    var setClickable = function setClickable (elem, upgrade, addClasses) {
+      if (upgrade) {
+        elem.innerHTML = 'Upgrade';
+      } else {
+        elem.innerHTML = 'Free';
+      }
+
+      elem.removeAttribute('disabled');
+      if (hasClass(elem, 'disabled')) {
+        removeClass(elem, 'disabled');
+      }
+      if (!hasClass(elem, addClasses)) {
+        addClass(elem, addClasses);
+      }
+    }
+
+    var basicCurrent = function basicCurrent () {
+      // Set basic to current
+      var basic = document.getElementById('summary-free');
+      setCurrent(basic);
+    };
+
+    var basicFree = function basicFree () {
+      // Set basic to free
+      var basic = document.getElementById('summary-free');
+      var free = document.getElementById('free-button');
+      setClickable(basic, false, 'button');
+      setClickable(basic, false, 'first-button');
+      setClickable(free, false, 'first-button');
+    };
+
+    var monthlyCurrent = function monthlyCurrent () {
+      // Set monthly to upgrade
+      var monthlyButton = document.getElementById('summary-monthly');
+      var premium = document.getElementById('premium-button');
+      setCurrent(monthlyButton);
+      setCurrent(premium);
+    };
+
+    var monthlyUpgrade = function monthlyUpgrade () {
+      // Set monthly to upgrade
+      var monthlyButton = document.getElementById('summary-monthly');
+      setClickable(monthlyButton, true, 'second-button');
+    };
+
+    var plan = getPricingPlan();
+
+    // Marketing site does not define a plan
+    if (!plan) {
+      basicFree();
+      monthlyUpgrade();
+    } else {
+      if (plan === 'free') {
+        basicCurrent();
+        monthlyUpgrade();
+      } else {
+        // basic should hidden by the client in this context
+        monthlyCurrent();
+      }
+    }
+  }
+
   var onPlanToggleButtonClicked = function onPlanToggleButtonClicked (event) {
     var ToggleBtn = event.target.getAttribute('data-toggle');
     if (!MatchHandler(event.target,'.plan-toggle')) return;
@@ -63,9 +146,18 @@
     var priceplanMonthly = document.getElementsByClassName('toggle-plan-monthly');
     var priceplanEducation = document.getElementsByClassName('toggle-plan-education');
     var priceplanConference = document.getElementsByClassName('toggle-plan-conference');
+    var priceplanSummary = document.getElementsByClassName('pricing-summary');
+    var compare = document.getElementById('compare');
     var i = 0;
     for (i=0; i<2; i++) {
+      var summary = priceplanSummary[0];
       if (ToggleBtn === 'monthly') {
+        if (hasClass(summary, 'is-hidden')) {
+          removeClass(summary, 'is-hidden');
+        }
+        if (hasClass(compare, 'is-hidden')) {
+          removeClass(compare, 'is-hidden');
+        }
         // btn
         if (!hasClass(btnMonthly, 'is-active')) {
           addClass(btnMonthly, 'is-active');
@@ -80,6 +172,12 @@
         addClass(priceplanConference[i], 'is-hidden');
 
       } else if (ToggleBtn === 'education') {
+        if (!hasClass(summary, 'is-hidden')) {
+          addClass(summary, 'is-hidden');
+        }
+        if (!hasClass(compare, 'is-hidden')) {
+          addClass(compare, 'is-hidden');
+        }
         // btn
         removeClass(btnMonthly, 'is-active');
         if (!hasClass(btnEducation, 'is-active')) {
@@ -94,6 +192,12 @@
         addClass(priceplanConference[i], 'is-hidden');
 
       } else if (ToggleBtn === 'conference') {
+        if (!hasClass(summary, 'is-hidden')) {
+          addClass(summary, 'is-hidden');
+        }
+        if (!hasClass(compare, 'is-hidden')) {
+          addClass(compare, 'is-hidden');
+        }
         // btn
         removeClass(btnMonthly, 'is-active');
         removeClass(btnEducation, 'is-active');
@@ -111,6 +215,8 @@
         console.log('N/A');
       }
     }
+
+    modifyPageBasedOnCurrentPlan();
   };
 
   var hasPricePlan = function hasPricePlan () {
@@ -208,18 +314,11 @@
     // Don't follow the link if it has one
     event.preventDefault();
     var elmnt = document.getElementById("compare");
-    elmnt.scrollIntoView();
+    elmnt.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
 
-  var onContactButtonClicked = function (event) {
-    // If the clicked element doesn't have the right selector, bail
-    if (!MatchHandler(event.target,'.contact-button')) return;
-    // Don't follow the link if it has one
-    event.preventDefault();
-    var elmnt = document.getElementById("compare");
-    elmnt.scrollIntoView();
-  };
-  
   document.addEventListener('click', function (event) {
     onPlanToggleButtonClicked(event);
     onFirstButtonClicked(event);
@@ -234,6 +333,13 @@
       label: 'Crowdsource Q&amp;A',
       desc: 'Let your audience submit questions and upvote the most relevant',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -243,6 +349,13 @@
       label: 'Polls',
       desc: 'Get a pulse of the room by running a Yes/No, Scale (1-5) or Multiple Choice poll',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -252,6 +365,13 @@
       label: 'Surveys',
       desc: 'Group several questions into a single POPin',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -261,6 +381,13 @@
       label: 'Brainstorm',
       desc: 'Live brainstorming gives every person in the room a voice',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -270,6 +397,13 @@
       label: 'Audience size',
       desc: 'No limits to how many people can contribute',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -279,6 +413,13 @@
       label: 'Responses limit',
       desc: 'No limit on number of responses people can submit',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -291,6 +432,13 @@
     {
       label: 'Number of POPins',
       plans: {
+        'free-edu': 'unlimited',
+        'teacher-edu': 'unlimited',
+        'dept-edu': 'unlimited',
+        'institution-edu': 'unlimited',
+        'basic-conf': 'unlimited',
+        'presentation-conf': 'unlimited',
+        'keynote-conf': 'unlimited',
         free: '3',
         premium: 'unlimited',
         enterprise: 'unlimited'
@@ -300,6 +448,13 @@
       label: 'Question Templates / Library',
       desc: 'Pre-made questions to help you get started',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -309,6 +464,13 @@
       label: 'Images &amp; videos',
       desc: 'Attach images and videos to your question prompts',
       plans: {
+        'free-edu': 'unlimited',
+        'teacher-edu': 'unlimited',
+        'dept-edu': 'unlimited',
+        'institution-edu': 'unlimited',
+        'basic-conf': 'unlimited',
+        'presentation-conf': 'unlimited',
+        'keynote-conf': 'unlimited',
         premium: 'unlimited',
         enterprise: 'unlimited'
       }
@@ -317,6 +479,13 @@
       label: 'PDFs',
       desc: 'Attach a PDF to a question prompt',
       plans: {
+        'free-edu': 'unlimited',
+        'teacher-edu': 'unlimited',
+        'dept-edu': 'unlimited',
+        'institution-edu': 'unlimited',
+        'basic-conf': 'unlimited',
+        'presentation-conf': 'unlimited',
+        'keynote-conf': 'unlimited',
         premium: 'unlimited',
         enterprise: 'unlimited'
       }
@@ -325,6 +494,13 @@
       label: 'Moderation',
       desc: 'Moderate responses before they go live',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         premium: 'yes',
         enterprise: 'yes'
       }
@@ -333,6 +509,13 @@
       label: 'Crowdsourcing in Polls',
       desc: 'Allow commenting in polls.',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -340,6 +523,13 @@
       label: 'Enterprise Dashboard',
       desc: 'Get a bird\'s eye view of activity across your organization',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -347,6 +537,13 @@
       label: 'Admin Controls / Settings',
       desc: 'Set user permissions and other controls',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -358,6 +555,13 @@
       label: 'Data Export',
       desc: 'Export your results in a styled pdf or CSV export',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         premium: 'yes',
         enterprise: 'yes'
       }
@@ -366,6 +570,13 @@
       label: 'Customized Reports',
       desc: 'Create custom reports based on the information that is most relevant to you',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -373,6 +584,13 @@
       label: 'Results Theming',
       desc: 'Bucket responses into themes to help you process large numbers of responses',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -380,6 +598,13 @@
       label: 'Deduplication',
       desc: 'Reduce duplicate responses with our deduplication tool',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -387,6 +612,13 @@
       label: 'Sentiment Analysis',
       desc: 'Sentiment analysis powered by machine learning',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -394,6 +626,13 @@
       label: 'Segmentation',
       desc: 'Analyze results by department or subgroup',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -404,6 +643,13 @@
     {
       label: 'Standard enterprise-grade security',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
         enterprise: 'yes'
@@ -413,6 +659,13 @@
       label: 'Restricted Access',
       desc: 'Restrict access to your company domain',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         premium: 'yes',
         enterprise: 'yes'
       }
@@ -421,6 +674,13 @@
       label: 'Private Sessions',
       desc: 'Restrict access to a list of email addresses',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         premium: 'yes',
         enterprise: 'yes'
       }
@@ -429,6 +689,13 @@
       label: 'Delegate Users',
       desc: 'Grant others\' permission to post questions on your behalf',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     },
@@ -436,22 +703,31 @@
       label: 'Single Sign On',
       desc: 'Simplified sign in process using your existing email account',
       plans: {
+        'free-edu': 'yes',
+        'teacher-edu': 'yes',
+        'dept-edu': 'yes',
+        'institution-edu': 'yes',
+        'basic-conf': 'yes',
+        'presentation-conf': 'yes',
+        'keynote-conf': 'yes',
         enterprise: 'yes'
       }
     }
   ];
 
   var getItem = function getItem (f, section) {
-    var item = '<div class="plan-item ' + (section !== 'header' && f.plans && !f.plans[section] ? 'hide-mobile' : '' ) + '" data-feature="' + f.label + '">';
+    var isHeader = (section === 'header' || section === 'header-edu' || section === 'header-conf');
+    var isNotHeader = (section !== 'header' && section !== 'header-edu' && section !== 'header-conf');
+    var item = '<div class="plan-item ' + (isNotHeader && f.plans && !f.plans[section] ? 'hide-mobile' : '' ) + '" data-feature="' + f.label + '">';
 
     if (f.heading) {
-      if (section === 'header') {
+      if (isHeader) {
         item += '  <span class="plan-title-info"><strong>' + f.label + '</strong>';
       } else {
         item += '  <span class="plan-title-info">';
       }
     } else {
-      if (section === 'header') {
+      if (isHeader) {
         item += '  <span class="plan-title-info">' + f.label;
       } else {
         item += '  <span class="is-hidden-desktop plan-title-info"><span class="has-text-weight-bold">' + f.label +'</span>';
@@ -463,30 +739,46 @@
               '      <span class="plan-info">' + f.desc + '</span>' +
               '    </span>';
     }
-            
+
     item += '  </span>';
 
-    if (section !== 'header' && f.plans && f.plans[section]) {
+    if (isNotHeader && f.plans && f.plans[section]) {
       if (f.plans[section] === 'yes') {
         item += '<i class="material-icons checked">check_circle</i>';
       } else {
         item += f.plans[section];
       }
     }
-    
+
     item += '</div>';
 
     return item;
   };
 
-  var sections = [ "header", "free", "premium", "enterprise" ];
-  for (var i = 0; i < sections.length; i++) {
-    var section = document.getElementById(sections[i]);
-    var items = '';
-    for (var j = 0; j < features.length; j++) {
-      items += getItem(features[j], sections[i]);
+  var loadSections = function loadSections () {
+    var sections = [ "header", "free", "premium", "enterprise", "header-edu", "free-edu", "teacher-edu", "dept-edu", "institution-edu", "header-conf", "basic-conf", "presentation-conf", "keynote-conf" ];
+    var i = 0;
+    for (i = 0; i < sections.length; i++) {
+      var section = document.getElementById(sections[i]);
+      if (section != null) {
+        var items = '';
+        var j = 0;
+        for (j = 0; j < features.length; j++) {
+          items += getItem(features[j], sections[i]);
+        }
+        section.innerHTML = items;
+      }
     }
-    section.innerHTML = items;
+
+    modifyPageBasedOnCurrentPlan();
+  };
+
+  if (document.readyState === 'complete') {
+    loadSections();
+  } else {
+    window.addEventListener('load', function () {
+      loadSections();
+    });
   }
 
 </script>
@@ -509,61 +801,61 @@
 
 <section class="pricing-summary">
   <div class="flex-container">
-      <div class="flex-item">
-        <ul class="package">
-          <li class="header">Basic</li>
-          <li class="gray"><strong>$0</strong></li>
-          <li>Crowdsource Q&amp;A</li>
-          <li>Polls</li>
-          <li>Survey</li>
-          <li>Brainstorm</li>
-          <li>Unlimited Response</li>
-          <li>3 POPins</li>
-          <li>Question Templates</li>
-          <li>Enterprise-grade Security</li>
-          <li class="footer">
-            <button disabled class="disabled">Current plan</button>
-          </li>
-        </ul>
-      </div>
-      <div class="flex-item">
-        <ul class="package highlight">
-          <li class="header highlight">Premium</li>  
-          <li class="gray">
-            <strong>$19</strong><small>/ month</small>
-            <br>per creator
-          </li>
-          <li class="desc">All Basic plus:</li>
-          <li>Unlimited POPins</li>
-          <li>Restricted Access</li>
-          <li>Private Sessions</li>
-          <li>Moderation</li>
-          <li>Images &amp; Videos</li>
-          <li>PDFs</li>
-          <li>Data Export</li>
-          <li class="footer">
-            <button class="first-button">Upgrade</button>
-          </li>
-        </ul>
-      </div>
-      <div class="flex-item">
-        <ul class="package secondary">
-          <li class="header">Enterprise</li>
-          <li class="gray">Contact us for pricing</li>
-          <li class="desc">All Premium plus:</li>
-          <li>Crowdsourcing in polls</li>
-          <li>Enterprise Dashboard</li>
-          <li>Deduplication</li>
-          <li>Results Theming</li>
-          <li>Sentiment Analysis</li>
-          <li>Segmentation</li>
-          <li>SSO and more</li>
-          <li class="footer">
-            <button class="subtle">Contact us</button>
-          </li>
-        </ul>
-      </div>
+    <div class="flex-item pricing-plan-free">
+      <ul class="package">
+        <li class="header">Basic</li>
+        <li class="gray"><strong>$0</strong></li>
+        <li>Crowdsource Q&amp;A</li>
+        <li>Polls</li>
+        <li>Survey</li>
+        <li>Brainstorm</li>
+        <li>Unlimited Response</li>
+        <li>3 POPins</li>
+        <li>Question Templates</li>
+        <li>Enterprise-grade Security</li>
+        <li class="footer">
+          <button id="summary-free" disabled class="disabled">Current plan</button>
+        </li>
+      </ul>
     </div>
+    <div class="flex-item">
+      <ul class="package highlight">
+        <li class="header highlight">Premium</li>
+        <li class="gray">
+          <strong>$19</strong><small>/ month</small>
+          <br>per creator
+        </li>
+        <li class="desc">All Basic plus:</li>
+        <li>Unlimited POPins</li>
+        <li>Restricted Access</li>
+        <li>Private Sessions</li>
+        <li>Moderation</li>
+        <li>Images &amp; Videos</li>
+        <li>PDFs</li>
+        <li>Data Export</li>
+        <li class="footer">
+          <button id="summary-monthly" class="second-button">Upgrade</button>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-item">
+      <ul class="package secondary">
+        <li class="header">Enterprise</li>
+        <li class="gray">Contact us for pricing</li>
+        <li class="desc">All Premium plus:</li>
+        <li>Crowdsourcing in polls</li>
+        <li>Enterprise Dashboard</li>
+        <li>Deduplication</li>
+        <li>Results Theming</li>
+        <li>Sentiment Analysis</li>
+        <li>Segmentation</li>
+        <li>SSO and more</li>
+        <li class="footer">
+          <button class="subtle third-button">Contact us</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <h2 id="compare" style="text-align: center; width: 100%;"><a class="compare-button">Compare Plans</a></h2>
@@ -571,7 +863,7 @@
 <!-- Monthly -->
 <section data-module="section-pricetable" class="section toggle-plan-monthly">
   <div class="pricing-table is-comparative">
-    
+
     <!-- FEATURES -->
     <div class="pricing-plan is-features">
       <div class="plan-header">&nbsp;</div>
@@ -591,7 +883,7 @@
     </div>
 
     <!-- Free -->
-    <div class="pricing-plan">
+    <div class="pricing-plan pricing-plan-free">
       <div class="plan-header">Free</div>
       <div class="plan-price">
         <p class="plan-price-amount">
@@ -601,7 +893,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">&nbsp;</p>
       </div>
       <div class="plan-footer">
-          <button class="button first-button" disabled>Current plan</button>
+          <button id="free-button" class="button first-button" disabled>Current plan</button>
       </div>
       <div id="free" class="plan-items">
       </div>
@@ -620,7 +912,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">Per creator</p>
       </div>
       <div class="plan-footer">
-        <button class="button first-button">Upgrade</button>
+        <button id="premium-button" class="button second-button">Upgrade</button>
       </div>
       <div id="premium" class="plan-items">
       </div>
@@ -639,7 +931,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">&nbsp;</p>
       </div>
       <div class="plan-footer">
-        <button class="button second-button">Contact Us</button>
+        <button class="button third-button">Contact Us</button>
       </div>
       <div id="enterprise" class="plan-items">
       </div>
@@ -681,7 +973,7 @@
       <div class="plan-footer">
         <button class="button first-button">Select</button>
       </div>
-      <div id="student-edu" class="plan-items">
+      <div id="free-edu" class="plan-items">
       </div>
       <div class="plan-footer">
       </div>
@@ -698,7 +990,7 @@
       <div class="plan-footer">
         <button class="button second-button">Select</button>
       </div>
-      <div class="plan-items free">
+      <div id="teacher-edu" class="plan-items free">
       </div>
       <div class="plan-footer">
       </div>
@@ -714,7 +1006,7 @@
       <div class="plan-footer">
         <button class="button third-button">Select</button>
       </div>
-      <div class="plan-items premium">
+      <div id="dept-edu" class="plan-items premium">
       </div>
       <div class="plan-footer">
       </div>
@@ -730,13 +1022,13 @@
       <div class="plan-footer">
         <button class="button fourth-button">Contact Us</button>
       </div>
-      <div class="plan-items enterprise">
+      <div id="institution-edu" class="plan-items enterprise">
       </div>
       <div class="plan-footer">
       </div>
     </div>
-  </div>
 
+  </div>
 </section>
 
 <!-- Conference -->
@@ -753,7 +1045,7 @@
       <div class="plan-footer">
         <button class="button is-invisible"></button>
       </div>
-      <div class="plan-items">
+      <div id="header-conf" class="plan-items">
       </div>
       <div class="plan-footer">
       </div>
@@ -768,9 +1060,9 @@
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button second-button">Select</button>
+        <button class="button first-button">Select</button>
       </div>
-      <div class="plan-items free">
+      <div id="basic-conf" class="plan-items free">
       </div>
       <div class="plan-footer">
       </div>
@@ -784,9 +1076,9 @@
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button third-button">Select</button>
+        <button class="button second-button">Select</button>
       </div>
-      <div class="plan-items premium">
+      <div id="presentation-conf" class="plan-items premium">
       </div>
       <div class="plan-footer">
       </div>
@@ -800,14 +1092,14 @@
         </p>
       </div>
       <div class="plan-footer">
-        <button class="button fourth-button">Contact Us</button>
+        <button class="button third-button">Contact Us</button>
       </div>
-      <div class="plan-items enterprise">
+      <div id="keynote-conf" class="plan-items enterprise">
       </div>
       <div class="plan-footer">
       </div>
     </div>
-  </div>
 
+  </div>
 </section>
 <!-- </div> -->

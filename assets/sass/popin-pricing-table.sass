@@ -1,6 +1,12 @@
 $pricing-plan-active-transform: scale(1)
 $pricing-item-border: 2px solid $mono-gray-1
 
+#header-edu
+  margin-top: 10px;
+
+#header-conf
+  margin-top: 10px;
+
 .plan-toggle-container
   display: inline-block
   border: 1px solid $mono-gray-1
@@ -30,6 +36,10 @@ $pricing-item-border: 2px solid $mono-gray-1
   background: #ffffff
   &.is-comparative
     .pricing-plan
+
+      // layout is funky on instapage, apply margin-top here and replace it in webapp where stuff works.
+      margin-top: 10px;
+
       position: relative
       border: $pricing-item-border
       &:last-of-type
@@ -45,6 +55,10 @@ $pricing-item-border: 2px solid $mono-gray-1
         min-width: min-content
         max-width: max-content
         z-index: 2
+
+        // layout is funky on instapage, apply margin-top here and replace it in webapp where stuff works.
+        margin-top: 0px;
+
         &:hover
           transform: none
           border-left: none
@@ -70,7 +84,10 @@ $pricing-item-border: 2px solid $mono-gray-1
         box-shadow: none !important
         border-left-width: 2px !important
         border-right-width: 2px !important
-        margin-top: -30px
+
+        // layout is funky on instapage, apply margin-top here abd replace it in webapp where stuff works.
+        margin-top: -20px
+
         padding-top: 30px
         &:hover
           transform: $pricing-plan-active-transform !important
@@ -85,6 +102,9 @@ $pricing-item-border: 2px solid $mono-gray-1
         
 
   .pricing-plan
+    // layout is funky on instapage, apply margin-top here and replace it in webapp where stuff works.
+    margin-top: 10px;
+
     border: 1px solid $mono-gray-1
     background: #ffffff
     border-radius: 0
