@@ -11,6 +11,7 @@
    *
    * window = {
    *   popinPricing = {
+  *      getPricingPlan = () => boolean
    *     onFirstButtonClicked = (isOneTime) => { ... }
    *     onSecondButtonClicked = (isOneTime) => { ... }
    *     onThirdButtonClicked = (isOneTime) => { ... }
@@ -46,6 +47,87 @@
     if (hasClass(ele,cls)) {
       var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
       ele.className=ele.className.replace(reg,' ');
+    }
+  }
+
+  function getPricingPlan () {
+    if (!!window.popinPricing && !!window.popinPricing.getPricingPlan) {
+      return window.popinPricing.getPricingPlan();
+    } else {
+      return null;
+    }
+  }
+
+  var modifyPageBasedOnCurrentPlan = function modifyPageBasedOnCurrentPlan () {
+    var setCurrent = function setCurrent (elem) {
+      elem.innerHTML = 'Current Plan';
+      elem.setAttribute('disabled', '');
+      if (hasClass(elem, 'first-button')) {
+        removeClass(elem, 'first-button');
+      }
+      if (!hasClass(elem, 'disabled')) {
+        addClass(elem, 'disabled');
+      }
+    };
+
+    var setClickable = function setClickable (elem, upgrade, addClasses) {
+      if (upgrade) {
+        elem.innerHTML = 'Upgrade';
+      } else {
+        elem.innerHTML = 'Free';
+      }
+
+      elem.removeAttribute('disabled');
+      if (hasClass(elem, 'disabled')) {
+        removeClass(elem, 'disabled');
+      }
+      if (!hasClass(elem, addClasses)) {
+        addClass(elem, addClasses);
+      }
+    }
+
+    var basicCurrent = function basicCurrent () {
+      // Set basic to current
+      var basic = document.getElementById('summary-free');
+      setCurrent(basic);
+    };
+
+    var basicFree = function basicFree () {
+      // Set basic to free
+      var basic = document.getElementById('summary-free');
+      var free = document.getElementById('free-button');
+      setClickable(basic, false, 'first-button');
+      setClickable(free, false, 'first-button');
+    };
+
+    var monthlyCurrent = function monthlyCurrent () {
+      // Set monthly to upgrade
+      var monthlyButton = document.getElementById('summary-monthly');
+      var premium = document.getElementById('premium-button');
+      setCurrent(monthlyButton);
+      setCurrent(premium);
+    };
+
+    var monthlyUpgrade = function monthlyUpgrade () {
+      // Set monthly to upgrade
+      var monthlyButton = document.getElementById('summary-monthly');
+      setClickable(monthlyButton, true, 'second-button');
+    };
+
+    var plan = getPricingPlan();
+
+    // Marketing site does not define a plan
+    if (!plan) {
+      basicFree();
+      monthlyUpgrade();
+    } else {
+      if (plan === 'free') {
+        basicCurrent();
+        monthlyUpgrade();
+      } else {
+        // basic should hidden by the client in this context
+        monthlyCurrent();
+      }
     }
   }
 
@@ -132,6 +214,8 @@
         console.log('N/A');
       }
     }
+
+    modifyPageBasedOnCurrentPlan();
   };
 
   var hasPricePlan = function hasPricePlan () {
@@ -226,17 +310,6 @@
   var onCompareButtonClicked = function (event) {
     // If the clicked element doesn't have the right selector, bail
     if (!MatchHandler(event.target,'.compare-button')) return;
-    // Don't follow the link if it has one
-    event.preventDefault();
-    var elmnt = document.getElementById("compare");
-    elmnt.scrollIntoView({
-      behavior: 'smooth'
-    });
-  };
-
-  var onContactButtonClicked = function (event) {
-    // If the clicked element doesn't have the right selector, bail
-    if (!MatchHandler(event.target,'.contact-button')) return;
     // Don't follow the link if it has one
     event.preventDefault();
     var elmnt = document.getElementById("compare");
@@ -695,6 +768,8 @@
         section.innerHTML = items;
       }
     }
+
+    modifyPageBasedOnCurrentPlan();
   };
 
   if (document.readyState === 'complete') {
@@ -738,7 +813,7 @@
         <li>Question Templates</li>
         <li>Enterprise-grade Security</li>
         <li class="footer">
-          <button disabled class="disabled">Current plan</button>
+          <button id="summary-free" disabled class="disabled">Current plan</button>
         </li>
       </ul>
     </div>
@@ -758,7 +833,7 @@
         <li>PDFs</li>
         <li>Data Export</li>
         <li class="footer">
-          <button class="second-button">Upgrade</button>
+          <button id="summary-monthly" class="second-button">Upgrade</button>
         </li>
       </ul>
     </div>
@@ -817,7 +892,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">&nbsp;</p>
       </div>
       <div class="plan-footer">
-          <button class="button first-button" disabled>Current plan</button>
+          <button id="free-button" class="button first-button" disabled>Current plan</button>
       </div>
       <div id="free" class="plan-items">
       </div>
@@ -836,7 +911,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">Per creator</p>
       </div>
       <div class="plan-footer">
-        <button class="button second-button">Upgrade</button>
+        <button id="premium-button" class="button second-button">Upgrade</button>
       </div>
       <div id="premium" class="plan-items">
       </div>
