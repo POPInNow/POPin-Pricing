@@ -96,6 +96,7 @@
       // Set basic to free
       var basic = document.getElementById('summary-free');
       var free = document.getElementById('free-button');
+      setClickable(basic, false, 'button');
       setClickable(basic, false, 'first-button');
       setClickable(free, false, 'first-button');
     };
@@ -800,7 +801,7 @@
 
 <section class="pricing-summary">
   <div class="flex-container">
-    <div class="flex-item">
+    <div class="flex-item pricing-plan-free">
       <ul class="package">
         <li class="header">Basic</li>
         <li class="gray"><strong>$0</strong></li>
