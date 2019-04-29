@@ -9,8 +9,7 @@ var paramAdGclid = getUrlParameter('gclid') || 'none';
 var pp = {
   env: 'app',
   payment: {
-    oneTime: ['trial', 'one_time_signature', 'one_time_premium'],
-    annual: ['trial', 'annual_dept', 'annual_corp', 'annual_ela'],
+    monthly: ['free', 'monthly_premium', 'enterprise'],
     education: ['trial', 'edu_teacher', 'edu_department', 'edu_institution'],
     conference: ['trial', 'conf_basic', 'conf_presentation', 'conf_keynote']
   },
@@ -26,10 +25,8 @@ var pp = {
 
 window.popinPricing = {
   onFirstButtonClicked: function (hasPricePlan) {
-    if (hasPricePlan === 'one-time') {
-      pricePlanHandler(pp.payment.oneTime[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
-    } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
+    if (hasPricePlan === 'monthly') {
+      pricePlanHandler(pp.payment.monthly[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'conference') {
@@ -38,10 +35,8 @@ window.popinPricing = {
   },
 
   onSecondButtonClicked: function (hasPricePlan) {
-    if (hasPricePlan === 'one-time') {
-      pricePlanHandler(pp.payment.oneTime[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
-    } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
+    if (hasPricePlan === 'monthly') {
+      pricePlanHandler(pp.payment.monthly[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'conference') {
@@ -50,10 +45,8 @@ window.popinPricing = {
   },
 
   onThirdButtonClicked: function (hasPricePlan) {
-    if (hasPricePlan === 'one-time') {
-      pricePlanHandler(pp.payment.oneTime[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
-    } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
+    if (hasPricePlan === 'monthly') {
+      pricePlanHandler(pp.payment.monthly[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'conference') {
@@ -62,11 +55,7 @@ window.popinPricing = {
   },
 
   onFourthButtonClicked: function (hasPricePlan) {
-    if (hasPricePlan === 'one-time') {
-      console.log('N/A');
-    } else if (hasPricePlan === 'annual') {
-      pricePlanHandler(pp.payment.annual[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
-    } else if (hasPricePlan === 'education') {
+    if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
     } else if (hasPricePlan === 'conference') {
       pricePlanHandler(pp.payment.conference[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, 'conference');
