@@ -10,8 +10,8 @@ var pp = {
   env: 'app',
   payment: {
     monthly: ['free', 'monthly_premium', 'enterprise'],
-    education: ['edu_free', 'edu_teacher', 'edu_department', 'edu_institution'],
-    conference: ['conf_basic', 'conf_presentation', 'conf_keynote']
+    education: ['edu_free', 'edu_free', 'edu_free', 'edu_free'],
+    conference: ['conf_free', 'conf_free', 'conf_free']
   },
   campaign: 'live',
   target: 'dashboard',
