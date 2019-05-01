@@ -9,7 +9,7 @@ var paramAdGclid = getUrlParameter('gclid') || 'none';
 var pp = {
   env: 'app',
   payment: {
-    monthly: ['free', 'monthly_premium', 'enterprise'],
+    monthly: ['free', 'premium_monthly', 'enterprise'],
     education: ['edu_free', 'edu_free', 'edu_free', 'edu_free'],
     conference: ['conf_free', 'conf_free', 'conf_free']
   },
