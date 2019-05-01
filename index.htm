@@ -86,10 +86,30 @@
       }
     }
 
+    var setPurchased = function setPurchased (elem) {
+      elem.innerHTML = 'Activated';
+
+      elem.setAttribute('disabled', '');
+      if (!hasClass(elem, 'disabled')) {
+        addClass(elem, 'disabled');
+      }
+      if (!hasClass(elem, 'button')) {
+        addClass(elem, 'button');
+      }
+    }
+
     var basicCurrent = function basicCurrent () {
       // Set basic to current
       var basic = document.getElementById('summary-free');
       setCurrent(basic);
+    };
+
+    var basicPurchased = function basicFree () {
+      // Set basic to free
+      var basic = document.getElementById('summary-free');
+      var free = document.getElementById('free-button');
+      setPurchased(basic);
+      setPurchased(free);
     };
 
     var basicFree = function basicFree () {
@@ -102,7 +122,7 @@
     };
 
     var monthlyCurrent = function monthlyCurrent () {
-      // Set monthly to upgrade
+      // Set monthly to current
       var monthlyButton = document.getElementById('summary-monthly');
       var premium = document.getElementById('premium-button');
       setCurrent(monthlyButton);
@@ -126,7 +146,7 @@
         basicCurrent();
         monthlyUpgrade();
       } else {
-        // basic should hidden by the client in this context
+        basicPurchased();
         monthlyCurrent();
       }
     }
