@@ -28,7 +28,7 @@ window.popinPricing = {
     if (hasPricePlan === 'monthly') {
       pricePlanHandler(pp.payment.monthly[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
+      pricePlanHandler(pp.payment.education[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'Student');
     } else if (hasPricePlan === 'conference') {
       pricePlanHandler(pp.payment.conference[0], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'conference');
     }
@@ -38,7 +38,7 @@ window.popinPricing = {
     if (hasPricePlan === 'monthly') {
       pricePlanHandler(pp.payment.monthly[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
+      pricePlanHandler(pp.payment.education[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'Teacher');
     } else if (hasPricePlan === 'conference') {
       pricePlanHandler(pp.payment.conference[1], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'conference');
     }
@@ -48,7 +48,7 @@ window.popinPricing = {
     if (hasPricePlan === 'monthly') {
       pricePlanHandler(pp.payment.monthly[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
     } else if (hasPricePlan === 'education') {
-      pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
+      pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'Administrator');
     } else if (hasPricePlan === 'conference') {
       pricePlanHandler(pp.payment.conference[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, 'conference');
     }
