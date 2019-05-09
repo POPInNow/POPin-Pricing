@@ -1,8 +1,6 @@
-<!--
 <script src="./assets/js/instapage.snippet.js"></script>
 <link rel="stylesheet" id="style-css" href="./dist/popin_styles.css" type="text/css" media="all">
 <meta name="google-site-verification" content="QS5igQ_wfMVv9wkVRyzzUxO2E_kuQZXAH42zZ1rc14o" />
--->
 
 <!-- Global -->
 <script>
@@ -809,8 +807,11 @@
         <li>Images &amp; Videos</li>
         <li>PDFs</li>
         <li>Data Export</li>
-        <li class="footer">
-          <button id="summary-monthly" class="second-button">Upgrade</button>
+        <li class="footer" style="display: flex; flex-direction: column;">
+          <div>
+            <button id="summary-monthly" class="second-button">Upgrade</button>
+          </div>
+          <span style="text-align: center; margin-top: 1rem; margin-bottom: 1rem;">Cancel anytime.</span>
         </li>
       </ul>
     </div>
@@ -879,7 +880,7 @@
 
     <!-- Premium -->
     <div class="pricing-plan is-accent-teal-af is-active">
-      <div class="plan-header">Premium</div>
+      <div class="plan-header" style="padding-top: 0;">Premium</div>
       <div class="plan-price">
         <p class="plan-price-amount">
           <span class="plan-price-currency">$</span>19
@@ -887,8 +888,11 @@
         </p>
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">Per creator</p>
       </div>
-      <div class="plan-footer">
-        <button id="premium-button" class="button second-button">Upgrade</button>
+      <div class="plan-footer" style="display: flex; flex-direction: column; padding-bottom: 0;">
+        <div>
+          <button id="premium-button" class="button second-button">Upgrade</button>
+        </div>
+        <span style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">Cancel anytime.</span>
       </div>
       <div id="premium" class="plan-items">
       </div>
@@ -973,15 +977,18 @@
     </div>
 
     <div class="pricing-plan is-accent-teal-af is-active">
-      <div class="plan-header">Administrator</div>
+      <div class="plan-header" style="padding-top: 0;">Administrator</div>
       <div class="plan-price">
         <p class="plan-price-amount">
           <span class="plan-price-currency">$</span>19
           <span style="font-size:12px; font-weight:normal;"> / month</span>
         </p>
       </div>
-      <div class="plan-footer">
-        <button class="button third-button">Select</button>
+      <div class="plan-footer" style="display: flex; flex-direction: column; padding-bottom: 0;">
+        <div>
+          <button class="button third-button">Select</button>
+        </div>
+        <span style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">Cancel anytime.</span>
       </div>
       <div id="dept-edu" class="plan-items premium">
       </div>
