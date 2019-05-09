@@ -7,6 +7,9 @@ $pricing-item-border: 2px solid $mono-gray-1
 #header-conf
   margin-top: 40px;
 
+#header
+  margin-top: 40px;
+
 .plan-toggle-container
   display: inline-block
   border: 1px solid $mono-gray-1
@@ -99,7 +102,7 @@ $pricing-item-border: 2px solid $mono-gray-1
           border-color: $accent-teal-af
         +touch
           margin: 0
-        
+
 
   .pricing-plan
     // layout is funky on instapage, apply margin-top here and replace it in webapp where stuff works.
@@ -134,7 +137,7 @@ $pricing-item-border: 2px solid $mono-gray-1
       // Plan Header
       &:first-child
         padding-top: 20px
-      // Select Button  
+      // Select Button
       &:nth-child(3)
         padding-bottom: 20px
       .special
@@ -171,14 +174,14 @@ $pricing-item-border: 2px solid $mono-gray-1
 
         .plan-icon-info
           display: inline-block
-          position: relative 
+          position: relative
           color: $mono-gray-3
           font-size: 16px
           line-height: 16px
           cursor: help
           white-space: unset
           font-weight: bold
-            
+
           .plan-info
             display: none
             font-family: 'Open Sans', Arial, Helvetica, sans-serif
@@ -195,12 +198,12 @@ $pricing-item-border: 2px solid $mono-gray-1
             font-size: 12px
             line-height: 14px
             z-index: 2
-            
+
           &:hover
             .plan-info
               display: inline-block
               transition: opacity .25s ease-in-out
-            
+
               &:before
                 content: ''
                 display: inline-block
@@ -208,11 +211,11 @@ $pricing-item-border: 2px solid $mono-gray-1
                 left: -10px
                 top: 50%
                 transform: translateY(-50%)
-                width: 0 
+                width: 0
                 height: 0
                 border-top: 10px solid transparent
-                border-bottom: 10px solid transparent            
-                border-right: 10px solid rgba(0,0,0,0.85) 
+                border-bottom: 10px solid transparent
+                border-right: 10px solid rgba(0,0,0,0.85)
 
 
     .plan-price
@@ -237,9 +240,9 @@ $pricing-item-border: 2px solid $mono-gray-1
       max-width: max-content
       margin-left: auto !important
       margin-right: auto !important
-    
+
       &:not(:first-child)
-        margin-top: 30px 
+        margin-top: 30px
       &:not(:last-child)
         margin-bottom: 30px
       &:not(.is-active)
@@ -258,8 +261,8 @@ $pricing-item-border: 2px solid $mono-gray-1
             content: '';
           &.hide-mobile
             display: none
-      
-      
+
+
 
 .plan-toggle
   cursor: pointer
