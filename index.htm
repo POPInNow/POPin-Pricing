@@ -113,7 +113,9 @@
         for (i = 0; i < premiumDivs.length; ++i) {
           premium = premiumDivs[i];
           if (!!premium) {
-            premium.innerHTML = isFive() ? '$5' : '$19';
+            premium.innerHTML = isFive()
+              ? '<small class="discount-strikethrough" style="color: #CC1F1F; font-size: 1rem;">$19</small>  $5'
+              : '$19';
           }
         }
       }

@@ -10,6 +10,19 @@ $pricing-item-border: 2px solid $mono-gray-1
 #header
   margin-top: 40px;
 
+.discount-strikethrough
+  position: relative
+
+.discount-strikethrough:before
+  position: absolute
+  content: ""
+  left: 0
+  top: 50%
+  right: 0
+  border-top: 2px solid
+  border-color: inherit
+  transform: rotate(-10deg)
+
 .plan-toggle-container
   display: inline-block
   border: 1px solid $mono-gray-1
