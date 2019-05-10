@@ -60,7 +60,7 @@
     if (!!window.popinPricing && !!window.popinPricing.isFive) {
       return window.popinPricing.isFive();
     } else {
-      return false;
+      return true;
     }
   }
 
@@ -114,7 +114,7 @@
           premium = premiumDivs[i];
           if (!!premium) {
             premium.innerHTML = isFive()
-              ? '<small class="discount-strikethrough" style="color: #CC1F1F; font-size: 1rem;">$19</small>  $5'
+              ? '<small class="discount-strikethrough" style="font-size: 1.0rem !important;">$19</small>  $5'
               : '$19';
           }
         }
