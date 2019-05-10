@@ -1,6 +1,6 @@
-<script src="./assets/js/instapage.snippet.js"></script>
-<link rel="stylesheet" id="style-css" href="./dist/popin_styles.css" type="text/css" media="all">
-<meta name="google-site-verification" content="QS5igQ_wfMVv9wkVRyzzUxO2E_kuQZXAH42zZ1rc14o" />
+<!-- <script src="./assets/js/instapage.snippet.js"></script> -->
+<!-- <link rel="stylesheet" id="style-css" href="./dist/popin_styles.css" type="text/css" media="all"> -->
+<!-- <meta name="google-site-verification" content="QS5igQ_wfMVv9wkVRyzzUxO2E_kuQZXAH42zZ1rc14o" /> -->
 
 <!-- Global -->
 <script>
@@ -56,6 +56,14 @@
     }
   }
 
+  function isFive () {
+    if (!!window.popinPricing && !!window.popinPricing.isFive) {
+      return window.popinPricing.isFive();
+    } else {
+      return false;
+    }
+  }
+
   var modifyPageBasedOnCurrentPlan = function modifyPageBasedOnCurrentPlan () {
     var setCurrent = function setCurrent (elem) {
       elem.innerHTML = 'Current Plan';
@@ -95,6 +103,21 @@
         addClass(elem, 'button');
       }
     }
+
+    var setPremiumPrice = function setPremiumPrice () {
+      // Set basic to current
+      var premiumDivs = document.getElementsByClassName('premium-price');
+      if (!!premiumDivs) {
+        var i = 0;
+        var premium = null;
+        for (i = 0; i < premiumDivs.length; ++i) {
+          premium = premiumDivs[i];
+          if (!!premium) {
+            premium.innerHTML = isFive() ? '$5' : '$19';
+          }
+        }
+      }
+    };
 
     var basicCurrent = function basicCurrent () {
       // Set basic to current
@@ -136,6 +159,7 @@
     var plan = getPricingPlan();
 
     // Marketing site does not define a plan
+    setPremiumPrice();
     if (!plan) {
       basicFree();
       monthlyUpgrade();
@@ -797,7 +821,7 @@
       <ul class="package highlight">
         <li class="header highlight">Premium</li>
         <li class="gray">
-          <strong>$19</strong><small>/ month</small>
+          <strong class="premium-price"></strong><small>/ month</small>
           <br>per creator
         </li>
         <li class="desc">All Basic plus:</li>
@@ -884,7 +908,7 @@
       <div class="plan-header" style="padding-top: 0;">Premium</div>
       <div class="plan-price">
         <p class="plan-price-amount">
-          <span class="plan-price-currency">$</span>19
+          <span class="plan-price-currency"></span><span class="premium-price"></span>
           <span style="font-size:12px; font-weight:normal;"> / month</span>
         </p>
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">Per creator</p>
@@ -981,7 +1005,7 @@
       <div class="plan-header" style="padding-top: 0;">Administrator</div>
       <div class="plan-price">
         <p class="plan-price-amount">
-          <span class="plan-price-currency">$</span>19
+          <span class="plan-price-currency"></span><span class="premium-price"></span>
           <span style="font-size:12px; font-weight:normal;"> / month</span>
         </p>
       </div>
