@@ -151,21 +151,18 @@
     };
 
     var premiumPurchased = function premiumPurchased () {
-      var basic = document.getElementById('summary-free');
-      var free = document.getElementById('free-button');
-      var premium = document.getElementById('premium-upgrade');
-      setPurchased(basic);
-      setPurchased(free);
+      // Set monthly to current
+      var monthlyButton = document.getElementById('premium-upgrade');
+      var premium = document.getElementById('premium-button');
+      setPurchased(monthlyButton);
       setPurchased(premium);
     };
 
-    var businessPurchased = function businessPurchased () {
-      var basic = document.getElementById('summary-free');
-      var free = document.getElementById('free-button');
-      var premium = document.getElementById('premium-upgrade');
-      setPurchased(basic);
-      setPurchased(free);
-      setPurchased(premium);
+    var businessCurrent = function businessCurrent () {
+      var monthlyButton = document.getElementById('business-upgrade');
+      var business = document.getElementById('business-button');
+      setCurrent(monthlyButton);
+      setCurrent(business);
     };
 
     var basicFree = function basicFree () {
@@ -205,15 +202,14 @@
           basicCurrent();
           premiumUpgrade();
           break;
-        case 'premium':
+        case 'premium_monthly':
           basicPurchased();
           premiumCurrent();
-          premiumPurchased();
           break;
         case 'business':
           basicPurchased();
           premiumPurchased();
-          businessPurchased();
+          businessCurrent();
           break;
       }
     }
@@ -954,7 +950,7 @@
         <li>Priority support and <a class="compare-button">more</a></li>
         <li class="footer" style="display: flex; flex-direction: column;">
           <div>
-            <button id="premium-upgrade" class="third-button">Upgrade</button>
+            <button id="business-upgrade" class="third-button">Upgrade</button>
           </div>
           <span style="text-align: center; margin-top: 1rem; margin-bottom: 0;">Cancel anytime.</span>
         </li>
