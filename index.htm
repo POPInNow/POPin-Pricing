@@ -121,18 +121,48 @@
       }
     };
 
+    var setBusinessPrice = function setBusinessPrice () {
+      // Set basic to current
+      var premiumDivs = document.getElementsByClassName('business-price');
+      if (!!premiumDivs) {
+        var i = 0;
+        var premium = null;
+        for (i = 0; i < premiumDivs.length; ++i) {
+          premium = premiumDivs[i];
+          if (!!premium) {
+            premium.innerHTML = '$49';
+          }
+        }
+      }
+    };
+
     var basicCurrent = function basicCurrent () {
       // Set basic to current
       var basic = document.getElementById('summary-free');
       setCurrent(basic);
     };
 
-    var basicPurchased = function basicFree () {
+    var basicPurchased = function basicPurchased () {
       // Set basic to free
       var basic = document.getElementById('summary-free');
       var free = document.getElementById('free-button');
       setPurchased(basic);
       setPurchased(free);
+    };
+
+    var premiumPurchased = function premiumPurchased () {
+      // Set monthly to current
+      var monthlyButton = document.getElementById('premium-upgrade');
+      var premium = document.getElementById('premium-button');
+      setPurchased(monthlyButton);
+      setPurchased(premium);
+    };
+
+    var businessCurrent = function businessCurrent () {
+      var monthlyButton = document.getElementById('business-upgrade');
+      var business = document.getElementById('business-button');
+      setCurrent(monthlyButton);
+      setCurrent(business);
     };
 
     var basicFree = function basicFree () {
@@ -144,17 +174,17 @@
       setClickable(free, false, 'first-button');
     };
 
-    var monthlyCurrent = function monthlyCurrent () {
+    var premiumCurrent = function premiumCurrent () {
       // Set monthly to current
-      var monthlyButton = document.getElementById('summary-monthly');
+      var monthlyButton = document.getElementById('premium-upgrade');
       var premium = document.getElementById('premium-button');
       setCurrent(monthlyButton);
       setCurrent(premium);
     };
 
-    var monthlyUpgrade = function monthlyUpgrade () {
+    var premiumUpgrade = function premiumUpgrade () {
       // Set monthly to upgrade
-      var monthlyButton = document.getElementById('summary-monthly');
+      var monthlyButton = document.getElementById('premium-upgrade');
       setClickable(monthlyButton, true, 'second-button');
     };
 
@@ -162,16 +192,25 @@
 
     // Marketing site does not define a plan
     setPremiumPrice();
+    setBusinessPrice();
     if (!plan) {
       basicFree();
-      monthlyUpgrade();
+      premiumUpgrade();
     } else {
-      if (plan === 'free') {
-        basicCurrent();
-        monthlyUpgrade();
-      } else {
-        basicPurchased();
-        monthlyCurrent();
+      switch(plan) {
+        case 'free':
+          basicCurrent();
+          premiumUpgrade();
+          break;
+        case 'premium_monthly':
+          basicPurchased();
+          premiumCurrent();
+          break;
+        case 'business':
+          basicPurchased();
+          premiumPurchased();
+          businessCurrent();
+          break;
       }
     }
   }
@@ -386,6 +425,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -402,6 +442,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -418,6 +459,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -434,6 +476,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -450,6 +493,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -466,6 +510,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -485,6 +530,7 @@
         'keynote-conf': 'unlimited',
         free: '3',
         premium: 'unlimited',
+        business: 'unlimited',
         enterprise: 'unlimited'
       }
     },
@@ -500,6 +546,7 @@
         'keynote-conf': 'unlimited',
         free: '5',
         premium: 'unlimited',
+        business: 'unlimited',
         enterprise: 'unlimited'
       }
     },
@@ -515,6 +562,7 @@
         'presentation-conf': 'unlimited',
         'keynote-conf': 'unlimited',
         premium: 'unlimited',
+        business: 'unlimited',
         enterprise: 'unlimited'
       }
     },
@@ -530,7 +578,18 @@
         'presentation-conf': 'unlimited',
         'keynote-conf': 'unlimited',
         premium: 'unlimited',
+        business: 'unlimited',
         enterprise: 'unlimited'
+      }
+    },
+    {
+      label: 'Custom Branding',
+      desc: 'Customize the look and feel to match your organization\'s brand',
+      plans: {
+        'institution-edu': 'yes',
+        'keynote-conf': 'yes',
+        business: 'yes',
+        enterprise: 'yes'
       }
     },
     {
@@ -546,6 +605,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -561,6 +621,7 @@
         'presentation-conf': 'yes',
         'keynote-conf': 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -576,6 +637,7 @@
         'presentation-conf': 'yes',
         'keynote-conf': 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -591,6 +653,7 @@
         'presentation-conf': 'yes',
         'keynote-conf': 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -628,6 +691,7 @@
         'presentation-conf': 'yes',
         'keynote-conf': 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -637,6 +701,7 @@
       plans: {
         'institution-edu': 'yes',
         'keynote-conf': 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -664,6 +729,7 @@
       plans: {
         'institution-edu': 'yes',
         'keynote-conf': 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -692,6 +758,7 @@
         'keynote-conf': 'yes',
         free: 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -707,6 +774,7 @@
         'presentation-conf': 'yes',
         'keynote-conf': 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -722,6 +790,7 @@
         'presentation-conf': 'yes',
         'keynote-conf': 'yes',
         premium: 'yes',
+        business: 'yes',
         enterprise: 'yes'
       }
     },
@@ -740,6 +809,7 @@
       plans: {
         'institution-edu': 'yes',
         'keynote-conf': 'yes',
+        business: 'contact us',
         enterprise: 'yes'
       }
     }
@@ -786,7 +856,7 @@
   };
 
   var loadSections = function loadSections () {
-    var sections = [ "header", "free", "premium", "enterprise", "header-edu", "free-edu", "teacher-edu", "dept-edu", "institution-edu", "header-conf", "basic-conf", "presentation-conf", "keynote-conf" ];
+    var sections = [ "header", "free", "premium", "business", "enterprise", "header-edu", "free-edu", "teacher-edu", "dept-edu", "institution-edu", "header-conf", "basic-conf", "presentation-conf", "keynote-conf" ];
     var i = 0;
     for (i = 0; i < sections.length; i++) {
       var section = document.getElementById(sections[i]);
@@ -860,7 +930,27 @@
         <li>Moderation and <a class="compare-button">more</a></li>
         <li class="footer" style="display: flex; flex-direction: column;">
           <div>
-            <button id="summary-monthly" class="second-button">Upgrade</button>
+            <button id="premium-upgrade" class="second-button">Upgrade</button>
+          </div>
+          <span style="text-align: center; margin-top: 1rem; margin-bottom: 0;">Cancel anytime.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-item pricing-plan-business">
+      <ul class="package highlight">
+        <li class="header highlight">Business</li>
+        <li class="gray">
+          <strong class="business-price"></strong><small>/ month</small>
+          <br>per creator
+        </li>
+        <li class="desc">Premium plus:</li>
+        <li>Custom branding</li>
+        <li>Report customization</li>
+        <li>Sentiment analysis</li>
+        <li>Priority support and <a class="compare-button">more</a></li>
+        <li class="footer" style="display: flex; flex-direction: column;">
+          <div>
+            <button id="business-upgrade" class="third-button">Upgrade</button>
           </div>
           <span style="text-align: center; margin-top: 1rem; margin-bottom: 0;">Cancel anytime.</span>
         </li>
@@ -876,7 +966,7 @@
         <li>Segmentation</li>
         <li>Single Sign-On and <a class="compare-button">more</a></li>
         <li class="footer">
-          <button class="subtle third-button">Contact us</button>
+          <button class="subtle fourth-button">Contact us</button>
         </li>
       </ul>
     </div>
@@ -942,9 +1032,31 @@
         <div>
           <button id="premium-button" class="button second-button">Upgrade</button>
         </div>
-        <span style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">Cancel anytime.</span>
+        <span class="premium-cancel" style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">Cancel anytime.</span>
       </div>
       <div id="premium" class="plan-items">
+      </div>
+      <div class="plan-footer">
+      </div>
+    </div>
+
+    <!-- Business -->
+    <div class="pricing-plan is-accent-teal-af is-active">
+      <div class="plan-header" style="padding-top: 0;">Business</div>
+      <div class="plan-price">
+        <p class="plan-price-amount">
+          <span class="plan-price-currency"></span><span class="business-price"></span>
+          <span style="font-size:12px; font-weight:normal;"> / month</span>
+        </p>
+        <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">per creator</p>
+      </div>
+      <div class="plan-footer" style="display: flex; flex-direction: column; padding-bottom: 0;">
+        <div>
+          <button id="business-button" class="button third-button">Upgrade</button>
+        </div>
+        <span class="business-cancel" style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">Cancel anytime.</span>
+      </div>
+      <div id="business" class="plan-items">
       </div>
       <div class="plan-footer">
       </div>
@@ -961,7 +1073,7 @@
         <p style="font-size:12px; font-weight:normal; margin-bottom: 5px;">&nbsp;</p>
       </div>
       <div class="plan-footer">
-        <button class="button third-button">Contact Us</button>
+        <button class="button fourth-button">Contact Us</button>
       </div>
       <div id="enterprise" class="plan-items">
       </div>
