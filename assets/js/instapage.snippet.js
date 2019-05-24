@@ -9,7 +9,7 @@ var paramAdGclid = getUrlParameter('gclid') || 'none';
 var pp = {
   env: 'app',
   payment: {
-    monthly: ['free', 'premium_monthly', 'enterprise'],
+    monthly: ['free', 'premium_monthly', 'business', 'enterprise'],
     education: ['edu_free', 'edu_free', 'edu_free', 'edu_free'],
     conference: ['conf_free', 'conf_free', 'conf_free']
   },
@@ -46,7 +46,7 @@ window.popinPricing = {
 
   onThirdButtonClicked: function (hasPricePlan) {
     if (hasPricePlan === 'monthly') {
-      pricePlanHandler(pp.payment.monthly[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
+      pricePlanHandler(pp.payment.monthly[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, null);
     } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[2], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, false, 'Administrator');
     } else if (hasPricePlan === 'conference') {
@@ -55,7 +55,9 @@ window.popinPricing = {
   },
 
   onFourthButtonClicked: function (hasPricePlan) {
-    if (hasPricePlan === 'education') {
+    if (hasPricePlan === 'monthly') {
+      pricePlanHandler(pp.payment.monthly[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
+    } else if (hasPricePlan === 'education') {
       pricePlanHandler(pp.payment.education[3], pp.campaign, pp.target, pp.adSource, pp.adMedium, pp.adCampaign, pp.adTerm, pp.adContent, pp.gclid, true, null);
     }
   }
