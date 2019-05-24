@@ -842,9 +842,15 @@
 
     item += '  </span>';
 
+    var style;
+    if (section === 'business') {
+      style = 'style="color: goldenrod"';
+    } else {
+      style = '';
+    }
     if (isNotHeader && f.plans && f.plans[section]) {
       if (f.plans[section] === 'yes') {
-        item += '<i class="material-icons checked">check_circle</i>';
+        item += '<i class="material-icons checked" ' + style + ' >check_circle</i>';
       } else {
         item += f.plans[section];
       }
@@ -916,12 +922,14 @@
         </li>
       </ul>
     </div>
-    <div class="flex-item pricing-plan-premium">
-      <ul class="package highlight">
+    <div class="flex-item pricing-plan-premium" style="margin-top: -1.5rem">
+      <ul class="package">
         <li class="header highlight">Premium</li>
-        <li class="gray">
-          <strong class="premium-price"></strong><small>/ month</small>
-          <br>per creator
+        <li class="gray" style="display: flex; flex-direction: row;">
+          <strong class="premium-price" style="margin-left: auto;"></strong>
+          <small style="margin-top: auto; margin-bottom: auto;">/ month</small>
+          <br>
+          <span style="margin-right: auto">&nbsp;per creator</span>
         </li>
         <li class="desc">Basic plus:</li>
         <li>Unlimited polls &amp; surveys</li>
@@ -937,8 +945,8 @@
       </ul>
     </div>
     <div class="flex-item pricing-plan-business">
-      <ul class="package highlight">
-        <li class="header highlight">Business</li>
+      <ul class="package highlight" style="border-color: goldenrod;">
+        <li class="header highlight" style="background-color: goldenrod;">Business</li>
         <li class="gray">
           <strong class="business-price"></strong><small>/ month</small>
           <br>per creator
@@ -950,7 +958,7 @@
         <li>Priority support and <a class="compare-button">more</a></li>
         <li class="footer" style="display: flex; flex-direction: column;">
           <div>
-            <button id="business-upgrade" class="third-button">Upgrade</button>
+            <button id="business-upgrade" class="third-button" style="background-color: goldenrod;">Upgrade</button>
           </div>
           <span style="text-align: center; margin-top: 1rem; margin-bottom: 0;">Cancel anytime.</span>
         </li>
@@ -1019,7 +1027,7 @@
     </div>
 
     <!-- Premium -->
-    <div class="pricing-plan is-accent-teal-af is-active">
+    <div class="pricing-plan is-accent-teal-af">
       <div class="plan-header" style="padding-top: 0;">Premium</div>
       <div class="plan-price">
         <p class="plan-price-amount">
@@ -1041,7 +1049,7 @@
     </div>
 
     <!-- Business -->
-    <div class="pricing-plan is-accent-teal-af is-active">
+    <div class="pricing-plan is-accent-teal-af is-active" style="border-color: goldenrod;">
       <div class="plan-header" style="padding-top: 0;">Business</div>
       <div class="plan-price">
         <p class="plan-price-amount">
@@ -1052,7 +1060,7 @@
       </div>
       <div class="plan-footer" style="display: flex; flex-direction: column; padding-bottom: 0;">
         <div>
-          <button id="business-button" class="button third-button">Upgrade</button>
+          <button id="business-button" class="button third-button" style="background-color: goldenrod;">Upgrade</button>
         </div>
         <span class="business-cancel" style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">Cancel anytime.</span>
       </div>
